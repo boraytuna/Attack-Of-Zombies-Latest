@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5495111170036463478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7500133941392744015}
+  - component: {fileID: 6451063578628977537}
+  m_Layer: 0
+  m_Name: PoliceSpawnerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7500133941392744015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495111170036463478}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6451063578628977537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495111170036463478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4bb30662bec94c18a668fa3c6d8a59c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centralAttackerPrefab: {fileID: 2496486582045581625, guid: b8f7b2de84a7a4916afbe689c2ae5584,
+    type: 3}
+  attackerPrefab: {fileID: 4598251690354690805, guid: dd62d76241a4e4cbd9886c5b1492cb2f,
+    type: 3}
+  target: {fileID: 0}
+  minDistanceFromTarget: 15
+  minNumberOfGroups: 3
+  maxNumberOfGroups: 8
+  minAttackersPerGroup: 3
+  maxAttackersPerGroup: 8
+  minGroupRadius: 2
+  maxGroupRadius: 3
+  minGroupSeparationDistance: 15
+  maxRespawns: 5
+  navMeshSurface: {fileID: 0}
