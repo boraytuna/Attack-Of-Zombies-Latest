@@ -4,25 +4,60 @@ using UnityEngine;
 public class MixedAttackerSpawner : Spawner, ISpawner
 {
     [Header("Prefabs")]
-    [SerializeField] private GameObject centralPolicePrefab;
-    [SerializeField] private GameObject policePrefab;
-    [SerializeField] private GameObject centralSoldierPrefab;
-    [SerializeField] private GameObject soldierPrefab;
+    [SerializeField] private string centralPolicePrefabPath = "AttackerPrefabs/CentralPolice";
+    [SerializeField] private string policePrefabPath = "AttackerPrefabs/Police";
+    [SerializeField] private string centralSoldierPrefabPath = "AttackerPrefabs/CentralSoldier";
+    [SerializeField] private string soldierPrefabPath = "AttackerPrefabs/Soldier";
+
+    private GameObject centralPolicePrefab;
+    private GameObject policePrefab;
+    private GameObject centralSoldierPrefab;
+    private GameObject soldierPrefab;
 
     private Dictionary<int, GameObject> centralAttackersPerGroup = new Dictionary<int, GameObject>();
 
-    public void Initialize()
-    {
-        Spawn();
-    }
-
     public override void Spawn()
     {
+        InitializePrefabs();
         SpawnAttackers();
+    }
+
+    private void InitializePrefabs()
+    {
+        centralPolicePrefab = Resources.Load<GameObject>(centralPolicePrefabPath);
+        if (centralPolicePrefab == null)
+        {
+            Debug.LogError("Central police prefab not found at path: " + centralPolicePrefabPath);
+        }
+
+        policePrefab = Resources.Load<GameObject>(policePrefabPath);
+        if (policePrefab == null)
+        {
+            Debug.LogError("Police prefab not found at path: " + policePrefabPath);
+        }
+
+        centralSoldierPrefab = Resources.Load<GameObject>(centralSoldierPrefabPath);
+        if (centralSoldierPrefab == null)
+        {
+            Debug.LogError("Central soldier prefab not found at path: " + centralSoldierPrefabPath);
+        }
+
+        soldierPrefab = Resources.Load<GameObject>(soldierPrefabPath);
+        if (soldierPrefab == null)
+        {
+            Debug.LogError("Soldier prefab not found at path: " + soldierPrefabPath);
+        }
     }
 
     void SpawnAttackers()
     {
+        // Ensure prefabs are loaded
+        if (centralPolicePrefab == null || policePrefab == null || centralSoldierPrefab == null || soldierPrefab == null)
+        {
+            Debug.LogError("One or more prefabs are not loaded.");
+            return;
+        }
+
         int numberOfGroups = Random.Range(minNumberOfGroups, maxNumberOfGroups + 1);
         for (int i = 0; i < numberOfGroups; i++)
         {
@@ -68,6 +103,13 @@ public class MixedAttackerSpawner : Spawner, ISpawner
 
     private void SpawnGroup(Vector3 center, int attackersPerGroup, float groupRadius, GameObject centralPrefab, GameObject attackerPrefab)
     {
+        // Ensure prefabs are loaded
+        if (centralPrefab == null || attackerPrefab == null)
+        {
+            Debug.LogError("One or more prefabs are not loaded.");
+            return;
+        }
+
         // Spawn the central attacker first
         Vector3 centralPosition = GetValidSpawnPosition(center, groupRadius);
         GameObject centralAttackerObject = Instantiate(centralPrefab, centralPosition, Quaternion.identity);

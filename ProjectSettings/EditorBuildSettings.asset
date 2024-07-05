@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScenes/HumanAttack/PoliceSoldier.unity
     guid: 102a1daf5af06409fa9c346a6982c442
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/HumanAttack/Soldier.unity
+    guid: 74ea84b169fbd4efaa28285bcdfe08d6
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 57d55387d824e420a99a18dd8ea74c83,
       type: 2}

@@ -36,7 +36,6 @@ public class ZombieSpeedManager : MonoBehaviour
     public void Initialize()
     {
         playerMovement = player.GetComponent<PlayerMovement>();
-        GetCurrentSpeed();
     }
 
     private void Update()

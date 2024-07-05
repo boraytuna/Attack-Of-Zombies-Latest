@@ -4,25 +4,40 @@ using UnityEngine.AI;
 
 public class HumanSpeedManager : MonoBehaviour
 {
+    public static HumanSpeedManager Instance { get; private set; } // Singleton instance
+
     private List<NavMeshAgent> humanAgents = new List<NavMeshAgent>(); // List for all the agents
 
     public float currentSpeed;  // Local variable for speed
 
-    public void Initialize()
+    private void Awake()
     {
-        Update();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    void Update()
+    private void Update()
     {
-        if(ZombieSpeedManager.Instance != null)
+        GetCurrentSpeed();
+    }
+
+    public void GetCurrentSpeed()
+    {
+        if (ZombieSpeedManager.Instance != null)
         {
             // Calculate the target speed based on the current zombie speed
             currentSpeed = ZombieSpeedManager.Instance.GetCurrentSpeed() * 0.8f;
         }
         else
         {
-            Debug.LogError("ZombieSpeedManager in human manager is null");
+            Debug.LogError("ZombieSpeedManager in HumanSpeedManager is null");
         }
 
         // Update the speed of all human agents

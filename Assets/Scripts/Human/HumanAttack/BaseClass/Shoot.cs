@@ -2,16 +2,13 @@ using UnityEngine;
 
 public abstract class Shoot : MonoBehaviour, IAttacker
 {
-    [SerializeField] protected float damage = 10f;      // Damage dealt by the attacker
-    [SerializeField] protected float attackRange = 5f; // Range of the attack
-    [SerializeField] protected float attackCooldown = 1f; // Cooldown period between attacks
+    [SerializeField] protected float baseDamage;
     [SerializeField] protected LayerMask zombieLayer;   // Layer mask to detect zombies
+    [SerializeField] protected LayerMask obstacleLayer; // Layer mask to detect obstacles
     [SerializeField] protected Transform shootPoint;    // Point from which the raycast will be shot
-
-    protected float lastAttackTime; // Time when the last attack occurred
-
-    protected abstract void PlayAttackAnimation();
-    protected abstract void PlayIdleAnimation();
+    [SerializeField] protected float attackRange;
+    protected float lastAttackTime;
+    protected AudioManager audioManager;
 
     protected virtual void Start()
     {
@@ -20,34 +17,60 @@ public abstract class Shoot : MonoBehaviour, IAttacker
             // If no shoot point is specified, use the middle of the attacker
             shootPoint = transform;
         }
-        lastAttackTime = -attackCooldown; // Initialize to allow immediate attack
-        PlayIdleAnimation(); // Set the initial animation to idle
+        lastAttackTime = -1f;
+        PlayIdleAnimation();
     }
+
+    protected abstract void PlayAttackAnimation();
+    protected abstract void PlayIdleAnimation();
+
+    // Change PlayShootingSound to virtual
+    protected abstract void PlayShootingSound();
 
     public void Attack(Collider targetCollider)
     {
         // Check if enough time has passed since the last attack
-        if (Time.time >= lastAttackTime + attackCooldown)
+        if (Time.time >= lastAttackTime + 1F)
         {
-            PlayAttackAnimation(); // Play attack animation
+            
             Vector3 targetPosition = targetCollider.bounds.center; // Aim at the center of the target's collider
             Vector3 direction = (targetPosition - shootPoint.position).normalized;
 
             Debug.DrawRay(shootPoint.position, direction * attackRange, Color.red, 1f);  // Draw the ray for debugging
 
-            if (Physics.Raycast(shootPoint.position, direction, out RaycastHit hit, attackRange, zombieLayer))
+            // Check if the raycast hits an obstacle first
+            if (Physics.Raycast(shootPoint.position, direction, out RaycastHit hit, attackRange, zombieLayer | obstacleLayer))
             {
-                Debug.Log("Raycast hit: " + hit.collider.gameObject.name);  // Log the hit object name
-
-                IDamagable damagable = hit.collider.GetComponent<IDamagable>();
-                if (damagable != null)
+                if ((zombieLayer.value & (1 << hit.collider.gameObject.layer)) != 0)
                 {
-                    damagable.TakeDamage(damage);
-                    Debug.Log("Attacked zombie: " + hit.collider.gameObject.name);
+                    // Hit a zombie
+                    Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+                    PlayAttackAnimation(); // Play attack animation
+                    
+                    float multiplier = AttackerDamageManager.Instance.GetMultiplier();
+                    float adjustedDamage = baseDamage * multiplier;
+
+                    Debug.Log("Current multiplier: " + multiplier);
+                    Debug.Log("Base damage: " + baseDamage);
+                    Debug.Log("Adjusted damage: " + adjustedDamage);
+
+                    IDamagable damagable = targetCollider.GetComponent<IDamagable>();
+                    if (damagable != null)
+                    {
+                        damagable.TakeDamage(adjustedDamage);
+                        Debug.Log("Dealt " + adjustedDamage + " damage to " + targetCollider.gameObject.name);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("No IDamagable component found on " + targetCollider.gameObject.name);
+                    }
+
+                    lastAttackTime = Time.time;
                 }
                 else
                 {
-                    Debug.Log("No IDamagable component found on hit object.");
+                    // Hit an obstacle
+                    Debug.Log("Raycast hit an obstacle before hitting a zombie.");
                 }
             }
             else

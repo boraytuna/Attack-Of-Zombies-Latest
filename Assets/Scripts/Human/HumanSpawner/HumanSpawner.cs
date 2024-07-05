@@ -5,24 +5,44 @@ using UnityEngine.AI;
 
 public class HumanSpawner : Spawner, ISpawner
 {
-    [Header("Prefabs")]
-    [SerializeField] private GameObject centralHumanPrefab;
-    [SerializeField] private GameObject humanPrefab;
+    [Header("Prefab Paths")]
+    [SerializeField] private string centralHumanPrefabPath = "HumanPrefabs/CentralHuman";
+    [SerializeField] private string humanPrefabPath = "HumanPrefabs/BasicHuman";
+
+    private GameObject centralHumanPrefab;
+    private GameObject humanPrefab;
 
     private Dictionary<int, GameObject> centralHumansPerGroup = new Dictionary<int, GameObject>();
 
-    public void Initialize()
-    {
-        Spawn();
-    }
-
     public override void Spawn()
     {
+        InitializePrefabs();
         SpawnHumans();
+    }
+
+    private void InitializePrefabs()
+    {
+        centralHumanPrefab = Resources.Load<GameObject>(centralHumanPrefabPath);
+        humanPrefab = Resources.Load<GameObject>(humanPrefabPath);
+
+        if (centralHumanPrefab == null)
+        {
+            Debug.LogError("Central human prefab not found at path: " + centralHumanPrefabPath);
+        }
+        if (humanPrefab == null)
+        {
+            Debug.LogError("Human prefab not found at path: " + humanPrefabPath);
+        }
     }
 
     void SpawnHumans()
     {
+        if (centralHumanPrefab == null || humanPrefab == null)
+        {
+            Debug.LogError("One or more prefabs are not loaded. Aborting spawn.");
+            return;
+        }
+
         navMeshSurface.BuildNavMesh();
 
         int numberOfGroups = Random.Range(minNumberOfGroups, maxNumberOfGroups + 1);
@@ -61,6 +81,12 @@ public class HumanSpawner : Spawner, ISpawner
 
     void SpawnGroup(Vector3 center, int humansPerGroup, float groupRadius)
     {
+        if (centralHumanPrefab == null || humanPrefab == null)
+        {
+            Debug.LogError("One or more prefabs are not loaded. Aborting group spawn.");
+            return;
+        }
+
         // Spawn the central human first
         Vector3 centralPosition = GetValidSpawnPosition(center, groupRadius);
         GameObject centralHumanObject = Instantiate(centralHumanPrefab, centralPosition, Quaternion.identity);

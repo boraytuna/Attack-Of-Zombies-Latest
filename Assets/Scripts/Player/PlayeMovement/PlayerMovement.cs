@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour, IMoveable
     private Vector3 _moveVector; // Vector for storing movement input
     public bool isMoving; // Boolean to keep track of movement for speed
 
-    public void Initialize()
+    public void GetRigidBody()
     {
         _rigidbody = GetComponent<Rigidbody>();
         Debug.Log("Entering Move() method.");

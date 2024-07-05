@@ -13,6 +13,8 @@ public class ZombieHealth : Health, IDamagable
         zombieList = list;
         zombieCounter = counter;
         currentHealth = maxHealth;  // Initialize current health to max health
+        zombieCounter = FindObjectOfType<ZombieCounter>();
+        zombieList = FindObjectOfType<ZombieList>();
     }
 
     protected override void Die()

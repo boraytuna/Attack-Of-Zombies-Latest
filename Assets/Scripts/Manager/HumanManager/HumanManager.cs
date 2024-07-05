@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class HumanManager : MonoBehaviour
 {
@@ -7,10 +6,11 @@ public class HumanManager : MonoBehaviour
     [SerializeField] private HumanSpawner humanSpawner;
     [SerializeField] private MixedAttackerSpawner mixedAttackerSpawner;
     [SerializeField] private HumanSpeedManager humanSpeedManager;
+    [SerializeField] private AttackerDamageManager attackerDamageManager; // Add reference here
 
     private void Awake()
     {
-        // Singleton pattern to ensure only one instance of GameManager
+        // Singleton pattern to ensure only one instance of HumanManager
         if (Instance == null)
         {
             Instance = this;
@@ -26,7 +26,7 @@ public class HumanManager : MonoBehaviour
     {
         if (humanSpawner != null)
         {
-            humanSpawner.Initialize();
+            humanSpawner.Spawn();
         }
         else
         {
@@ -35,7 +35,7 @@ public class HumanManager : MonoBehaviour
 
         if (mixedAttackerSpawner != null)
         {
-            mixedAttackerSpawner.Initialize();
+            mixedAttackerSpawner.Spawn();
         }
         else
         {
@@ -44,11 +44,20 @@ public class HumanManager : MonoBehaviour
 
         if (humanSpeedManager != null)
         {   
-            humanSpeedManager.Initialize();
+            humanSpeedManager.GetCurrentSpeed();
         }
         else
         {
             Debug.LogError("Human speed manager is null");
+        }
+
+        if (attackerDamageManager != null)
+        {
+            attackerDamageManager.GetMultiplier(); 
+        }
+        else
+        {
+            Debug.LogError("Attacker damage manager is null");
         }
     }
 }

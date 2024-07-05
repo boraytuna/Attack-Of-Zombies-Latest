@@ -5,13 +5,21 @@ using UnityEngine;
 public class TurnToZombie : MonoBehaviour
 {
     public LayerMask groundLayer; // Layer mask to define what layers are considered ground
-    public GameObject zombiePrefab; // Reference to the zombie prefab, assigned in the inspector
+    public string zombiePrefabPath = "ZombiePrefabs/GamePlayZombieResourcesTest"; // Path to the zombie prefab in the Resources folder
+    private GameObject zombiePrefab; // Reference to the loaded zombie prefab
     protected ZombieList zombieList; // Reference to zombie manager script
     protected ZombieCounter zombieCounter; // Reference to the Zombie Counter script
     private ZombieAnimatorController zombieAnimatorController;
 
     protected virtual void Start()
     {
+        zombiePrefab = Resources.Load<GameObject>(zombiePrefabPath);
+        if (zombiePrefab == null)
+        {
+            Debug.LogError("Zombie prefab not found at path: " + zombiePrefabPath);
+            return;
+        }
+
         zombieCounter = FindObjectOfType<ZombieCounter>();
         if (zombieCounter == null)
         {
@@ -23,7 +31,6 @@ public class TurnToZombie : MonoBehaviour
         {
             Debug.LogError("ZombieManager not found in the scene.");
         }
-
     }
 
     protected void HandleOnTriggerEnter(Collider other, bool isCentralEntity, System.Action onCentralEntityKilled)
@@ -45,7 +52,7 @@ public class TurnToZombie : MonoBehaviour
 
                 // Play the human death sound
                 FindObjectOfType<AudioManager>().Play("HumanDeath");
-                
+
                 // Find the ground position
                 Vector3 spawnPosition = FindGroundPosition(transform.position);
 

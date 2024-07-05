@@ -14,10 +14,10 @@ public class ZombieList : MonoBehaviour
             zombieIds.Add(zombie, nextId);
             nextId++;
         }
-        else
-        {
-            Debug.LogWarning($"Zombie {zombie.name} is already in the list.");
-        }
+        // else
+        // {
+        //     Debug.LogWarning($"Zombie {zombie.name} is already in the list.");
+        // }
     }
 
     // Method to remove a zombie from the list
@@ -27,10 +27,10 @@ public class ZombieList : MonoBehaviour
         {
             zombieIds.Remove(zombie);
         }
-        else
-        {
-            Debug.LogWarning($"Zombie {zombie.name} is not in the list.");
-        }
+        // else
+        // {
+        //     Debug.LogWarning($"Zombie {zombie.name} is not in the list.");
+        // }
     }
 
     // Method to initialize the zombie list

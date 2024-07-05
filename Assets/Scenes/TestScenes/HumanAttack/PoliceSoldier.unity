@@ -1784,6 +1784,7 @@ MonoBehaviour:
   zombieList: {fileID: 179967567130879343}
   zombieCounter: {fileID: 3874439491762375961}
   zombieSpeedManager: {fileID: 1987479590337255322}
+  zombieHealth: {fileID: 0}
 --- !u!1 &1200597014476332871
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,6 +2138,7 @@ GameObject:
   - component: {fileID: 5815878928640653153}
   - component: {fileID: 6210267573213663273}
   - component: {fileID: 1228134829141614626}
+  - component: {fileID: 6759082729713582107}
   m_Layer: 0
   m_Name: HumanManager
   m_TagString: Untagged
@@ -2725,6 +2727,7 @@ MonoBehaviour:
   humanSpawner: {fileID: 5815878928640653153}
   mixedAttackerSpawner: {fileID: 6210267573213663273}
   humanSpeedManager: {fileID: 1228134829141614626}
+  attackerDamageManager: {fileID: 6759082729713582107}
 --- !u!4 &1940325880081418127
 Transform:
   m_ObjectHideFlags: 0
@@ -7894,7 +7897,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 3692233331477571637}
   playerHealth: {fileID: 7141148980201821810}
-  playerInputManager: {fileID: 2527110629843949503}
 --- !u!4 &6642138574405010316
 Transform:
   m_ObjectHideFlags: 0
@@ -8142,6 +8144,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6759082729713582107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1410726645630482366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 176f406f6675745328bc92c02dfda7a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageThresholds:
+  - zombieCountThreshold: 0
+    multiplier: 1
+  - zombieCountThreshold: 50
+    multiplier: 1.25
+  - zombieCountThreshold: 100
+    multiplier: 1.5
+  - zombieCountThreshold: 150
+    multiplier: 1.75
+  - zombieCountThreshold: 200
+    multiplier: 2
+  - zombieCountThreshold: 250
+    multiplier: 2.5
+  - zombieCountThreshold: 300
+    multiplier: 3
 --- !u!4 &6768381124078953874
 Transform:
   m_ObjectHideFlags: 0
@@ -8171,13 +8200,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: ZombieDeath
-    clip: {fileID: 8300000, guid: 8ba7152c421c348f5bf945928d53d7c0, type: 3}
+    clip: {fileID: 8300000, guid: d2d3788ff3393402ea409ecf02596585, type: 3}
     volume: 5
     pitch: 1
     source: {fileID: 0}
   - name: HumanDeath
     clip: {fileID: 8300000, guid: 47f17e1549e4d41a5b0c43c131319347, type: 3}
     volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: PoliceShoot
+    clip: {fileID: 8300000, guid: deb27f3fc44e548bc91be901f66f522e, type: 3}
+    volume: 0.3
+    pitch: 1
+    source: {fileID: 0}
+  - name: SoldierShoot
+    clip: {fileID: 8300000, guid: fa6a5a405d2b94586aba76847d9b1821, type: 3}
+    volume: 0.3
     pitch: 1
     source: {fileID: 0}
 --- !u!23 &6805124737093044549
