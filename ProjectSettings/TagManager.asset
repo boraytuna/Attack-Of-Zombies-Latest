@@ -7,6 +7,10 @@ TagManager:
   - Human
   - Zombie
   - Building
+  - MainCanvas
+  - DeathPanel
+  - PausePanel
+  - PauseButton
   layers:
   - Default
   - TransparentFX

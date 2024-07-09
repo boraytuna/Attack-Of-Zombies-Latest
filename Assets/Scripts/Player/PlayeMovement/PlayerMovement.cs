@@ -10,10 +10,11 @@ public class PlayerMovement : MonoBehaviour, IMoveable
     private Vector3 _moveVector; // Vector for storing movement input
     public bool isMoving; // Boolean to keep track of movement for speed
 
-    public void GetRigidBody()
+    public void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        Debug.Log("Entering Move() method.");
+        _joystick = FindObjectOfType<FloatingJoystick>();
+        zombieAnimatorController = GetComponent<ZombieAnimatorController>();
     }
 
     private void Update()
@@ -22,58 +23,117 @@ public class PlayerMovement : MonoBehaviour, IMoveable
     }
 
     // Method to handle player movement
-    public void Move()
-    {
-        _moveVector = Vector3.zero;
-        _moveVector.x = _joystick.Horizontal;
-        _moveVector.z = _joystick.Vertical;
+    // public void Move()
+    // {
+    //     _moveVector = Vector3.zero;
+    //     _moveVector.x = _joystick.Horizontal;
+    //     _moveVector.z = _joystick.Vertical;
 
-        // Update the InputManager with the player's input
-        if (PlayerInputManager.Instance != null)
-        {
-            PlayerInputManager.Instance.UpdateMoveVector(_moveVector);
-        }
-        else
-        {
-            Debug.LogError("PlayerInputManager Instance is null.");
-        }
+    //     // Update the InputManager with the player's input
+    //     if (PlayerInputManager.Instance != null)
+    //     {
+    //         PlayerInputManager.Instance.UpdateMoveVector(_moveVector);
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("PlayerInputManager Instance is null.");
+    //     }
 
-        // If there's joystick input, rotate the player and play the run animation
-        if (_moveVector.magnitude > 0)
-        {
-            // Set the boolean true
-            isMoving = true;
+    //     // If there's joystick input, rotate the player and play the run animation
+    //     if (_moveVector.magnitude > 0)
+    //     {
+    //         // Set the boolean true
+    //         isMoving = true;
 
-            if(ZombieSpeedManager.Instance != null)
-            {
-                float moveSpeed = ZombieSpeedManager.Instance.GetCurrentSpeed();
+    //         if(ZombieSpeedManager.Instance != null)
+    //         {
+    //             float moveSpeed = ZombieSpeedManager.Instance.GetCurrentSpeed();
                 
-                Vector3 direction = new Vector3(_moveVector.x, 0, _moveVector.z).normalized;
-                Vector3 targetVelocity = direction * moveSpeed;
+    //             Vector3 direction = new Vector3(_moveVector.x, 0, _moveVector.z).normalized;
+    //             Vector3 targetVelocity = direction * moveSpeed;
 
-                // Clamp the velocity to ensure it doesn't exceed the maximum speed
-                targetVelocity = Vector3.ClampMagnitude(targetVelocity, moveSpeed);
+    //             // Clamp the velocity to ensure it doesn't exceed the maximum speed
+    //             targetVelocity = Vector3.ClampMagnitude(targetVelocity, moveSpeed);
 
-                // Apply the target velocity to the Rigidbody
-                _rigidbody.velocity = new Vector3(targetVelocity.x, _rigidbody.velocity.y, targetVelocity.z);
+    //             // Apply the target velocity to the Rigidbody
+    //             _rigidbody.velocity = new Vector3(targetVelocity.x, _rigidbody.velocity.y, targetVelocity.z);
 
-                // Rotate the player towards the movement direction
-                Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, _rotateSpeed * Time.deltaTime, 0.0f);
-                transform.rotation = Quaternion.LookRotation(newDirection);
+    //             // Rotate the player towards the movement direction
+    //             Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, _rotateSpeed * Time.deltaTime, 0.0f);
+    //             transform.rotation = Quaternion.LookRotation(newDirection);
 
-                zombieAnimatorController.PlayRun(); // Play the run animation
-            }
+    //             zombieAnimatorController.PlayRun(); // Play the run animation
+    //         }
             
-        }
-        else
-        {
-            // Set the boolean false
-            isMoving = false;
+    //     }
+    //     else
+    //     {
+    //         // Set the boolean false
+    //         isMoving = false;
 
-            zombieAnimatorController.PlayIdle(); // Play the idle animation
+    //         zombieAnimatorController.PlayIdle(); // Play the idle animation
 
-            // Stop the player's movement
-            _rigidbody.velocity = Vector3.zero;
-        }
+    //         // Stop the player's movement
+    //         _rigidbody.velocity = Vector3.zero;
+    //     }
+    // }
+
+    public void Move()
+{
+    _moveVector = Vector3.zero;
+    _moveVector.x = _joystick.Horizontal;
+    _moveVector.z = _joystick.Vertical;
+
+    // Update the InputManager with the player's input
+    if (PlayerInputManager.Instance != null)
+    {
+        PlayerInputManager.Instance.UpdateMoveVector(_moveVector);
     }
+    else
+    {
+        Debug.LogError("PlayerInputManager Instance is null.");
+    }
+
+    // If there's joystick input, rotate the player and play the run animation
+    if (_moveVector.magnitude > 0)
+    {
+        // Set the boolean true
+        isMoving = true;
+
+        if (ZombieSpeedManager.Instance != null)
+        {
+            float moveSpeed = ZombieSpeedManager.Instance.GetCurrentSpeed();
+
+            Vector3 direction = new Vector3(_moveVector.x, 0, _moveVector.z).normalized;
+            Vector3 targetVelocity = direction * moveSpeed;
+
+            // Clamp the velocity to ensure it doesn't exceed the maximum speed
+            targetVelocity = Vector3.ClampMagnitude(targetVelocity, moveSpeed);
+
+            // Apply the target velocity to the Rigidbody
+            _rigidbody.velocity = new Vector3(targetVelocity.x, _rigidbody.velocity.y, targetVelocity.z);
+
+            // Rotate the player towards the movement direction
+            if (direction != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, _rotateSpeed * Time.deltaTime);
+            }
+
+            zombieAnimatorController.PlayRun(); // Play the run animation
+        }
+
+    }
+    else
+    {
+        // Set the boolean false
+        isMoving = false;
+
+        zombieAnimatorController.PlayIdle(); // Play the idle animation
+
+        // Stop the player's movement
+        _rigidbody.velocity = Vector3.zero;
+    }
+}
+
 }

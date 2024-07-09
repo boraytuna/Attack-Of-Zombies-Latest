@@ -7,14 +7,18 @@ public class ZombieHealth : Health, IDamagable
     [SerializeField] private ZombieCounter zombieCounter; // Reference to the zombie counter manager
     [SerializeField] private ZombieAnimatorController zombieAnimatorController;
 
+    private void Awake()
+    {
+        zombieCounter = FindObjectOfType<ZombieCounter>();
+        zombieList = FindObjectOfType<ZombieList>();
+    }
+
     // Initialize method to set up zombie health
     public void Initialize(ZombieList list, ZombieCounter counter)
     {
         zombieList = list;
         zombieCounter = counter;
         currentHealth = maxHealth;  // Initialize current health to max health
-        zombieCounter = FindObjectOfType<ZombieCounter>();
-        zombieList = FindObjectOfType<ZombieList>();
     }
 
     protected override void Die()

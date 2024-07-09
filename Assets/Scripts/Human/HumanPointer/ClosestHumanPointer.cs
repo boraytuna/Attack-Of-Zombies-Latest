@@ -8,31 +8,44 @@ public class ClosestHumanPointer : MonoBehaviour
     [SerializeField] private string humanLayerName = "CentralHuman";
     [SerializeField] private Camera mainCamera;
 
-    void Start()
+    void Awake()
     {
-        if (mainCamera == null)
+        if(UIManager.Instance != null)
         {
-            mainCamera = Camera.main;
-        }
+            UIManager.Instance.HumanPointerActivate();
+        }   
 
-        if (mainCamera == null)
+        mainCamera = Camera.main;
+        if(mainCamera == null)
         {
-            Debug.LogError("Main camera is not assigned or not found.");
+            Debug.Log("main camera is null");
         }
 
         if (humanPointer != null)
         {
             humanPointer.gameObject.SetActive(true);
         }
+
+        playerTransform = gameObject.GetComponent<Transform>();
+        humanPointer = GameObject.Find("HumanPointer");
+        if(humanPointer == null)
+        {
+            Debug.Log("HumanPointer is null");
+        }
+        arrowRectTransform = GameObject.Find("HumanPointerArrow").GetComponent<RectTransform>();
+        if(arrowRectTransform == null)
+        {
+            Debug.Log("arrow rect is null");
+        }
     }
 
     void Update()
     {
-        if (playerTransform == null || arrowRectTransform == null)
-        {
-            Debug.LogError("playerTransform or arrowRectTransform is not assigned.");
-            return;
-        }
+        // if (playerTransform == null || arrowRectTransform == null)
+        // {
+        //     Debug.LogError("playerTransform or arrowRectTransform is not assigned.");
+        //     return;
+        // }
 
         Transform closestHuman = FindClosestHuman();
         if (closestHuman != null)
@@ -84,11 +97,6 @@ public class ClosestHumanPointer : MonoBehaviour
         }
 
         Vector3 direction = target.position - playerTransform.position;
-        if (mainCamera == null)
-        {
-            Debug.LogError("Main camera is not assigned or not found.");
-            return;
-        }
 
         Vector3 screenPoint = mainCamera.WorldToScreenPoint(playerTransform.position + direction);
         Vector2 directionOnScreen = new Vector2(screenPoint.x, screenPoint.y) - new Vector2(Screen.width / 2, Screen.height / 2);

@@ -23,8 +23,13 @@ public class SceneReloader : MonoBehaviour
     public void ReloadCurrentScene()
     {
         // Get the current active scene
-        Scene currentScene = SceneManager.GetActiveScene();
-        // Reload the current active scene
-        SceneManager.LoadScene(currentScene.name);
+        // Scene currentScene = SceneManager.GetActiveScene();
+        // // Reload the current active scene
+        // SceneManager.LoadScene(currentScene.name);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+        // Initialize systems again
+        //GameManager.Instance.InitializeSystems();
     }
 }
