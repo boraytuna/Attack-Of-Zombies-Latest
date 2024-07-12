@@ -1,71 +1,47 @@
 using UnityEngine;
+using System.Collections;
 
 public class ClosestHumanPointer : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
     [SerializeField] private RectTransform arrowRectTransform;
     [SerializeField] private GameObject humanPointer;
-    [SerializeField] private string humanLayerName = "CentralHuman";
+    [SerializeField] private string humanLayerName = "Human";
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private float initialDelay = 1f; // Delay before starting to check for humans
 
-    void Awake()
+    private void Start()
     {
-        if(UIManager.Instance != null)
-        {
-            UIManager.Instance.HumanPointerActivate();
-        }   
+        StartCoroutine(StartCheckingForHumansAfterDelay());
+    }
 
-        mainCamera = Camera.main;
-        if(mainCamera == null)
+    private IEnumerator StartCheckingForHumansAfterDelay()
+    {
+        yield return new WaitForSeconds(initialDelay);
+        while (true)
         {
-            Debug.Log("main camera is null");
-        }
-
-        if (humanPointer != null)
-        {
-            humanPointer.gameObject.SetActive(true);
-        }
-
-        playerTransform = gameObject.GetComponent<Transform>();
-        humanPointer = GameObject.Find("HumanPointer");
-        if(humanPointer == null)
-        {
-            Debug.Log("HumanPointer is null");
-        }
-        arrowRectTransform = GameObject.Find("HumanPointerArrow").GetComponent<RectTransform>();
-        if(arrowRectTransform == null)
-        {
-            Debug.Log("arrow rect is null");
+            UpdateHumanPointer();
+            yield return null; // Wait until the next frame
         }
     }
 
-    void Update()
+    private void UpdateHumanPointer()
     {
-        // if (playerTransform == null || arrowRectTransform == null)
-        // {
-        //     Debug.LogError("playerTransform or arrowRectTransform is not assigned.");
-        //     return;
-        // }
-
         Transform closestHuman = FindClosestHuman();
         if (closestHuman != null)
         {
             RotateArrowTowards(closestHuman);
-            if (humanPointer != null && !humanPointer.activeSelf)
-            {
-                humanPointer.gameObject.SetActive(true);
-            }
         }
         else
         {
             if (humanPointer != null && humanPointer.activeSelf)
             {
-                humanPointer.gameObject.SetActive(false);
+                humanPointer.SetActive(false);
             }
         }
     }
 
-    Transform FindClosestHuman()
+    private Transform FindClosestHuman()
     {
         int humanLayer = LayerMask.NameToLayer(humanLayerName);
         GameObject[] humans = FindObjectsOfType<GameObject>();
@@ -88,7 +64,7 @@ public class ClosestHumanPointer : MonoBehaviour
         return closestHuman;
     }
 
-    void RotateArrowTowards(Transform target)
+    private void RotateArrowTowards(Transform target)
     {
         if (target == null)
         {
@@ -97,12 +73,11 @@ public class ClosestHumanPointer : MonoBehaviour
         }
 
         Vector3 direction = target.position - playerTransform.position;
-
         Vector3 screenPoint = mainCamera.WorldToScreenPoint(playerTransform.position + direction);
         Vector2 directionOnScreen = new Vector2(screenPoint.x, screenPoint.y) - new Vector2(Screen.width / 2, Screen.height / 2);
-        
+
         // Invert the y-axis for correct arrow pointing
-        //directionOnScreen.y = -directionOnScreen.y;
+        // directionOnScreen.y = -directionOnScreen.y;
 
         float angle = Mathf.Atan2(directionOnScreen.y, directionOnScreen.x) * Mathf.Rad2Deg;
         arrowRectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));

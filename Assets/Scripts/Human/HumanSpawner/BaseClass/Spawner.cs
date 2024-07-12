@@ -24,7 +24,7 @@ public abstract class Spawner : MonoBehaviour, ISpawner
 
     protected int currentRespawns = 0; // Current number of respawns that have occurred
     protected List<Vector3> groupCenters = new List<Vector3>();
-
+    
     public abstract void Spawn();
 
     protected Vector3 GetValidSpawnPosition(Vector3 center, float groupRadius)

@@ -10,19 +10,6 @@ public class HumanSpeedManager : MonoBehaviour
 
     public float currentSpeed;  // Local variable for speed
 
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void Update()
     {
         GetCurrentSpeed();
@@ -46,4 +33,5 @@ public class HumanSpeedManager : MonoBehaviour
             agent.speed = currentSpeed;
         }
     }
+
 }

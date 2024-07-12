@@ -15,7 +15,7 @@
 //     protected override void Die()
 //     {
 //         Debug.Log("Player died!"); // Example death behavior for player
-
+        
 //         // Play the zombie death sound
 //         FindObjectOfType<AudioManager>().Play("ZombieDeath");
 
@@ -29,8 +29,8 @@
 //             Debug.LogError("Animator is null");
 //         }
 
-//         // Destroy the player GameObject
-//         Destroy(gameObject);
+//         // Notify the GameManager that the player has died
+//         PlayerManager.Instance.PlayerDied();
 //     }
 // }
 using System.Collections;
@@ -40,8 +40,7 @@ public class PlayerHealth : Health, IDamagable
 {
     private ZombieAnimatorController zombieAnimatorController;
 
-    // Initialize method to set up player health
-    public void Initialize()
+    void Start()
     {
         currentHealth = maxHealth;  // Initialize current health to max health
         zombieAnimatorController = GetComponent<ZombieAnimatorController>();
@@ -64,7 +63,19 @@ public class PlayerHealth : Health, IDamagable
             Debug.LogError("Animator is null");
         }
 
+        Destroy(gameObject);
+
         // Notify the GameManager that the player has died
-        PlayerManager.Instance.PlayerDied();
+        UIManager.Instance.OnPlayerDeath();
+    }
+
+    // Reset method to reset player health
+    public void Reset()
+    {
+        currentHealth = maxHealth;  // Reset health to max health
+        if (zombieAnimatorController != null)
+        {
+            zombieAnimatorController.PlayIdle();  // Reset animation to idle
+        }
     }
 }

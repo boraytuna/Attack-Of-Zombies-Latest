@@ -22,7 +22,6 @@ public class GamePlayZombieMovement : MonoBehaviour, IMoveable
 
         // Find the zombie counter script
         zombieCounter = FindObjectOfType<ZombieCounter>();
-        Debug.Log("Entering Move() method.");
     }
 
     private void Update()

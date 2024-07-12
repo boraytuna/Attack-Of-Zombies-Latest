@@ -1,113 +1,12 @@
-// using UnityEngine;
-// using UnityEngine.SceneManagement;
-
-// public class GameManager : MonoBehaviour
-// {
-//     public static GameManager Instance { get; private set; }
-
-//     [SerializeField] private PlayerManager playerManager; // Reference to PlayerManager
-//     [SerializeField] private HumanManager humanManager; // Reference to HumanManager
-//     [SerializeField] private ZombieManager zombieManager; // Reference to ZombieManager 
-//     [SerializeField] private UIManager uIManager; // Reference to UIManager
-    
-//     private void Awake()
-//     {
-//         // Singleton pattern to ensure only one instance of GameManager
-//         if (Instance == null)
-//         {
-//             Instance = this;
-//             DontDestroyOnLoad(gameObject);
-//         }
-//         else
-//         {
-//             Destroy(gameObject);
-//         }
-//     }
-
-//     private void Start()
-//     {
-//         // Initialize systems
-//         InitializeSystems();
-//     }
-
-//     // Method to initialize various systems
-//     public void InitializeSystems()
-//     {
-//         if (humanManager != null)
-//         {
-//             humanManager.Initialize();
-//         }
-//         else
-//         {
-//             Debug.LogWarning("Human Manager is null");
-//         }
-
-//         if (playerManager != null)
-//         {
-//             playerManager.Initialize();
-//         }
-//         else
-//         {
-//             Debug.LogWarning("Player Manager is null");
-//         }
-
-//         if (zombieManager != null)
-//         {
-//             zombieManager.Initialize();
-//         }
-//         else
-//         {
-//             Debug.LogWarning("Zombie Manager is null");
-//         }
-
-//         if (uIManager != null)
-//         {
-//             uIManager.LoadCanvas();
-//         }
-//         else
-//         {
-//             Debug.LogWarning("UIManager is null");
-//         }
-//     }
-
-//     // Method to pause all game actions
-//     public void PauseAllGameActions()
-//     {
-//         GamePauser.Instance.PauseGame();
-//         uIManager.ActivatePausePanel();
-//     }
-
-//     // Method to resume all game actions
-//     public void ResumeAllGameActions()
-//     {
-//         GamePauser.Instance.ResumeGame();
-//         uIManager.DeactivatePausePanel();
-//     }
-
-//     // Method to handle player death
-//     public void PlayerDead()
-//     {
-//         GamePauser.Instance.PauseGame();
-//         uIManager.OnPlayerDeath();
-//     }
-
-//     // Method to restart the current level
-//     public void RestartLevel()
-//     {
-//         SceneReloader.Instance.ReloadCurrentScene();
-//     }
-// }
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-
-    [SerializeField] private PlayerManager playerManager; // Reference to PlayerManager
-    [SerializeField] private HumanManager humanManager; // Reference to HumanManager
-    [SerializeField] private ZombieManager zombieManager; // Reference to ZombieManager 
-    [SerializeField] private UIManager uIManager; // Reference to UIManager
+    public GameState State;
+    public static event Action<GameState> OnGameStateChanged;
 
     private void Awake()
     {
@@ -125,75 +24,109 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        // Initialize systems
-        InitializeSystems();
+        UpdateGameStates(GameState.MainMenu);
     }
 
-    // Method to initialize various systems
-    public void InitializeSystems()
+    public void UpdateGameStates(GameState newState)
     {
-        if (humanManager != null)
+        State = newState;
+
+        switch (newState)
         {
-            humanManager.Initialize();
-        }
-        else
-        {
-            Debug.LogWarning("Human Manager is null");
+            case GameState.MainMenu:
+                HandleMainMenuActions();
+                break;
+            case GameState.LevelMenu:
+                HandleLevelMenuActions();
+                break;
+            case GameState.ActualGamePlay:
+                HandleGamePlayActions();
+                break;
+            case GameState.PauseState:
+                HandlePauseMenuActions();
+                break;
+            case GameState.Victory:
+                HandleVictoryActions();
+                break;
+            case GameState.Lose:
+                HandleLoseActions();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
 
-        // if (playerManager != null)
-        // {
-        //     playerManager.Initialize();
-        // }
-        // else
-        // {
-        //     Debug.LogWarning("Player Manager is null");
-        // }
-
-        if (zombieManager != null)
-        {
-            zombieManager.Initialize();
-        }
-        else
-        {
-            Debug.LogWarning("Zombie Manager is null");
-        }
-
-        if (uIManager != null)
-        {
-            uIManager.LoadCanvas();
-        }
-        else
-        {
-            Debug.LogWarning("UIManager is null");
-        }
+        OnGameStateChanged?.Invoke(newState);
     }
 
-    // Method to pause all game actions
-    public void PauseAllGameActions()
+    private void HandleMainMenuActions()
     {
-        GamePauser.Instance.PauseGame();
-        uIManager.ActivatePausePanel();
+        // Logic to handle main menu actions
     }
 
-    // Method to resume all game actions
-    public void ResumeAllGameActions()
+    private void HandleLevelMenuActions()
     {
-        GamePauser.Instance.ResumeGame();
-        uIManager.DeactivatePausePanel();
+        // Logic to handle level menu actions
     }
 
-    // Method to handle player death
-    public void PlayerDead()
+    private void HandleGamePlayActions()
     {
-        GamePauser.Instance.PauseGame();
-        uIManager.OnPlayerDeath();
+        // Logic to handle actual gameplay actions
     }
 
-    // Method to restart the current level
-    public void RestartLevel()
+    private void HandlePauseMenuActions()
     {
-        SceneReloader.Instance.ReloadCurrentScene();
-        uIManager.DeactivateDeathPanel();   
+        // Logic to handle pause menu actions
     }
+
+    private void HandleVictoryActions()
+    {
+        // Logic to handle victory actions
+    }
+
+    private void HandleLoseActions()
+    {
+        // Logic to handle lose actions
+    }
+
+    public void BackToMainMenu()
+    {
+        UpdateGameStates(GameState.MainMenu);
+    }
+
+    public void GoToLevelMenu()
+    {
+        UpdateGameStates(GameState.LevelMenu);
+    }
+
+    public void ActualGamePlay()
+    {
+        UpdateGameStates(GameState.ActualGamePlay);
+    }
+
+    public void OpenPauseState()
+    {
+        UpdateGameStates(GameState.PauseState);
+    }
+
+    public void WhenPlayerWins()
+    {
+        UpdateGameStates(GameState.Victory);
+    }
+
+    public void WhenPlayerDies()
+    {
+        UpdateGameStates(GameState.Lose);
+    }
+
+
+}
+
+public enum GameState
+{
+    MainMenu,
+    LevelMenu,
+    ActualGamePlay,
+    PauseState,
+    Victory,
+    Lose,
 }

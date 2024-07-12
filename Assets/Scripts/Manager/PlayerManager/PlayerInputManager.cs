@@ -6,7 +6,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private Vector3 moveVector;
 
-    private void Awake()
+    void Awake()
     {
         if (Instance == null)
         {
@@ -16,11 +16,6 @@ public class PlayerInputManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    public void Initialize()
-    {
-        UpdateMoveVector(moveVector);
     }
 
     public void UpdateMoveVector(Vector3 move)

@@ -6,11 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TestScenes/HumanAttack/PoliceSoldier.unity
-    guid: 102a1daf5af06409fa9c346a6982c442
+    path: Assets/Scenes/TestScenes/MainMenuTest/MainMenu.unity
+    guid: efd4e33243d87401b9f56f15ddb81b9f
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/MainMenuTest/LevelMenu.unity
+    guid: 363d29ea35b054929bd01d530823e4e8
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/HumanAttack/Police.unity
+    guid: aae9fa482dd964663bed89262143237a
   - enabled: 1
     path: Assets/Scenes/TestScenes/HumanAttack/Soldier.unity
     guid: 74ea84b169fbd4efaa28285bcdfe08d6
+  - enabled: 1
+    path: Assets/Scenes/TestScenes/HumanAttack/SoldierPolice.unity
+    guid: ca2436de56d7444139cc54143cba8d2e
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 57d55387d824e420a99a18dd8ea74c83,
       type: 2}

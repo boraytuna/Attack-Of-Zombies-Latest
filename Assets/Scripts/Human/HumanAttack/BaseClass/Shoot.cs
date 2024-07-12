@@ -1,12 +1,14 @@
 using UnityEngine;
 
 public abstract class Shoot : MonoBehaviour, IAttacker
-{
+{   
+    [SerializeField] protected AttackerDamageManager attackerDamageManager;
     [SerializeField] protected float baseDamage;
     [SerializeField] protected LayerMask zombieLayer;   // Layer mask to detect zombies
     [SerializeField] protected LayerMask obstacleLayer; // Layer mask to detect obstacles
     [SerializeField] protected Transform shootPoint;    // Point from which the raycast will be shot
     [SerializeField] protected float attackRange;
+
     protected float lastAttackTime;
     protected AudioManager audioManager;
 
@@ -19,6 +21,7 @@ public abstract class Shoot : MonoBehaviour, IAttacker
         }
         lastAttackTime = -1f;
         PlayIdleAnimation();
+        attackerDamageManager = FindObjectOfType<AttackerDamageManager>();
     }
 
     protected abstract void PlayAttackAnimation();
@@ -47,25 +50,34 @@ public abstract class Shoot : MonoBehaviour, IAttacker
                     Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
                     PlayAttackAnimation(); // Play attack animation
                     
-                    float multiplier = AttackerDamageManager.Instance.GetMultiplier();
-                    float adjustedDamage = baseDamage * multiplier;
-
-                    Debug.Log("Current multiplier: " + multiplier);
-                    Debug.Log("Base damage: " + baseDamage);
-                    Debug.Log("Adjusted damage: " + adjustedDamage);
-
-                    IDamagable damagable = targetCollider.GetComponent<IDamagable>();
-                    if (damagable != null)
+                    if(AttackerDamageManager.Instance != null)
                     {
-                        damagable.TakeDamage(adjustedDamage);
-                        Debug.Log("Dealt " + adjustedDamage + " damage to " + targetCollider.gameObject.name);
+                        float multiplier = attackerDamageManager.GetMultiplier();
+                        Debug.Log("Multiplier = " + multiplier);
+                        float adjustedDamage = baseDamage * multiplier;
+
+                        Debug.Log("Current multiplier: " + multiplier);
+                        Debug.Log("Base damage: " + baseDamage);
+                        Debug.Log("Adjusted damage: " + adjustedDamage);
+
+                        IDamagable damagable = targetCollider.GetComponent<IDamagable>();
+                        if (damagable != null)
+                        {
+                            damagable.TakeDamage(adjustedDamage);
+                            Debug.Log("Dealt " + adjustedDamage + " damage to " + targetCollider.gameObject.name);
+                        }
+                        else
+                        {
+                            Debug.LogWarning("No IDamagable component found on " + targetCollider.gameObject.name);
+                        }
+
+                        lastAttackTime = Time.time;
                     }
                     else
                     {
-                        Debug.LogWarning("No IDamagable component found on " + targetCollider.gameObject.name);
+                        Debug.LogError("AttackerDamager is null");
                     }
-
-                    lastAttackTime = Time.time;
+                   
                 }
                 else
                 {

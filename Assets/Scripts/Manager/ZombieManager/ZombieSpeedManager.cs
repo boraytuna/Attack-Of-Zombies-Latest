@@ -20,13 +20,12 @@ public class ZombieSpeedManager : MonoBehaviour
     private float speedIncreaseRate = 1f; // The rate speed increases
 
     public bool maxSpeedReached = false; // Bool for checking if the player reached the max speed
-
-    private void Awake()
+    
+    void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -34,17 +33,12 @@ public class ZombieSpeedManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        Initialize();
-    }
-
-    public void Initialize()
+    void Start()
     {
         playerHolder = GameObject.Find(playerHolderName); // Find the PlayerHolder object by name
         if (playerHolder != null)
         {
-            player = playerHolder.GetComponentInChildren<PlayerHealth>().gameObject;
+            player = playerHolder.GetComponentInChildren<PlayerMovement>().gameObject;
             playerMovement = player.GetComponent<PlayerMovement>();
             
             if (player == null)
@@ -62,22 +56,19 @@ public class ZombieSpeedManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
         if (playerMovement != null)
         {
-            // Debug.Log("Player is moving: " + playerMovement.isMoving);
             if (playerMovement.isMoving)
             {
                 IncreaseSpeedOverTime();
             }
             else
+            {
                 ResetSpeed();
+            }
         }
-        // else
-        // {
-        //     Debug.LogError("PlayerMovement is null in Update.");
-        // }
     }
 
     // Method to increase the speed.
@@ -88,8 +79,6 @@ public class ZombieSpeedManager : MonoBehaviour
             currentSpeed += speedIncreaseRate * Time.deltaTime;
             currentSpeed = Mathf.Clamp(currentSpeed, minSpeed, maxSpeed);
         }
-
-        //Debug.Log("Current Speed: " + currentSpeed);
 
         if (currentSpeed >= maxSpeed)
         {
@@ -108,8 +97,6 @@ public class ZombieSpeedManager : MonoBehaviour
         {
             currentSpeed = minSpeed;
         }
-
-        //Debug.Log("Speed reset to: " + currentSpeed);
     }
 
     // Return float for movement scripts.

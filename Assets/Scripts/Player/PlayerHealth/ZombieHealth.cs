@@ -13,11 +13,8 @@ public class ZombieHealth : Health, IDamagable
         zombieList = FindObjectOfType<ZombieList>();
     }
 
-    // Initialize method to set up zombie health
-    public void Initialize(ZombieList list, ZombieCounter counter)
+    void Start()
     {
-        zombieList = list;
-        zombieCounter = counter;
         currentHealth = maxHealth;  // Initialize current health to max health
     }
 

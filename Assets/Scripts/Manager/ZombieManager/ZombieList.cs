@@ -6,6 +6,13 @@ public class ZombieList : MonoBehaviour
     private Dictionary<GameObject, int> zombieIds = new Dictionary<GameObject, int>(); // Dictionary to store zombies with their IDs
     private int nextId = 1; // Counter for assigning unique IDs
 
+    // Method to initialize the zombie list
+    void Start()
+    {
+        zombieIds.Clear(); // Clear existing zombie list
+        nextId = 1; // Reset the ID counter
+    }
+
     // Method to add a zombie to the list
     public void AddZombie(GameObject zombie)
     {
@@ -14,10 +21,6 @@ public class ZombieList : MonoBehaviour
             zombieIds.Add(zombie, nextId);
             nextId++;
         }
-        // else
-        // {
-        //     Debug.LogWarning($"Zombie {zombie.name} is already in the list.");
-        // }
     }
 
     // Method to remove a zombie from the list
@@ -27,16 +30,7 @@ public class ZombieList : MonoBehaviour
         {
             zombieIds.Remove(zombie);
         }
-        // else
-        // {
-        //     Debug.LogWarning($"Zombie {zombie.name} is not in the list.");
-        // }
     }
 
-    // Method to initialize the zombie list
-    public void Initialize()
-    {
-        zombieIds.Clear(); // Clear existing zombie list
-        nextId = 1; // Reset the ID counter
-    }
+
 }

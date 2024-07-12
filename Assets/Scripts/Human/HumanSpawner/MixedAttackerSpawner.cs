@@ -17,8 +17,14 @@ public class MixedAttackerSpawner : Spawner, ISpawner
 
     private Dictionary<int, GameObject> centralAttackersPerGroup = new Dictionary<int, GameObject>();
 
+    void Start()
+    {
+        Spawn();
+    }
+
     public override void Spawn()
     {
+        //FindPlayerAndNavMesh();
         InitializePrefabs();
         SpawnAttackers();
     }
@@ -49,25 +55,39 @@ public class MixedAttackerSpawner : Spawner, ISpawner
             Debug.LogError("Soldier prefab not found at path: " + soldierPrefabPath);
         }
     }
-    public void FindPlayerAndNavMesh()
-    {
-        // Example of finding player transform (you can adjust this based on your hierarchy):
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            target = player.transform;
-        }
-        else
-        {
-            Debug.LogError("Player not found. Ensure the player is tagged with 'Player' tag.");
-        }
+    // public void FindPlayerAndNavMesh()
+    // {
+    //     // Example of finding player transform (you can adjust this based on your hierarchy):
+    //     GameObject player = GameObject.FindGameObjectWithTag("Player");
+    //     if (player != null)
+    //     {
+    //         target = player.transform;
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("Player not found. Ensure the player is tagged with 'Player' tag.");
+    //     }
 
-        // Example of finding NavMeshSurface (you can adjust this based on your setup):
-        navMeshSurface = FindObjectOfType<NavMeshSurface>();
-        if (navMeshSurface == null)
+    //     // Example of finding NavMeshSurface (you can adjust this based on your setup):
+    //     navMeshSurface = FindObjectOfType<NavMeshSurface>();
+    //     if (navMeshSurface == null)
+    //     {
+    //         Debug.LogError("NavMeshSurface not found in the scene.");
+    //     }
+    // }
+
+    public void Reset()
+    {
+        foreach (var centralAttacker in centralAttackersPerGroup.Values)
         {
-            Debug.LogError("NavMeshSurface not found in the scene.");
+            if (centralAttacker != null)
+            {
+                Destroy(centralAttacker);
+            }
         }
+        centralAttackersPerGroup.Clear();
+        groupCenters.Clear();
+        currentRespawns = 0;
     }
 
     void SpawnAttackers()

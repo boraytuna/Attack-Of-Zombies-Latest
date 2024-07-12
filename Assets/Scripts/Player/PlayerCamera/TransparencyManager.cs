@@ -4,17 +4,20 @@ using System.Collections.Generic;
 // Changes the alpha level of the buildings to see the player
 public class TransparencyManager : MonoBehaviour
 {
-    public Transform player;
-    public Camera mainCamera;
-    public float maxDistance = 10f;
-    public float alphaValue = 0.4f;
-    public float lerpSpeed = 5f;
+    [SerializeField] private GameObject playerObject;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private float maxDistance = 10f;
+    [SerializeField] private float alphaValue = 0.4f;
 
     private List<TransparencyController> transparencyControllers;
     private List<TransparencyController> previousHitObjects;
 
     private void Start()
     {
+        playerObject = GameObject.FindGameObjectWithTag("Player");
+        playerTransform = playerObject.transform;
+        mainCamera = Camera.main;
         transparencyControllers = new List<TransparencyController>(FindObjectsOfType<TransparencyController>());
         previousHitObjects = new List<TransparencyController>();
     }
@@ -22,7 +25,7 @@ public class TransparencyManager : MonoBehaviour
     private void Update()
     {
         RaycastHit hit;
-        Vector3 direction = (player.position - mainCamera.transform.position).normalized;
+        Vector3 direction = (playerTransform.position - mainCamera.transform.position).normalized;
 
         List<TransparencyController> currentHitObjects = new List<TransparencyController>();
 

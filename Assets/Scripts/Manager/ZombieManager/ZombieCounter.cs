@@ -2,7 +2,13 @@ using UnityEngine;
 
 public class ZombieCounter : MonoBehaviour
 {
+    public static ZombieCounter Instance {get; private set;}
     private int zombieCount = 1;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     public int GetZombieCount()
     {
@@ -12,7 +18,7 @@ public class ZombieCounter : MonoBehaviour
     public void IncrementZombieCount()
     {
         zombieCount++;
-        Debug.Log("Zombie Count: " + zombieCount);
+        //Debug.Log("Zombie Count: " + zombieCount);
     }
 
     public void DecrementZombieCount()
