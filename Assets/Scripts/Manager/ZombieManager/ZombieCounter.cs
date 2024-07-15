@@ -1,13 +1,25 @@
 using UnityEngine;
+using TMPro;
 
 public class ZombieCounter : MonoBehaviour
 {
-    public static ZombieCounter Instance {get; private set;}
-    private int zombieCount = 1;
+    public static ZombieCounter Instance { get; private set; }
+    [SerializeField] private int zombieCount = 1;
+    public TextMeshProUGUI zombieCountText; // Reference to the UI Text component
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+    }
+
+    void Start()
+    {
+        UpdateZombieCountText(); // Update the UI text initially
     }
 
     public int GetZombieCount()
@@ -18,7 +30,7 @@ public class ZombieCounter : MonoBehaviour
     public void IncrementZombieCount()
     {
         zombieCount++;
-        //Debug.Log("Zombie Count: " + zombieCount);
+        UpdateZombieCountText(); // Update UI text when count changes
     }
 
     public void DecrementZombieCount()
@@ -26,11 +38,29 @@ public class ZombieCounter : MonoBehaviour
         if (zombieCount > 0)
         {
             zombieCount--;
-            Debug.Log("Zombie Count: " + zombieCount);
+            UpdateZombieCountText(); // Update UI text when count changes
         }
         else
         {
             Debug.LogWarning("Zombie Count is already at zero or negative");
+        }
+    }
+
+    public void AddPoints(int pointsToAdd)
+    {
+        zombieCount += pointsToAdd;
+        UpdateZombieCountText(); // Update UI text when points are added
+    }
+
+    void UpdateZombieCountText()
+    {
+        if (zombieCountText != null)
+        {
+            zombieCountText.text = "Points: " + zombieCount.ToString();
+        }
+        else
+        {
+            Debug.LogWarning("UI Text component for zombie count is not assigned.");
         }
     }
 }

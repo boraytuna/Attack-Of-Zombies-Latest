@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateGameStates(GameState newState)
     {
+        Debug.Log($"GameState changing from {State} to {newState}");
         State = newState;
 
         switch (newState)
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
         }
 
         OnGameStateChanged?.Invoke(newState);
+        //Debug.Log($"GameState changed to {newState}");
     }
 
     private void HandleMainMenuActions()
@@ -117,8 +119,6 @@ public class GameManager : MonoBehaviour
     {
         UpdateGameStates(GameState.Lose);
     }
-
-
 }
 
 public enum GameState

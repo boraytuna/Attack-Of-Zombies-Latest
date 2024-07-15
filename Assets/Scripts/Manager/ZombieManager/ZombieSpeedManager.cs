@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ZombieSpeedManager : MonoBehaviour
@@ -103,5 +104,21 @@ public class ZombieSpeedManager : MonoBehaviour
     public float GetCurrentSpeed()
     {
         return currentSpeed;
+    }
+
+    public void BoostZombieSpeed(float boostMultiplier, float duration)
+    {
+        StartCoroutine(ApplySpeedBoost(boostMultiplier, duration));
+    }
+
+    private IEnumerator ApplySpeedBoost(float boostMultiplier, float duration)
+    {
+        // Increase the speed temporarily
+        currentSpeed *= boostMultiplier;
+
+        yield return new WaitForSeconds(duration);
+
+        // Reset speed back to normal
+        ResetSpeed();
     }
 }

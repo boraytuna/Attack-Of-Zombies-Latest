@@ -1,21 +1,62 @@
+using System.Collections;
 using UnityEngine;
 
 public abstract class Health : MonoBehaviour, IDamagable
 {
-    [SerializeField] protected float maxHealth;  // Maximum health
-    [SerializeField] protected float currentHealth;    // Current health
-    protected float damage; // Damage field is only declared here
+    [SerializeField] protected float maxHealth;
+    [SerializeField] public float currentHealth;
+    protected float damage;
+    private bool isInvincible;
+    private bool isBoosted;
 
-    protected abstract void Die();  // Abstract method for handling death
+    protected abstract void Die();
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage; // Reduce current health by the damage amount
-
-        // Check if the object is dead
-        if (currentHealth <= 0)
+        if (!isInvincible)
         {
-            Die(); // Call the Die function if health drops to or below zero
+            currentHealth -= damage;
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
+    }
+
+    public void BecomeInvincible(float duration)
+    {
+        if (!isInvincible)
+        {
+            StartCoroutine(InvincibilityCoroutine(duration));
+        }
+    }
+
+    private IEnumerator InvincibilityCoroutine(float duration)
+    {
+        isInvincible = true;
+        Debug.Log($"{gameObject.name} is now invincible!");
+        yield return new WaitForSeconds(duration);
+        isInvincible = false;
+        Debug.Log($"{gameObject.name} is no longer invincible.");
+    }
+
+    public void BecomeBoostedHealth(float duration)
+    {
+        if (!isBoosted)
+        {
+            StartCoroutine(BoosterCoroutine(duration));
+        }
+    }
+
+    private IEnumerator BoosterCoroutine(float duration)
+    {
+        isBoosted = true;
+        Debug.Log($"{gameObject.name} has boosted health!");
+
+        yield return new WaitForSeconds(duration);
+
+        isBoosted = false;
+        Debug.Log($"{gameObject.name} health boost ended.");
     }
 }

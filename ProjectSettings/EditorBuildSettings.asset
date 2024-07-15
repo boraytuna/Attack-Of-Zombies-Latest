@@ -12,14 +12,17 @@ EditorBuildSettings:
     path: Assets/Scenes/TestScenes/MainMenuTest/LevelMenu.unity
     guid: 363d29ea35b054929bd01d530823e4e8
   - enabled: 1
+    path: Assets/Scenes/TestScenes/Collectibles/CollectibleTest.unity
+    guid: cdd2bf19c34cb415ea0c136e0537d7ec
+  - enabled: 1
     path: Assets/Scenes/TestScenes/HumanAttack/Police.unity
     guid: aae9fa482dd964663bed89262143237a
   - enabled: 1
     path: Assets/Scenes/TestScenes/HumanAttack/Soldier.unity
-    guid: 74ea84b169fbd4efaa28285bcdfe08d6
+    guid: 2633b17d7c09445c4a5acd338d803b3c
   - enabled: 1
     path: Assets/Scenes/TestScenes/HumanAttack/SoldierPolice.unity
-    guid: ca2436de56d7444139cc54143cba8d2e
+    guid: e863ce64cfeca4e19908d976b8da3152
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 57d55387d824e420a99a18dd8ea74c83,
       type: 2}

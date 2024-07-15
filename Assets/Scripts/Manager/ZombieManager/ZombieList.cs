@@ -3,17 +3,15 @@ using UnityEngine;
 
 public class ZombieList : MonoBehaviour
 {
-    private Dictionary<GameObject, int> zombieIds = new Dictionary<GameObject, int>(); // Dictionary to store zombies with their IDs
-    private int nextId = 1; // Counter for assigning unique IDs
+    private Dictionary<GameObject, int> zombieIds = new Dictionary<GameObject, int>();
+    private int nextId = 1;
 
-    // Method to initialize the zombie list
     void Start()
     {
-        zombieIds.Clear(); // Clear existing zombie list
-        nextId = 1; // Reset the ID counter
+        zombieIds.Clear();
+        nextId = 1;
     }
 
-    // Method to add a zombie to the list
     public void AddZombie(GameObject zombie)
     {
         if (!zombieIds.ContainsKey(zombie))
@@ -23,7 +21,6 @@ public class ZombieList : MonoBehaviour
         }
     }
 
-    // Method to remove a zombie from the list
     public void RemoveZombie(GameObject zombie)
     {
         if (zombieIds.ContainsKey(zombie))
@@ -31,6 +28,4 @@ public class ZombieList : MonoBehaviour
             zombieIds.Remove(zombie);
         }
     }
-
-
 }
