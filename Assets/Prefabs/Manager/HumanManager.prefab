@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8684773353014000119
+--- !u!1 &6026638743913678492
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6433902194238715061}
-  - component: {fileID: 7674933901398852972}
-  - component: {fileID: 358397382889505210}
-  - component: {fileID: 8678419121154868160}
-  - component: {fileID: 8490134426227998840}
-  - component: {fileID: 2819608219710291851}
+  - component: {fileID: 7216130659726866897}
+  - component: {fileID: 7876642073094050618}
+  - component: {fileID: 1892211594203818937}
+  - component: {fileID: 8199128701648486487}
+  - component: {fileID: 1726032604803281387}
   m_Layer: 0
   m_Name: HumanManager
   m_TagString: Untagged
@@ -21,13 +20,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6433902194238715061
+--- !u!4 &7216130659726866897
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8684773353014000119}
+  m_GameObject: {fileID: 6026638743913678492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -36,14 +35,14 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7674933901398852972
+--- !u!114 &7876642073094050618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8684773353014000119}
-  m_Enabled: 0
+  m_GameObject: {fileID: 6026638743913678492}
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebbaeac1fd32546959e2d0807335d597, type: 3}
   m_Name: 
@@ -61,14 +60,14 @@ MonoBehaviour:
   navMeshSurface: {fileID: 0}
   centralHumanPrefabPath: HumanPrefabs/CentralHuman
   humanPrefabPath: HumanPrefabs/BasicHuman
---- !u!114 &358397382889505210
+--- !u!114 &1892211594203818937
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8684773353014000119}
-  m_Enabled: 0
+  m_GameObject: {fileID: 6026638743913678492}
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87c1fcbbf614f467b92b735c349c5229, type: 3}
   m_Name: 
@@ -88,26 +87,26 @@ MonoBehaviour:
   policePrefabPath: AttackerPrefabs/BasicPolice
   centralSoldierPrefabPath: AttackerPrefabs/CentralPolice
   soldierPrefabPath: AttackerPrefabs/BasicPolice
---- !u!114 &8678419121154868160
+--- !u!114 &8199128701648486487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8684773353014000119}
+  m_GameObject: {fileID: 6026638743913678492}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 211699401b7f24fb9b8ee1431425c120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpeed: 0
---- !u!114 &8490134426227998840
+--- !u!114 &1726032604803281387
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8684773353014000119}
+  m_GameObject: {fileID: 6026638743913678492}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41b928bc0349d4aacb5eb4f383e4d915, type: 3}
@@ -128,18 +127,4 @@ MonoBehaviour:
     multiplier: 2.5
   - zombieCountThreshold: 300
     multiplier: 3
-  zombieCounter: {fileID: 0}
---- !u!114 &2819608219710291851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8684773353014000119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27efe307789aa449fbcaab146d0f8253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  requiredZombieCount: 20
   zombieCounter: {fileID: 0}

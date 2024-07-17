@@ -11,7 +11,7 @@ public class ZombieSpeedManager : MonoBehaviour
     private PlayerMovement playerMovement; // Reference to movement script to get the isMoving variable
 
     public float currentSpeed;  // Local speed variable
-    
+
     [Range(1f, 20f)]
     [SerializeField] private float minSpeed; // Minimum speed variable
     [Range(1f, 20f)]
@@ -19,9 +19,15 @@ public class ZombieSpeedManager : MonoBehaviour
     [Range(1f, 20f)]
     [SerializeField] private float maxSpeed; // Maximum speed variable
     private float speedIncreaseRate = 1f; // The rate speed increases
-
     public bool maxSpeedReached = false; // Bool for checking if the player reached the max speed
-    
+
+    private bool isSpeedBoostActive = false; // Bool to check if speed boost is active
+    private float speedBoostMultiplier; // Speed boost multiplier
+    private float originalSpeed; // To store the original speed before boosting
+
+    // Public property to check if speed boost is active
+    public bool IsSpeedBoostActive => isSpeedBoostActive;
+
     void Awake()
     {
         if (Instance == null)
@@ -41,7 +47,7 @@ public class ZombieSpeedManager : MonoBehaviour
         {
             player = playerHolder.GetComponentInChildren<PlayerMovement>().gameObject;
             playerMovement = player.GetComponent<PlayerMovement>();
-            
+
             if (player == null)
             {
                 Debug.LogError("Player object not found in playerHolder.");
@@ -55,6 +61,8 @@ public class ZombieSpeedManager : MonoBehaviour
         {
             Debug.LogError("Player holder is not assigned.");
         }
+
+        currentSpeed = minSpeed;
     }
 
     void Update()
@@ -64,6 +72,13 @@ public class ZombieSpeedManager : MonoBehaviour
             if (playerMovement.isMoving)
             {
                 IncreaseSpeedOverTime();
+
+                // Apply speed boost if active
+                if (isSpeedBoostActive)
+                {
+                    currentSpeed = originalSpeed * speedBoostMultiplier;
+                    Debug.Log("Speed boost applied. Current Speed: " + currentSpeed);
+                }
             }
             else
             {
@@ -75,7 +90,7 @@ public class ZombieSpeedManager : MonoBehaviour
     // Method to increase the speed.
     private void IncreaseSpeedOverTime()
     {
-        if (currentSpeed < maxSpeed)
+        if (!isSpeedBoostActive && currentSpeed < maxSpeed)
         {
             currentSpeed += speedIncreaseRate * Time.deltaTime;
             currentSpeed = Mathf.Clamp(currentSpeed, minSpeed, maxSpeed);
@@ -90,35 +105,44 @@ public class ZombieSpeedManager : MonoBehaviour
     // Reset the speed to minimum if the max speed has not been reached; if it has, set it to middle speed for the next time.
     private void ResetSpeed()
     {
-        if (maxSpeedReached)
+        if (!isSpeedBoostActive)
         {
-            currentSpeed = middleSpeed;
+            if (maxSpeedReached)
+            {
+                currentSpeed = middleSpeed;
+            }
+            else
+            {
+                currentSpeed = minSpeed;
+            }
         }
-        else
+    }
+
+    // Method to apply speed boost
+    public void ApplySpeedBoost(float multiplier, float duration)
+    {
+        if (!isSpeedBoostActive)
         {
-            currentSpeed = minSpeed;
+            isSpeedBoostActive = true;
+            speedBoostMultiplier = multiplier;
+            originalSpeed = currentSpeed;
+            Debug.Log("Speed boost started with multiplier: " + multiplier + " for duration: " + duration + " seconds.");
+            StartCoroutine(SpeedBoostCoroutine(duration));
         }
+    }
+
+    // Coroutine to handle the duration of the speed boost
+    private IEnumerator SpeedBoostCoroutine(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isSpeedBoostActive = false;
+        currentSpeed = originalSpeed; // Reset to the original speed before boosting
+        Debug.Log("Speed boost ended. Speed reverted to: " + currentSpeed);
     }
 
     // Return float for movement scripts.
     public float GetCurrentSpeed()
     {
         return currentSpeed;
-    }
-
-    public void BoostZombieSpeed(float boostMultiplier, float duration)
-    {
-        StartCoroutine(ApplySpeedBoost(boostMultiplier, duration));
-    }
-
-    private IEnumerator ApplySpeedBoost(float boostMultiplier, float duration)
-    {
-        // Increase the speed temporarily
-        currentSpeed *= boostMultiplier;
-
-        yield return new WaitForSeconds(duration);
-
-        // Reset speed back to normal
-        ResetSpeed();
     }
 }

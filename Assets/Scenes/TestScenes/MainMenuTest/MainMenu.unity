@@ -966,26 +966,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1120534780936518484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4588906093592358307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f3e54f0927d342fa929dad38350a629, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  delayBeforeTrigger: 0.5
-  extraPointsAdded: 5
-  timeDurationForInvicibility: 3
-  healthBoosterNo: 0
-  speedBoosterNo: 0
-  healthBooster: {fileID: 0}
-  speedBooster: {fileID: 0}
-  collectedItems: []
 --- !u!224 &1785687523606914152
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1189,7 +1169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 337462805060871926}
-  - component: {fileID: 1120534780936518484}
+  - component: {fileID: 4588906093592358308}
   m_Layer: 0
   m_Name: CollectibleManager
   m_TagString: Untagged
@@ -1197,6 +1177,31 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4588906093592358308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4588906093592358307}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60c8d43683bf14e9d9195e49982038fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBeforeTrigger: 0.5
+  extraPointsAdded: 5
+  timeDurationForInvincibility: 3
+  healthBoostMultiplier: 2
+  healthBoostTimeDuration: 4
+  speedBoostMultiplier: 2
+  speedBoostTimeDuration: 4
+  healthBoosterNo: 0
+  speedBoosterNo: 0
+  healthBoosterText: {fileID: 0}
+  speedBoosterText: {fileID: 0}
+  healthBoosterButton: {fileID: 0}
+  speedBoosterButton: {fileID: 0}
 --- !u!114 &5516614961709296155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1325,7 +1330,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 36324718158569957}
   m_OnClick:
     m_PersistentCalls:
@@ -1444,7 +1449,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 4267641445126156397}
   m_OnClick:
     m_PersistentCalls:

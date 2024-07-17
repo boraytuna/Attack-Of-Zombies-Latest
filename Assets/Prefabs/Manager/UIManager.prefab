@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4038003455013049655
+--- !u!1 &2131712459126286494
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3523662271149773962}
-  - component: {fileID: 7700455389336617222}
+  - component: {fileID: 332098034286535336}
+  - component: {fileID: 6794248283859024992}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3523662271149773962
+--- !u!4 &332098034286535336
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038003455013049655}
+  m_GameObject: {fileID: 2131712459126286494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.701508, y: 12.204865, z: 14.456007}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7700455389336617222
+--- !u!114 &6794248283859024992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038003455013049655}
+  m_GameObject: {fileID: 2131712459126286494}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df86ebe72206c4267a2412ebc0ce11ec, type: 3}
@@ -53,4 +53,6 @@ MonoBehaviour:
   joyStick: {fileID: 0}
   victoryPanel: {fileID: 0}
   victoryChecker: {fileID: 0}
+  healthBoosterText: {fileID: 0}
+  speedBoosterText: {fileID: 0}
   victoryMessage: {fileID: 0}

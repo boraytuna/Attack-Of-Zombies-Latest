@@ -1145,7 +1145,7 @@ MonoBehaviour:
   boundaryCheckDistance: 10
   boundaryLayerMask:
     serializedVersion: 2
-    m_Bits: 1032
+    m_Bits: 1544
 --- !u!1 &8205780901821807306
 GameObject:
   m_ObjectHideFlags: 0
