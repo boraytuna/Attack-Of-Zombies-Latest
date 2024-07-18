@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class PlayerHealth : Health, IDamagable
@@ -14,7 +13,7 @@ public class PlayerHealth : Health, IDamagable
     protected override void Die()
     {
         Debug.Log("Player died!"); // Example death behavior for player
-        
+
         // Play the zombie death sound
         FindObjectOfType<AudioManager>().Play("ZombieDeath");
 
@@ -27,11 +26,14 @@ public class PlayerHealth : Health, IDamagable
         {
             Debug.LogError("Animator is null");
         }
-
-        Destroy(gameObject);
-
+        
         // Notify the GameManager that the player has died
         UIManager.Instance.OnPlayerDeath();
+        
+        // Trigger the player death event
+        GamePlayEvents.TriggerPlayerDeath();
+
+        Destroy(gameObject);
     }
 
     // Reset method to reset player health

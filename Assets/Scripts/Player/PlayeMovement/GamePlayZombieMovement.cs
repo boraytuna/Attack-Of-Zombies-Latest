@@ -24,6 +24,21 @@ public class GamePlayZombieMovement : MonoBehaviour, IMoveable
         zombieCounter = FindObjectOfType<ZombieCounter>();
     }
 
+    private void OnEnable()
+    {
+        GamePlayEvents.OnPlayerDeath += HandlePlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        GamePlayEvents.OnPlayerDeath -= HandlePlayerDeath;
+    }
+
+    private void HandlePlayerDeath()
+    {
+        this.enabled = false;
+    }
+
     private void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);

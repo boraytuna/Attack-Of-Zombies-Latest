@@ -1,7 +1,5 @@
 using UnityEngine;
-using DG.Tweening;
 
-// This script is responsible for following the player in game.
 public class CameraMovement : MonoBehaviour
 {
     private GameObject playerObject;
@@ -18,6 +16,21 @@ public class CameraMovement : MonoBehaviour
         _camera = this.transform;
 
         _offset = _camera.position - _playerTransform.position;
+    }
+
+    private void OnEnable()
+    {
+        GamePlayEvents.OnPlayerDeath += HandlePlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        GamePlayEvents.OnPlayerDeath -= HandlePlayerDeath;
+    }
+
+    private void HandlePlayerDeath()
+    {
+        this.enabled = false;
     }
 
     private void LateUpdate()

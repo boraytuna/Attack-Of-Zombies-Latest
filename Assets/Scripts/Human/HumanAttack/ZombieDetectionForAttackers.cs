@@ -19,6 +19,21 @@ public class ZombieDetectionForAttackers : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        GamePlayEvents.OnPlayerDeath += HandlePlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        GamePlayEvents.OnPlayerDeath -= HandlePlayerDeath;
+    }
+
+    private void HandlePlayerDeath()
+    {
+        this.enabled = false;
+    }
+
     void Update()
     {
         DetectZombiesInRange();

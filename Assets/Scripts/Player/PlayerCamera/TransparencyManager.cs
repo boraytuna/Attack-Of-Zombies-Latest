@@ -21,6 +21,20 @@ public class TransparencyManager : MonoBehaviour
         transparencyControllers = new List<TransparencyController>(FindObjectsOfType<TransparencyController>());
         previousHitObjects = new List<TransparencyController>();
     }
+    private void OnEnable()
+    {
+        GamePlayEvents.OnPlayerDeath += HandlePlayerDeath;
+    }
+
+    private void OnDisable()
+    {
+        GamePlayEvents.OnPlayerDeath -= HandlePlayerDeath;
+    }
+
+    private void HandlePlayerDeath()
+    {
+        this.enabled = false;
+    }
 
     private void Update()
     {
