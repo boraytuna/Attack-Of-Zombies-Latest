@@ -54,12 +54,12 @@ public class ZombieDetectionForAttackers : MonoBehaviour
             if (collider.CompareTag(playerZombieTag))
             {
                 playerZombie = collider; // Identify the player zombie
-                Debug.Log("Player Zombie detected: " + playerZombie.gameObject.name);
+                //Debug.Log("Player Zombie detected: " + playerZombie.gameObject.name);
             }
             else
             {
                 otherZombies.Add(collider); // Add other zombies to the list
-                Debug.Log("Other Zombie detected: " + collider.gameObject.name);
+                //Debug.Log("Other Zombie detected: " + collider.gameObject.name);
             }
         }
 
@@ -69,7 +69,7 @@ public class ZombieDetectionForAttackers : MonoBehaviour
             if (attacker != null)
             {
                 transform.LookAt(collider.transform);
-                Debug.Log("Attacking other zombie: " + collider.gameObject.name);
+                //Debug.Log("Attacking other zombie: " + collider.gameObject.name);
                 attacker.Attack(collider);
             }
             else
@@ -84,7 +84,7 @@ public class ZombieDetectionForAttackers : MonoBehaviour
             if (attacker != null)
             {
                 transform.LookAt(playerZombie.transform);
-                Debug.Log("Attacking player zombie: " + playerZombie.gameObject.name);
+                //Debug.Log("Attacking player zombie: " + playerZombie.gameObject.name);
                 attacker.Attack(playerZombie);
             }
             else

@@ -9,7 +9,7 @@ public class TurnToZombie : MonoBehaviour
     private GameObject zombiePrefab; // Reference to the loaded zombie prefab
     protected ZombieList zombieList; // Reference to zombie manager script
     protected ZombieCounter zombieCounter; // Reference to the Zombie Counter script
-    private ZombieAnimatorController zombieAnimatorController;
+    protected CollectibleDropper collectibleDropper;
 
     protected virtual void Start()
     {
@@ -31,6 +31,12 @@ public class TurnToZombie : MonoBehaviour
         {
             Debug.LogError("ZombieManager not found in the scene.");
         }
+
+        collectibleDropper = FindObjectOfType<CollectibleDropper>();
+        if (collectibleDropper == null)
+        {
+            Debug.LogError("CollectibleDropper is null");
+        }
     }
 
     protected void HandleOnTriggerEnter(Collider other, bool isCentralEntity, System.Action onCentralEntityKilled)
@@ -39,17 +45,6 @@ public class TurnToZombie : MonoBehaviour
         {
             if (zombiePrefab != null)
             {
-                zombieAnimatorController = other.gameObject.GetComponent<ZombieAnimatorController>();
-                if (zombieAnimatorController != null)
-                {
-                    // Play the attack animation
-                    zombieAnimatorController.PlayAttack();
-                }
-                else
-                {
-                    Debug.LogError("ZombieAnimatorController not found on the triggering zombie.");
-                }
-
                 // Play the human death sound
                 FindObjectOfType<AudioManager>().Play("HumanDeath");
 
@@ -69,6 +64,12 @@ public class TurnToZombie : MonoBehaviour
                 if (isCentralEntity)
                 {
                     onCentralEntityKilled.Invoke();
+                }
+
+                // Drop collectibles
+                if (collectibleDropper != null)
+                {
+                    collectibleDropper.TryDropCollectible(spawnPosition);
                 }
 
                 // Destroy the current game object (human or attacker)

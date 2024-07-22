@@ -1,7 +1,33 @@
+using System.Collections;
 using UnityEngine;
 
 public class ExtraHealthCollectible : Collectible
 {
+    private int extraPointsAdded;
+    private float delayBeforeTrigger;
+    private Collider col;
+
+    private void Start()
+    {
+        delayBeforeTrigger = CollectibleManager.Instance.delayBeforeTrigger;
+        extraPointsAdded = CollectibleManager.Instance.extraPointsAdded;
+        col = GetComponent<Collider>();
+        if (col != null)
+        {
+            col.isTrigger = false; // Ensure trigger is initially false
+            StartCoroutine(EnableTriggerAfterDelay(delayBeforeTrigger)); // Start coroutine to set trigger after delay
+        }
+    }
+
+    private IEnumerator EnableTriggerAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (col != null)
+        {
+            col.isTrigger = true;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player") || other.CompareTag("Zombie"))

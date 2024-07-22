@@ -47,24 +47,24 @@ public abstract class Shoot : MonoBehaviour, IAttacker
                 if ((zombieLayer.value & (1 << hit.collider.gameObject.layer)) != 0)
                 {
                     // Hit a zombie
-                    Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+                    //Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
                     PlayAttackAnimation(); // Play attack animation
                     
                     if(AttackerDamageManager.Instance != null)
                     {
                         float multiplier = attackerDamageManager.GetMultiplier();
-                        Debug.Log("Multiplier = " + multiplier);
+                        //Debug.Log("Multiplier = " + multiplier);
                         float adjustedDamage = baseDamage * multiplier;
 
-                        Debug.Log("Current multiplier: " + multiplier);
-                        Debug.Log("Base damage: " + baseDamage);
-                        Debug.Log("Adjusted damage: " + adjustedDamage);
+                        // Debug.Log("Current multiplier: " + multiplier);
+                        // Debug.Log("Base damage: " + baseDamage);
+                        // Debug.Log("Adjusted damage: " + adjustedDamage);
 
                         IDamagable damagable = targetCollider.GetComponent<IDamagable>();
                         if (damagable != null)
                         {
                             damagable.TakeDamage(adjustedDamage);
-                            Debug.Log("Dealt " + adjustedDamage + " damage to " + targetCollider.gameObject.name);
+                            //Debug.Log("Dealt " + adjustedDamage + " damage to " + targetCollider.gameObject.name);
                         }
                         else
                         {
@@ -95,7 +95,7 @@ public abstract class Shoot : MonoBehaviour, IAttacker
         }
         else
         {
-            Debug.Log("Attack on cooldown.");
+            //Debug.Log("Attack on cooldown.");
             PlayIdleAnimation(); // Play idle animation when attack is on cooldown
         }
     }

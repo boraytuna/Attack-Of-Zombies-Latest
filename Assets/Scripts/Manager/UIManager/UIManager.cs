@@ -4,21 +4,28 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance { get; private set; }
+
+    [Header("Canvas")]
     [SerializeField] private Canvas canvas; // Reference to the main canvas
+
+    [Header("GamePlay Panels")]
     [SerializeField] private GameObject deathPanel; // Reference to the death panel
     [SerializeField] private GameObject pausePanel; // Reference to the pause panel
+    [SerializeField] public GameObject victoryPanel; // Reference to the victory panel
+
+    [Header("GamePlay UI")]
     [SerializeField] private GameObject pauseButton; // Reference to the pause button 
     [SerializeField] private GameObject zombieCounter; // Reference to the zombie counter text
     [SerializeField] public GameObject humanPointer; // Reference to the human pointer
     [SerializeField] public GameObject joyStick; // Reference to the joyStick object
-    [SerializeField] public GameObject victoryPanel; // Reference to the victory panel
-    [SerializeField] private VictoryChecker victoryChecker; // Reference to the VictoryChecker script
     [SerializeField] private GameObject healthBoosterText; // Reference to health booster counter text
     [SerializeField] private GameObject speedBoosterText; // Reference to health booster counter text
+    [SerializeField] private GameObject starObjectText; // Reference to star collectible counter text
 
+    [Header("Victory Checker")]
+    [SerializeField] private VictoryChecker victoryChecker; // Reference to the VictoryChecker script
     public TextMeshProUGUI victoryMessage; // Reference to the victory message TextMeshProUGUI
-
-    public static UIManager Instance { get; private set; }
 
     void Awake()
     {
@@ -131,9 +138,11 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0;
         GameManager.Instance.WhenPlayerDies();
         deathPanel.SetActive(true); 
+        pauseButton.SetActive(false);
         zombieCounter.gameObject.SetActive(false);
         healthBoosterText.gameObject.SetActive(false);
         speedBoosterText.gameObject.SetActive(false);
+        starObjectText.gameObject.SetActive(false);
     }
 
     // Method to open the victory panel, freeze the time and change the game state
@@ -146,7 +155,8 @@ public class UIManager : MonoBehaviour
         victoryPanel.SetActive(true);
         healthBoosterText.gameObject.SetActive(false);
         speedBoosterText.gameObject.SetActive(false);
-
+        starObjectText.gameObject.SetActive(false);
+        
         // Display victory message with required zombie count
         victoryMessage.text = $"You reached {victoryChecker.requiredZombieCount} points!";
     }

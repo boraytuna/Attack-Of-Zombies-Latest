@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class StarCollectible : Collectible, ICollectible
 {
-    private float timeDuration;
+    private int extraPointsAdded;
     private float delayBeforeTrigger;
     private Collider col;
 
     private void Start()
     {
-        timeDuration = CollectibleManager.Instance.timeDurationForInvincibility;
         delayBeforeTrigger = CollectibleManager.Instance.delayBeforeTrigger;
+        extraPointsAdded = CollectibleManager.Instance.extraPointsAdded;
         col = GetComponent<Collider>();
         if (col != null)
         {
@@ -30,25 +30,20 @@ public class StarCollectible : Collectible, ICollectible
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Zombie") || other.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Zombie"))
         {
+            // Apply the effect when collected by player or zombie
             ApplyEffect(other.gameObject);
-            Destroy(gameObject); // Optionally destroy the collectible after it's collected
+
+            // Destroy the collectible after it's collected
+            Destroy(gameObject);
         }
     }
 
     public override void ApplyEffect(GameObject collector)
     {
-        Debug.Log("Non-persistent collectible collected!");
-        MakeAllZombiesInvincible(timeDuration);
+        // Increment health booster count in CollectibleManager
+        CollectibleManager.Instance.IncrementStarCollectibleCount();
     }
 
-    private void MakeAllZombiesInvincible(float duration)
-    {
-        MakeInvincible[] allZombies = FindObjectsOfType<MakeInvincible>();
-        foreach (MakeInvincible zombie in allZombies)
-        {
-            zombie.BecomeInvincible(duration);
-        }
-    }
 }
