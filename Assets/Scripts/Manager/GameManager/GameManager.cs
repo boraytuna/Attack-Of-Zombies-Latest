@@ -52,12 +52,14 @@ public class GameManager : MonoBehaviour
             case GameState.Lose:
                 HandleLoseActions();
                 break;
+            case GameState.Countdown:
+                HandleCountdownActions();
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
 
         OnGameStateChanged?.Invoke(newState);
-        //Debug.Log($"GameState changed to {newState}");
     }
 
     private void HandleMainMenuActions()
@@ -68,6 +70,11 @@ public class GameManager : MonoBehaviour
     private void HandleLevelMenuActions()
     {
         // Logic to handle level menu actions
+    }
+
+    private void HandleCountdownActions()
+    {
+        // Logic to handle countdown actions
     }
 
     private void HandleGamePlayActions()
@@ -100,6 +107,11 @@ public class GameManager : MonoBehaviour
         UpdateGameStates(GameState.LevelMenu);
     }
 
+    public void StartCountdown()
+    {
+        UpdateGameStates(GameState.Countdown);
+    }
+
     public void ActualGamePlay()
     {
         UpdateGameStates(GameState.ActualGamePlay);
@@ -121,12 +133,15 @@ public class GameManager : MonoBehaviour
     }
 }
 
+
 public enum GameState
 {
     MainMenu,
     LevelMenu,
+    Countdown,
     ActualGamePlay,
     PauseState,
     Victory,
     Lose,
 }
+

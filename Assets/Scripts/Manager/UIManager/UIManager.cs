@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,15 +15,14 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject deathPanel; // Reference to the death panel
     [SerializeField] private GameObject pausePanel; // Reference to the pause panel
     [SerializeField] public GameObject victoryPanel; // Reference to the victory panel
+    [SerializeField] public GameObject gamePlayPanel; //Reference to the gameplay panel
 
     [Header("GamePlay UI")]
     [SerializeField] private GameObject pauseButton; // Reference to the pause button 
     [SerializeField] private GameObject zombieCounter; // Reference to the zombie counter text
     [SerializeField] public GameObject humanPointer; // Reference to the human pointer
     [SerializeField] public GameObject joyStick; // Reference to the joyStick object
-    [SerializeField] private GameObject healthBoosterText; // Reference to health booster counter text
-    [SerializeField] private GameObject speedBoosterText; // Reference to health booster counter text
-    [SerializeField] private GameObject starObjectText; // Reference to star collectible counter text
+    [SerializeField] private Button[] boosterButtons; // Array to reference booster buttons 
 
     [Header("Victory Checker")]
     [SerializeField] private VictoryChecker victoryChecker; // Reference to the VictoryChecker script
@@ -46,11 +47,9 @@ public class UIManager : MonoBehaviour
         // Enable pause button and human pointer and joystick
         canvas.gameObject.SetActive(true); 
         pauseButton.gameObject.SetActive(true);
-        joyStick.gameObject.SetActive(true);
         humanPointer.gameObject.SetActive(true);
         zombieCounter.gameObject.SetActive(true);
-        healthBoosterText.gameObject.SetActive(true);
-        speedBoosterText.gameObject.SetActive(true);
+        joyStick.gameObject.SetActive(false); // Initially disabled
 
         // Disable panels initially
         deathPanel.SetActive(false);
@@ -65,7 +64,24 @@ public class UIManager : MonoBehaviour
 
     private void GameManagerOnGameStateChanged(GameState state)
     {
-         Debug.Log($"Game State Changed: {state}");
+        Debug.Log($"Game State Changed: {state}");
+
+        if (state == GameState.ActualGamePlay)
+        {
+            ActivateJoystick();
+        }
+    }
+
+    private void ActivateJoystick()
+    {
+        if (joyStick != null)
+        {
+            joyStick.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Joystick reference is not assigned.");
+        }
     }
 
     // Method to toggle the pause game
@@ -81,8 +97,8 @@ public class UIManager : MonoBehaviour
                 // Pause the game
                 GameManager.Instance.OpenPauseState();
                 Time.timeScale = 0;
-                zombieCounter.gameObject.SetActive(false);
-                pauseButton.gameObject.SetActive(false); // Hide the pause button when the game is paused
+                gamePlayPanel.SetActive(false);
+                SetBoosterButtonsActive(false);
             }
         }
     }
@@ -95,8 +111,8 @@ public class UIManager : MonoBehaviour
             Time.timeScale = 1;
             GameManager.Instance.ActualGamePlay();
             pausePanel.SetActive(false);
-            pauseButton.SetActive(true); // Show the pause button when the game is resumed
-            zombieCounter.gameObject.SetActive(true);
+            gamePlayPanel.SetActive(true);
+            SetBoosterButtonsActive(true);
         }   
     }
 
@@ -120,7 +136,7 @@ public class UIManager : MonoBehaviour
     public void OnRestartButton()
     {
         Time.timeScale = 1;
-        GameManager.Instance.ActualGamePlay();
+        GameManager.Instance.UpdateGameStates(GameState.Countdown);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -128,7 +144,7 @@ public class UIManager : MonoBehaviour
     public void OnNextLevelButton()
     {
         Time.timeScale = 1;
-        GameManager.Instance.ActualGamePlay();
+        GameManager.Instance.UpdateGameStates(GameState.Countdown);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
   
@@ -138,11 +154,8 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0;
         GameManager.Instance.WhenPlayerDies();
         deathPanel.SetActive(true); 
-        pauseButton.SetActive(false);
-        zombieCounter.gameObject.SetActive(false);
-        healthBoosterText.gameObject.SetActive(false);
-        speedBoosterText.gameObject.SetActive(false);
-        starObjectText.gameObject.SetActive(false);
+        gamePlayPanel.SetActive(false);
+        SetBoosterButtonsActive(false);
     }
 
     // Method to open the victory panel, freeze the time and change the game state
@@ -150,14 +163,19 @@ public class UIManager : MonoBehaviour
     {
         Time.timeScale = 0;
         GameManager.Instance.WhenPlayerWins();
-        zombieCounter.gameObject.SetActive(false);
-        pauseButton.SetActive(false);
         victoryPanel.SetActive(true);
-        healthBoosterText.gameObject.SetActive(false);
-        speedBoosterText.gameObject.SetActive(false);
-        starObjectText.gameObject.SetActive(false);
-        
+        SetBoosterButtonsActive(false);
+        gamePlayPanel.SetActive(false);
+
         // Display victory message with required zombie count
         victoryMessage.text = $"You reached {victoryChecker.requiredZombieCount} points!";
+    }
+
+    private void SetBoosterButtonsActive(bool isActive)
+    {
+        foreach (Button button in boosterButtons)
+        {
+            button.gameObject.SetActive(isActive);
+        }
     }
 }

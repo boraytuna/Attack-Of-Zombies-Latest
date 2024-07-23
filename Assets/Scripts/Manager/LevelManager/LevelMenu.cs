@@ -45,7 +45,7 @@ public class LevelMenu : MonoBehaviour
     public void OnLevelButton(int levelIndex)
     {
         SceneManager.LoadScene(levelIndex);
-        GameManager.Instance.ActualGamePlay();
+        GameManager.Instance.StartCountdown();
     }
 
     public void GoBack()

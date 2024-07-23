@@ -9,37 +9,49 @@ public class ClosestHumanPointer : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float initialDelay = 1f; // Delay before starting to check for humans
 
+    private Transform safePointTransform;
+    private bool hasSafePoint = false;
+
     private void Start()
     {
-        StartCoroutine(StartCheckingForHumansAfterDelay());
+        StartCoroutine(StartCheckingForTargetsAfterDelay());
     }
 
-    private IEnumerator StartCheckingForHumansAfterDelay()
+    private IEnumerator StartCheckingForTargetsAfterDelay()
     {
         yield return new WaitForSeconds(initialDelay);
         while (true)
         {
-            UpdateHumanPointer();
+            UpdatePointer();
             yield return null; // Wait until the next frame
         }
     }
 
-    private void UpdateHumanPointer()
+    private void UpdatePointer()
     {
-        Transform closestHuman = FindClosestHuman();
-        if (closestHuman != null)
+        if (hasSafePoint && safePointTransform != null)
         {
-            RotateArrowTowards(closestHuman);
-            if (humanPointer != null && !humanPointer.activeSelf)
-            {
-                humanPointer.SetActive(true);
-            }
+            // Point at the safe point
+            RotateArrowTowards(safePointTransform);
         }
         else
         {
-            if (humanPointer != null && humanPointer.activeSelf)
+            // Point at the closest human
+            Transform closestHuman = FindClosestHuman();
+            if (closestHuman != null)
             {
-                humanPointer.SetActive(false);
+                RotateArrowTowards(closestHuman);
+                if (humanPointer != null && !humanPointer.activeSelf)
+                {
+                    humanPointer.SetActive(true);
+                }
+            }
+            else
+            {
+                if (humanPointer != null && humanPointer.activeSelf)
+                {
+                    humanPointer.SetActive(false);
+                }
             }
         }
     }
@@ -77,5 +89,19 @@ public class ClosestHumanPointer : MonoBehaviour
 
         float angle = Mathf.Atan2(directionOnScreen.y, directionOnScreen.x) * Mathf.Rad2Deg;
         arrowRectTransform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+    }
+
+    // Call this method when a safe point is set
+    public void SetSafePoint(Transform safePoint)
+    {
+        safePointTransform = safePoint;
+        hasSafePoint = true;
+    }
+
+    // Call this method if you want to clear the safe point
+    public void ClearSafePoint()
+    {
+        safePointTransform = null;
+        hasSafePoint = false;
     }
 }

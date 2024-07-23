@@ -6,12 +6,14 @@ public class StarCollectible : Collectible, ICollectible
     private int extraPointsAdded;
     private float delayBeforeTrigger;
     private Collider col;
+    private AudioManager audioManager;
 
     private void Start()
     {
         delayBeforeTrigger = CollectibleManager.Instance.delayBeforeTrigger;
         extraPointsAdded = CollectibleManager.Instance.extraPointsAdded;
         col = GetComponent<Collider>();
+        audioManager = FindObjectOfType<AudioManager>();
         if (col != null)
         {
             col.isTrigger = false; // Ensure trigger is initially false
@@ -32,6 +34,9 @@ public class StarCollectible : Collectible, ICollectible
     {
         if (other.CompareTag("Player") || other.CompareTag("Zombie"))
         {
+            // Play sound
+            audioManager.Play("CollectiblePickUp");
+
             // Apply the effect when collected by player or zombie
             ApplyEffect(other.gameObject);
 

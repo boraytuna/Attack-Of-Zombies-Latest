@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
 
 public class CollectibleManager : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] private Button healthBoosterButton; // UI Button for health booster
     [SerializeField] private Button speedBoosterButton; // UI Button for speed booster
     [SerializeField] private Button starCollectibleButton; // UI Button for star collectible
+    [SerializeField] private TextMeshProUGUI boostUsedText; // Reference to the text object to indicate the used Boost
 
     private bool isGamePlayLoaded = false;
 
@@ -72,7 +74,30 @@ public class CollectibleManager : MonoBehaviour
         // Set initial player preferences for collectibles
         SetPlayerPrefsForCollectibles();
         
-        // Update UI with current booster counts
+        GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+
+        ActivateUIReferences();
+       
+        LoadCollectibleData();
+    }
+
+    void OnDestroy()
+    {
+        GameManager.OnGameStateChanged -= GameManagerOnGameStateChanged;
+    }
+
+    private void GameManagerOnGameStateChanged(GameState state)
+    {
+        if(state == GameState.ActualGamePlay)
+        {
+            Debug.Log("State is actual game play");
+            
+        }
+    }
+
+    // Update UI with current booster counts
+    private void ActivateUIReferences()
+    {
         UpdateBoosterCount();
         UpdateHealthBoosterButtonInteractability();
         UpdateSpeedBoosterButtonInteractability();
@@ -166,6 +191,21 @@ public class CollectibleManager : MonoBehaviour
                 Debug.LogError("StarCollectibleButton GameObject not found in the scene.");
             }
         }
+
+        // Find booster used text
+
+        if (boostUsedText == null)
+        {
+            GameObject boostUsedTextObject = GameObject.Find("BoosterUsedText");
+            if(boostUsedTextObject != null)
+            {
+                boostUsedText = boostUsedTextObject.GetComponent<TextMeshProUGUI>();
+            }
+            else 
+            {
+                Debug.Log("Booster used text is null");
+            }
+        }
     }
 
     // Set the health booster button interactability based on available boosters and game state
@@ -173,7 +213,7 @@ public class CollectibleManager : MonoBehaviour
     {    
         if (healthBoosterButton != null)
         {
-            healthBoosterButton.interactable = healthBoosterNo > 0 && GameManager.Instance.State == GameState.ActualGamePlay;
+            healthBoosterButton.interactable = healthBoosterNo > 0 && GameManager.Instance.State == GameState.ActualGamePlay  || GameManager.Instance.State == GameState.Countdown;
         }
     }
 
@@ -208,6 +248,9 @@ public class CollectibleManager : MonoBehaviour
         // Disable the button and start cooldown
         healthBoosterButton.interactable = false;
         StartCoroutine(CooldownHealthBoosterButton(healthBoostTimeDuration));
+
+        // Display boost used message
+        StartCoroutine(DisplayBoostUsed("Health Booster", 2.0f)); // Display for 2 seconds
     }
 
     // Wait for the cooldown duration and then re-enable the button
@@ -220,10 +263,9 @@ public class CollectibleManager : MonoBehaviour
     // Set the speed booster button interactability based on available boosters and game state
     private void UpdateSpeedBoosterButtonInteractability()
     {
-        
         if (speedBoosterButton != null)
         {
-            speedBoosterButton.interactable = speedBoosterNo > 0 && GameManager.Instance.State == GameState.ActualGamePlay;
+            speedBoosterButton.interactable = speedBoosterNo > 0 && GameManager.Instance.State == GameState.ActualGamePlay || GameManager.Instance.State == GameState.Countdown;
         }
     }
 
@@ -254,6 +296,9 @@ public class CollectibleManager : MonoBehaviour
         // Disable the button and start cooldown
         speedBoosterButton.interactable = false;
         StartCoroutine(CooldownSpeedBoosterButton(speedBoostTimeDuration));
+        
+        // Display boost used message
+        StartCoroutine(DisplayBoostUsed("Speed Booster", 2.0f)); // Display for 2 seconds
     }
 
     // Apply speed boost to zombies
@@ -274,7 +319,7 @@ public class CollectibleManager : MonoBehaviour
     {
         if (starCollectibleButton != null)
         {
-            starCollectibleButton.interactable = starCollectibleNo > 0 && GameManager.Instance.State == GameState.ActualGamePlay;
+            starCollectibleButton.interactable = starCollectibleNo > 0 && GameManager.Instance.State == GameState.ActualGamePlay || GameManager.Instance.State == GameState.Countdown;
         }
     }
 
@@ -305,6 +350,9 @@ public class CollectibleManager : MonoBehaviour
         // Disable the button and start cooldown
         starCollectibleButton.interactable = false;
         StartCoroutine(CooldownStarCollectibleButton(timeDurationForInvincibility));
+
+        // Display boost used message
+        StartCoroutine(DisplayBoostUsed("Star Booster", 2.0f)); // Display for 2 seconds
     }
 
     // Make all zombies invincible for the specified duration
@@ -380,10 +428,7 @@ public class CollectibleManager : MonoBehaviour
     {
         // Refind UI components and update booster counts when a new scene is loaded
         FindUIReferences(); 
-        UpdateBoosterCount(); 
-        UpdateHealthBoosterButtonInteractability();
-        UpdateSpeedBoosterButtonInteractability();
-        UpdateStarCollectibleButtonInteractability();
+        ActivateUIReferences();
 
         // Reload collectible data when a new scene is loaded
         LoadCollectibleData();
@@ -459,5 +504,20 @@ public class CollectibleManager : MonoBehaviour
         PlayerPrefs.SetInt("SpeedBoost", speedBoosterNo);
         PlayerPrefs.SetInt("StarBoost", starCollectibleNo);
         PlayerPrefs.Save();
+    }
+
+    // Display the name of boost 
+    private IEnumerator DisplayBoostUsed(string boostName, float displayDuration)
+    {
+        if (boostUsedText != null)
+        {
+            boostUsedText.text = $"{boostName} Used";
+            yield return new WaitForSeconds(displayDuration);
+            boostUsedText.text = "";
+        }
+        else
+        {
+            Debug.LogError("boostUsedText is not assigned.");
+        }
     }
 }

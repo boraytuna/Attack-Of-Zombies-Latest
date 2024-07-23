@@ -77,7 +77,7 @@ public class ZombieSpeedManager : MonoBehaviour
                 if (isSpeedBoostActive)
                 {
                     currentSpeed = originalSpeed * speedBoostMultiplier;
-                    Debug.Log("Speed boost applied. Current Speed: " + currentSpeed);
+                    //Debug.Log("Speed boost applied. Current Speed: " + currentSpeed);
                 }
             }
             else
@@ -126,7 +126,7 @@ public class ZombieSpeedManager : MonoBehaviour
             isSpeedBoostActive = true;
             speedBoostMultiplier = multiplier;
             originalSpeed = currentSpeed;
-            Debug.Log("Speed boost started with multiplier: " + multiplier + " for duration: " + duration + " seconds.");
+            //Debug.Log("Speed boost started with multiplier: " + multiplier + " for duration: " + duration + " seconds.");
             StartCoroutine(SpeedBoostCoroutine(duration));
         }
     }
@@ -137,7 +137,7 @@ public class ZombieSpeedManager : MonoBehaviour
         yield return new WaitForSeconds(duration);
         isSpeedBoostActive = false;
         currentSpeed = originalSpeed; // Reset to the original speed before boosting
-        Debug.Log("Speed boost ended. Speed reverted to: " + currentSpeed);
+        //Debug.Log("Speed boost ended. Speed reverted to: " + currentSpeed);
     }
 
     // Return float for movement scripts.
