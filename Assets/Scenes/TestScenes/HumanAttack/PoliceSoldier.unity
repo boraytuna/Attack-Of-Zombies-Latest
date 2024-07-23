@@ -129,7 +129,7 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2687302284658618915}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &706443310 stripped
+--- !u!114 &720561003 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7006494852236888896, guid: e7acf0523e4a043f18a9fd6c2d6761a5,
     type: 3}
@@ -5750,6 +5750,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6279869171558994577}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4611796316877294137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611796316877294136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0d0504d4ca54648b840cd3cd5c4e2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraPointBoostIsUsedText: {fileID: 6279869171558994578}
 --- !u!1 &4613157120075696532
 GameObject:
   m_ObjectHideFlags: 0
@@ -7825,8 +7838,24 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1147130811365297487, guid: e7acf0523e4a043f18a9fd6c2d6761a5,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4611796316877294137}
   m_SourcePrefab: {fileID: 100100000, guid: e7acf0523e4a043f18a9fd6c2d6761a5, type: 3}
+--- !u!114 &6279869171558994578 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1891674785665002284, guid: e7acf0523e4a043f18a9fd6c2d6761a5,
+    type: 3}
+  m_PrefabInstance: {fileID: 6279869171558994577}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6294991037954890798
 Transform:
   m_ObjectHideFlags: 0
@@ -9318,17 +9347,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 2048467295741315867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 569f2f442e284411c802dfd679ff5c14, type: 3}
+  m_Script: {fileID: 11500000, guid: d02493c32a07c439eabe7ec7a1316b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   requiredZombieCount: 10
-  zombieCounter: {fileID: 0}
+  zombieCounter: {fileID: 3972812786441507918}
   levelNumber: 2
   playerTransform: {fileID: 64701012866287110}
   safePointPrefabPath: SafePoint/SafePoint
   searchRadius: 100
-  closestHumanPointer: {fileID: 0}
-  safePointText: {fileID: 706443310}
+  closestHumanPointer: {fileID: 1690488116048755996}
+  safePointText: {fileID: 720561003}
+  textDisplayDuration: 3
 --- !u!114 &7370249695516593795
 MonoBehaviour:
   m_ObjectHideFlags: 0

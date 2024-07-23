@@ -55,6 +55,7 @@ public class SafePointVictoryChecker : VictoryChecker
                 safePoint = hit.position;
                 foundValidPoint = true;
                 InstantiateSafePoint();
+                break;
             }
             else
             {
