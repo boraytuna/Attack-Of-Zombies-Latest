@@ -24,10 +24,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] public GameObject joyStick; // Reference to the joyStick object
     [SerializeField] private Button[] boosterButtons; // Array to reference booster buttons 
 
-    [Header("Victory Checker")]
-    [SerializeField] private VictoryChecker victoryChecker; // Reference to the VictoryChecker script
-    public TextMeshProUGUI victoryMessage; // Reference to the victory message TextMeshProUGUI
-
     void Awake()
     {
         if (Instance == null)
@@ -166,9 +162,6 @@ public class UIManager : MonoBehaviour
         victoryPanel.SetActive(true);
         SetBoosterButtonsActive(false);
         gamePlayPanel.SetActive(false);
-
-        // Display victory message with required zombie count
-        victoryMessage.text = $"You reached {victoryChecker.requiredZombieCount} points!";
     }
 
     private void SetBoosterButtonsActive(bool isActive)

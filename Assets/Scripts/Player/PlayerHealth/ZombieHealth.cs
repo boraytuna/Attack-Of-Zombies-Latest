@@ -5,11 +5,13 @@ public class ZombieHealth : Health, IDamagable
     [SerializeField] private ZombieList zombieList;
     [SerializeField] private ZombieCounter zombieCounter;
     [SerializeField] private ZombieAnimatorController zombieAnimatorController;
+    private AudioManager audioManager;
 
     private void Awake()
     {
         zombieCounter = FindObjectOfType<ZombieCounter>();
         zombieList = FindObjectOfType<ZombieList>();
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     void Start()
@@ -25,7 +27,7 @@ public class ZombieHealth : Health, IDamagable
     protected override void Die()
     {
         Debug.Log("Zombie died!");
-        FindObjectOfType<AudioManager>().Play("ZombieDeath");
+        audioManager.Play("ZombieDeath");
 
         if (zombieAnimatorController != null)
         {

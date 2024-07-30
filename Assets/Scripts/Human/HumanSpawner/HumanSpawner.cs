@@ -39,20 +39,6 @@ public class HumanSpawner : Spawner, ISpawner
             Debug.LogError("Human prefab not found at path: " + humanPrefabPath);
         }
     }
-    
-    public void Reset()
-    {
-        foreach (var centralHuman in centralHumansPerGroup.Values)
-        {
-            if (centralHuman != null)
-            {
-                Destroy(centralHuman);
-            }
-        }
-        centralHumansPerGroup.Clear();
-        groupCenters.Clear();
-        currentRespawns = 0;
-    }
 
     void SpawnHumans()
     {

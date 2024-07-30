@@ -12,11 +12,8 @@ public class ZombieSpeedManager : MonoBehaviour
 
     public float currentSpeed;  // Local speed variable
 
-    [Range(1f, 20f)]
     [SerializeField] private float minSpeed; // Minimum speed variable
-    [Range(1f, 20f)]
     [SerializeField] private float middleSpeed; // New middle speed variable
-    [Range(1f, 20f)]
     [SerializeField] private float maxSpeed; // Maximum speed variable
     private float speedIncreaseRate = 1f; // The rate speed increases
     public bool maxSpeedReached = false; // Bool for checking if the player reached the max speed

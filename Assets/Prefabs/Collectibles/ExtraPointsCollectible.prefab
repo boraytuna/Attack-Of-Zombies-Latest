@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1325342214214917269}
   - component: {fileID: 7490075657426744870}
   - component: {fileID: 4254904670678666600}
-  - component: {fileID: 7127873584696889237}
   - component: {fileID: 5375469109686917493}
+  - component: {fileID: 6009950342836300}
   m_Layer: 0
   m_Name: ExtraPointsCollectible
   m_TagString: Untagged
@@ -110,18 +110,6 @@ MonoBehaviour:
   endScale: {x: 1.5, y: 1.5, z: 1.5}
   scaleSpeed: 1
   scaleRate: 0.5
---- !u!114 &7127873584696889237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5459632986166215570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98c90d9ee50fd46b9934a572be5236f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &5375469109686917493
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -143,3 +131,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.0000001
   m_Center: {x: -0.00000059604645, y: 0, z: 0}
+--- !u!114 &6009950342836300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5459632986166215570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a28e46a86462a4f379f1ae8962fea8ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  extraPointsDisplayer: {fileID: 0}

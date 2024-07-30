@@ -9,10 +9,12 @@ public class ObjectiveCountdownManager : MonoBehaviour
     [SerializeField] private GameObject objectivePanel;
     [SerializeField] private TextMeshProUGUI objectiveText;
     [SerializeField] private TextMeshProUGUI countdownText; 
+    [SerializeField] private TextMeshProUGUI levelNumberText;
 
     private GameObject gamePlayPanel;
     private GameObject objectiveTextObject;
     private GameObject countdownTextObject;
+    private GameObject levelNumberObject;
 
     [Header("Settings")]
     [SerializeField] private VictoryChecker victoryChecker;
@@ -43,6 +45,7 @@ public class ObjectiveCountdownManager : MonoBehaviour
     {
         Debug.Log("State is countdown");
         objectiveText.text = $"Capture {victoryChecker.requiredZombieCount} Humans";
+        levelNumberText.text = $"Level {victoryChecker.levelNumber}";
         StartCoroutine(CountdownCoroutine());
     }
 
@@ -74,6 +77,10 @@ public class ObjectiveCountdownManager : MonoBehaviour
         }
 
         GameManager.Instance.UpdateGameStates(GameState.ActualGamePlay);
+        if(GameManager.Instance == null)
+        {
+            Debug.LogWarning("GameManager is null");
+        }
     }
 
     private void FindUIReferencesAndVictoryChecker()
@@ -104,17 +111,22 @@ public class ObjectiveCountdownManager : MonoBehaviour
             countdownText = countdownTextObject.GetComponent<TextMeshProUGUI>();
         }
 
+        levelNumberObject = GameObject.Find("LevelNumber");
+        if(levelNumberObject == null)
+        {
+            Debug.Log("Level number is null");
+        }
+        else
+        {
+            levelNumberText = levelNumberObject.GetComponent<TextMeshProUGUI>();
+        }
+
         gamePlayPanel = GameObject.Find("GameplayPanel");
         if (gamePlayPanel == null)
         {
             Debug.LogError("GameplayPanel is null");
         }
 
-        victoryChecker = FindObjectOfType<VictoryChecker>();
-        if(victoryChecker == null)
-        {
-            
-        }
 
         // Find the victory checker dynamically
         victoryChecker = FindObjectOfType<VictoryChecker>();

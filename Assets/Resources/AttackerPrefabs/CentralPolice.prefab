@@ -434,6 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4de7cd96e45f84bb09daef69dc40e898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackerDamageManager: {fileID: 0}
   baseDamage: 20
   zombieLayer:
     serializedVersion: 2

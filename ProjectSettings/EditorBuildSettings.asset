@@ -6,14 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TestScenes/MainMenuTest/MainMenu.unity
+    path: Assets/Scenes/TestScenes/MainMenuTest/MainMenuTest.unity
     guid: efd4e33243d87401b9f56f15ddb81b9f
   - enabled: 1
-    path: Assets/Scenes/TestScenes/MainMenuTest/LevelMenu.unity
+    path: Assets/Scenes/TestScenes/MainMenuTest/LevelMenuTest.unity
     guid: 363d29ea35b054929bd01d530823e4e8
   - enabled: 1
+    path: Assets/Scenes/GameScenes/Levels/Level 1.unity
+    guid: fae567ef7b5144b388ea82554788b28a
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Levels/Level 2.unity
+    guid: e89cca8c66190417daa21bc604d7a322
+  - enabled: 1
     path: Assets/Scenes/TestScenes/HumanAttack/Police.unity
-    guid: 366edec81db594d56a645524c6f5ba4e
+    guid: 9bbc3073a857347f2a3b7d3e2f01266f
   - enabled: 1
     path: Assets/Scenes/TestScenes/HumanAttack/PoliceSoldier.unity
     guid: 5065e06ea3d29434580f55b801e69da1

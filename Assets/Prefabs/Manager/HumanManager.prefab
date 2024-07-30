@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6026638743913678492
+--- !u!1 &8825224484023109535
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7216130659726866897}
-  - component: {fileID: 7876642073094050618}
-  - component: {fileID: 1892211594203818937}
-  - component: {fileID: 8199128701648486487}
-  - component: {fileID: 1726032604803281387}
+  - component: {fileID: 9057389062781240160}
+  - component: {fileID: 7883252625256306057}
+  - component: {fileID: 3260213170497674323}
+  - component: {fileID: 1235375365375264053}
+  - component: {fileID: 6519934788042186567}
+  - component: {fileID: 4600924764344078914}
+  - component: {fileID: -492297868882809379}
   m_Layer: 0
   m_Name: HumanManager
   m_TagString: Untagged
@@ -20,13 +22,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7216130659726866897
+--- !u!4 &9057389062781240160
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6026638743913678492}
+  m_GameObject: {fileID: 8825224484023109535}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,13 +37,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7876642073094050618
+--- !u!114 &7883252625256306057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6026638743913678492}
+  m_GameObject: {fileID: 8825224484023109535}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ebbaeac1fd32546959e2d0807335d597, type: 3}
@@ -49,24 +51,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   minDistanceFromTarget: 10
-  minNumberOfGroups: 5
-  maxNumberOfGroups: 5
-  minEntitiesPerGroup: 5
-  maxEntitiesPerGroup: 5
-  minGroupRadius: 5
-  maxGroupRadius: 5
+  minNumberOfGroups: 3
+  maxNumberOfGroups: 7
+  minEntitiesPerGroup: 3
+  maxEntitiesPerGroup: 7
+  minGroupRadius: 3
+  maxGroupRadius: 4
   minGroupSeparationDistance: 12.5
-  maxRespawns: 5
+  maxRespawns: 20
   navMeshSurface: {fileID: 0}
   centralHumanPrefabPath: HumanPrefabs/CentralHuman
   humanPrefabPath: HumanPrefabs/BasicHuman
---- !u!114 &1892211594203818937
+--- !u!114 &3260213170497674323
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6026638743913678492}
+  m_GameObject: {fileID: 8825224484023109535}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87c1fcbbf614f467b92b735c349c5229, type: 3}
@@ -74,39 +76,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   minDistanceFromTarget: 25
-  minNumberOfGroups: 2
-  maxNumberOfGroups: 5
-  minEntitiesPerGroup: 2
+  minNumberOfGroups: 3
+  maxNumberOfGroups: 6
+  minEntitiesPerGroup: 6
   maxEntitiesPerGroup: 5
   minGroupRadius: 2
   maxGroupRadius: 5
   minGroupSeparationDistance: 15
-  maxRespawns: 4
+  maxRespawns: 15
   navMeshSurface: {fileID: 0}
   centralPolicePrefabPath: AttackerPrefabs/CentralPolice
   policePrefabPath: AttackerPrefabs/BasicPolice
   centralSoldierPrefabPath: AttackerPrefabs/CentralPolice
   soldierPrefabPath: AttackerPrefabs/BasicPolice
---- !u!114 &8199128701648486487
+--- !u!114 &1235375365375264053
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6026638743913678492}
+  m_GameObject: {fileID: 8825224484023109535}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 211699401b7f24fb9b8ee1431425c120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpeed: 0
---- !u!114 &1726032604803281387
+--- !u!114 &6519934788042186567
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6026638743913678492}
+  m_GameObject: {fileID: 8825224484023109535}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41b928bc0349d4aacb5eb4f383e4d915, type: 3}
@@ -128,3 +130,49 @@ MonoBehaviour:
   - zombieCountThreshold: 300
     multiplier: 3
   zombieCounter: {fileID: 0}
+--- !u!114 &4600924764344078914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8825224484023109535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca62eb7a6d5948f6aadb8e3c1a476ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collectibles:
+  - {fileID: 1577518649140342724, guid: b591437be7c5243bab350a28f50ba52b, type: 3}
+  - {fileID: 5459632986166215570, guid: 670f49b935b1a4b8dae35db7fce0997e, type: 3}
+  - {fileID: 4091820837344248845, guid: 6faaec455497c42b58483909f0ef9aa8, type: 3}
+  - {fileID: 5695988990454811224, guid: 29338464552874f059672e18503af4f0, type: 3}
+  dropProbabilities:
+  - 0.27
+  - 0.27
+  - 0.27
+  - 0.19
+  dropChance: 0.1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+--- !u!114 &-492297868882809379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8825224484023109535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ce15e6bd74424ce6b22a35b07bcc2a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  policeCarPrefab: {fileID: 0}
+  minDistanceFromPlayer: 15
+  checkRadius: 10
+  movementRadius: 10
+  maxCars: 5
+  maxRespawns: 3
+  initialDelay: 1
+  maxSpawnAttempts: 100
