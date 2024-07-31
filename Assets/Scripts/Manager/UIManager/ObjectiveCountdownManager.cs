@@ -20,8 +20,16 @@ public class ObjectiveCountdownManager : MonoBehaviour
     [SerializeField] private VictoryChecker victoryChecker;
     [SerializeField] private float countdownTime = 3f;
 
+    private AudioManager audioManager;
+
     private void Start()
     {   
+        audioManager = FindObjectOfType<AudioManager>();
+        if (audioManager == null)
+        {
+            Debug.LogError("AudioManager not found in the scene.");
+            return; // Early exit if AudioManager is not found
+        }
         FindUIReferencesAndVictoryChecker(); // Find UI components and script reference
 
         gamePlayPanel.SetActive(false);
@@ -43,6 +51,7 @@ public class ObjectiveCountdownManager : MonoBehaviour
 
     private void StartObjectiveCountdown()
     {
+        audioManager.Play("Countdown");
         Debug.Log("State is countdown");
         objectiveText.text = $"Capture {victoryChecker.requiredZombieCount} Humans";
         levelNumberText.text = $"Level {victoryChecker.levelNumber}";

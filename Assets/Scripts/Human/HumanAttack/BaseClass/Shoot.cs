@@ -8,6 +8,7 @@ public abstract class Shoot : MonoBehaviour, IAttacker
     [SerializeField] protected LayerMask obstacleLayer; // Layer mask to detect obstacles
     [SerializeField] protected Transform shootPoint;    // Point from which the raycast will be shot
     [SerializeField] protected float attackRange;
+    [SerializeField] protected float shootingInterval;
 
     protected float lastAttackTime;
     protected AudioManager audioManager;
@@ -33,7 +34,7 @@ public abstract class Shoot : MonoBehaviour, IAttacker
     public void Attack(Collider targetCollider)
     {
         // Check if enough time has passed since the last attack
-        if (Time.time >= lastAttackTime + 1F)
+        if (Time.time >= lastAttackTime + shootingInterval)
         {
             
             Vector3 targetPosition = targetCollider.bounds.center; // Aim at the center of the target's collider

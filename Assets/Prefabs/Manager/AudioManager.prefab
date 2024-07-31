@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5545184923543194761
+--- !u!1 &5908959428588682271
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5195349882329761751}
-  - component: {fileID: 4340232823683240460}
+  - component: {fileID: 1443222460656890293}
+  - component: {fileID: 4748088253632974671}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5195349882329761751
+--- !u!4 &1443222460656890293
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5545184923543194761}
+  m_GameObject: {fileID: 5908959428588682271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -9.898561, y: -5.4310856, z: 6.995465}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4340232823683240460
+--- !u!114 &4748088253632974671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5545184923543194761}
+  m_GameObject: {fileID: 5908959428588682271}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f98ba7d6626a3453683ea0af02db323d, type: 3}
@@ -46,27 +46,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: ZombieDeath
-    clip: {fileID: 8300000, guid: d2d3788ff3393402ea409ecf02596585, type: 3}
+    clip: {fileID: 8300000, guid: 0c6c462646253426196b701c86cd5767, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - name: HumanDeath
     clip: {fileID: 8300000, guid: 47f17e1549e4d41a5b0c43c131319347, type: 3}
     volume: 1
     pitch: 1
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - name: PoliceShoot
     clip: {fileID: 8300000, guid: deb27f3fc44e548bc91be901f66f522e, type: 3}
     volume: 0.3
     pitch: 1
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - name: SoldierShoot
     clip: {fileID: 8300000, guid: fa6a5a405d2b94586aba76847d9b1821, type: 3}
     volume: 0.3
     pitch: 1
+    loop: 0
+    playOnAwake: 0
     source: {fileID: 0}
   - name: CollectiblePickUp
     clip: {fileID: 8300000, guid: 752ce309bdc4a45c191931994099f089, type: 3}
     volume: 0.3
     pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: ButtonClick
+    clip: {fileID: 8300000, guid: b975abae86c7d47c3ac6c0e2ec099d95, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: PowerUp
+    clip: {fileID: 8300000, guid: 42bf25d67bc6b46cdb93cbcd1e097430, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: RoundWin
+    clip: {fileID: 8300000, guid: 3fd46b4c47e814b63874bbe782aad003, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: RoundLose
+    clip: {fileID: 8300000, guid: 659b81ef81fa1428bb97852ff19be751, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Countdown
+    clip: {fileID: 8300000, guid: a78d0443c37ba4c4ba3860ee026e4bf1, type: 3}
+    volume: 0.14
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: PoliceCar
+    clip: {fileID: 8300000, guid: c2522c9b4ab914c06ae6a72e0b0668a0, type: 3}
+    volume: 0.14
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: SoldierTank
+    clip: {fileID: 8300000, guid: eb8b35448926d49da9e7a79793b82311, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
     source: {fileID: 0}

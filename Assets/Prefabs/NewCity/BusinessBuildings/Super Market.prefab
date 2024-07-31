@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5254300348792318982}
   - component: {fileID: 6242464203364677653}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NavMesh Modifier Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,9 +60,9 @@ GameObject:
   - component: {fileID: 7826504650671680903}
   - component: {fileID: 5097693249925758156}
   - component: {fileID: 9068489457928677815}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Super Market
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

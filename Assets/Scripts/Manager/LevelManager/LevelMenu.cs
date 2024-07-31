@@ -6,11 +6,13 @@ public class LevelMenu : MonoBehaviour
 {
     [SerializeField] private GameObject canvas;
     [SerializeField] private Button[] levelButtons;
+    private AudioManager audioManager;
 
     private void Start()
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
         GameManagerOnGameStateChanged(GameManager.Instance.State); // Check the initial state
+        audioManager = FindObjectOfType<AudioManager>();
 
         // Ensure PlayerPrefs has a default value set for "HighestLevelCompleted"
         int highestLevelCompleted = PlayerPrefs.GetInt("HighestLevelCompleted", 0);
@@ -44,12 +46,14 @@ public class LevelMenu : MonoBehaviour
 
     public void OnLevelButton(int levelIndex)
     {
+        audioManager.Play("ButtonClick");
         SceneManager.LoadScene(levelIndex);
         GameManager.Instance.StartCountdown();
     }
 
     public void GoBack()
     {
+        audioManager.Play("ButtonClick");
         GameManager.Instance.UpdateGameStates(GameState.MainMenu);
         SceneManager.LoadScene(0);
     }

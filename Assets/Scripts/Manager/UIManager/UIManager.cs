@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] public GameObject joyStick; // Reference to the joyStick object
     [SerializeField] private Button[] boosterButtons; // Array to reference booster buttons 
 
+    private AudioManager audioManager;
+
     void Awake()
     {
         if (Instance == null)
@@ -39,6 +41,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
+        audioManager = FindObjectOfType<AudioManager>();
 
         // Enable pause button and human pointer and joystick
         canvas.gameObject.SetActive(true); 
@@ -87,6 +90,7 @@ public class UIManager : MonoBehaviour
         {
             bool isPaused = pausePanel.activeSelf;
             pausePanel.SetActive(!isPaused);
+            audioManager.Play("ButtonClick");
 
             if (!isPaused)
             {
@@ -101,9 +105,10 @@ public class UIManager : MonoBehaviour
 
     // Method to resume the game after its paused
     public void ResumeGame()
-    {
+    {   
         if (pausePanel != null)
         {
+            audioManager.Play("ButtonClick");
             Time.timeScale = 1;
             GameManager.Instance.ActualGamePlay();
             pausePanel.SetActive(false);
@@ -115,6 +120,7 @@ public class UIManager : MonoBehaviour
     // Method to go back to levels scene
     public void OnLevelsButton()
     {
+        audioManager.Play("ButtonClick");
         Time.timeScale = 1;
         GameManager.Instance.GoToLevelMenu();
         SceneManager.LoadScene(1);
@@ -123,6 +129,7 @@ public class UIManager : MonoBehaviour
     // Method to go back to main menu scene
     public void OnMainMenuButton()
     {
+        audioManager.Play("ButtonClick");
         Time.timeScale = 1;
         GameManager.Instance.BackToMainMenu();
         SceneManager.LoadScene(0);
@@ -131,6 +138,7 @@ public class UIManager : MonoBehaviour
     // Method to restart the current level, after dying or on player's purpose
     public void OnRestartButton()
     {
+        audioManager.Play("ButtonClick");
         Time.timeScale = 1;
         GameManager.Instance.UpdateGameStates(GameState.Countdown);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -139,6 +147,7 @@ public class UIManager : MonoBehaviour
     // Method to move to the next level
     public void OnNextLevelButton()
     {
+        audioManager.Play("ButtonClick");
         Time.timeScale = 1;
         GameManager.Instance.UpdateGameStates(GameState.Countdown);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -147,6 +156,7 @@ public class UIManager : MonoBehaviour
     // Method to open the death panel, freeze the time and notify the game manager when the player dies
     public void OnPlayerDeath()
     {
+        audioManager.Play("RoundLose");
         Time.timeScale = 0;
         GameManager.Instance.WhenPlayerDies();
         deathPanel.SetActive(true); 
@@ -157,6 +167,7 @@ public class UIManager : MonoBehaviour
     // Method to open the victory panel, freeze the time and change the game state
     public void OnVictory()
     {
+        audioManager.Play("RoundWin");
         Time.timeScale = 0;
         GameManager.Instance.WhenPlayerWins();
         victoryPanel.SetActive(true);

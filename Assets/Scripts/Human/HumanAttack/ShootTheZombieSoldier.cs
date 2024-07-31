@@ -7,8 +7,6 @@ public class ShootTheZombieSoldier : Shoot, IAttacker
     protected override void Start()
     {
         base.Start();
-        baseDamage = 40f;
-        attackRange = 15f;
         audioManager = FindObjectOfType<AudioManager>();
     }
 

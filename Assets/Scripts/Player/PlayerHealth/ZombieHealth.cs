@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ZombieHealth : Health, IDamagable
 {
-    [SerializeField] private ZombieList zombieList;
+    // [SerializeField] private ZombieList zombieList;
     [SerializeField] private ZombieCounter zombieCounter;
     [SerializeField] private ZombieAnimatorController zombieAnimatorController;
     private AudioManager audioManager;
@@ -10,7 +10,7 @@ public class ZombieHealth : Health, IDamagable
     private void Awake()
     {
         zombieCounter = FindObjectOfType<ZombieCounter>();
-        zombieList = FindObjectOfType<ZombieList>();
+        // zombieList = FindObjectOfType<ZombieList>();
         audioManager = FindObjectOfType<AudioManager>();
     }
 
@@ -18,10 +18,10 @@ public class ZombieHealth : Health, IDamagable
     {
         currentHealth = maxHealth;
 
-        if (zombieList != null)
-        {
-            zombieList.AddZombie(gameObject);
-        }
+        // if (zombieList != null)
+        // {
+        //     zombieList.AddZombie(gameObject);
+        // }
     }
 
     protected override void Die()
@@ -47,14 +47,14 @@ public class ZombieHealth : Health, IDamagable
             Debug.LogError("Zombie counter is null");
         }
 
-        if (zombieList != null)
-        {
-            zombieList.RemoveZombie(gameObject);
-        }
-        else
-        {
-            Debug.LogError("ZombieList is null");
-        }
+        // if (zombieList != null)
+        // {
+        //     zombieList.RemoveZombie(gameObject);
+        // }
+        // else
+        // {
+        //     Debug.LogError("ZombieList is null");
+        // }
 
         Destroy(gameObject);
     }

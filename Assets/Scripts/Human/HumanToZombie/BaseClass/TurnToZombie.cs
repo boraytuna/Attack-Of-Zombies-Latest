@@ -7,7 +7,6 @@ public class TurnToZombie : MonoBehaviour
     public LayerMask groundLayer; // Layer mask to define what layers are considered ground
     public string zombiePrefabPath = "ZombiePrefabs/GamePlayZombieResourcesTest"; // Path to the zombie prefab in the Resources folder
     private GameObject zombiePrefab; // Reference to the loaded zombie prefab
-    protected ZombieList zombieList; // Reference to zombie manager script
     protected ZombieCounter zombieCounter; // Reference to the Zombie Counter script
     protected CollectibleDropper collectibleDropper;
 
@@ -24,12 +23,6 @@ public class TurnToZombie : MonoBehaviour
         if (zombieCounter == null)
         {
             Debug.LogError("ZombieCounter not found in the scene.");
-        }
-
-        zombieList = FindObjectOfType<ZombieList>();
-        if (zombieList == null)
-        {
-            Debug.LogError("ZombieManager not found in the scene.");
         }
 
         collectibleDropper = FindObjectOfType<CollectibleDropper>();
@@ -53,9 +46,6 @@ public class TurnToZombie : MonoBehaviour
 
                 // Instantiate a new zombie at the correct ground position
                 GameObject newZombieObject = Instantiate(zombiePrefab, spawnPosition, transform.rotation);
-
-                // Add the zombie to the ZombieManager
-                zombieList.AddZombie(newZombieObject);
 
                 // Increment the number of total zombies
                 zombieCounter.IncrementZombieCount();

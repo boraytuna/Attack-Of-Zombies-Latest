@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: -2720429265699343942}
   - component: {fileID: 8195256953179999588}
   - component: {fileID: -4208575631848964325}
+  - component: {fileID: -4977115582856548685}
   m_Layer: 6
   m_Name: GamePlayZombieResourcesTest
   m_TagString: Zombie
@@ -498,8 +499,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 40
   currentHealth: 0
-  zombieList: {fileID: 1494877832674744729, guid: e889542e5770849ed919f8192729f85d,
-    type: 3}
   zombieCounter: {fileID: 2523501004456964591, guid: e889542e5770849ed919f8192729f85d,
     type: 3}
   zombieAnimatorController: {fileID: 5499439128987875001}
@@ -525,6 +524,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31ca995920f814f3fa4244914371a04d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4977115582856548685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4245139500938073654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d205f16bfb93428795516d513f9512f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4416208517746027337

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 798626249447193650}
   - component: {fileID: 6556874964102216557}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NavMesh Modifier Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,9 +60,9 @@ GameObject:
   - component: {fileID: 8346269513069450118}
   - component: {fileID: 4566953787526412780}
   - component: {fileID: 5109749647658917828}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Restaurant
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

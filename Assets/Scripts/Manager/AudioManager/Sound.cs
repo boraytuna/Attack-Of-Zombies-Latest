@@ -10,6 +10,14 @@ public class Sound
     public float volume;
     [Range(0.1f, 3f)]
     public float pitch;
+    // [Range(1f, 300f)]
+    // public int priority;
+    // [Range(0.1f, 3f)]
+    // public float spatialBlend;
+    public bool loop;
+    public bool playOnAwake;
+
+
     [HideInInspector]
     public AudioSource source;
 }

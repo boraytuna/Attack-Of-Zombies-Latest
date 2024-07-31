@@ -20,7 +20,7 @@ public class CollectibleManager : MonoBehaviour
     private int initialStarCollectibleNo = 0; 
 
     [Header("Boosters")]
-    [SerializeField] public float delayBeforeTrigger = 0.5f; // Delay for non-persistent collectibles to become collectible
+    [SerializeField] public float delayBeforeTrigger = 0.3f; // Delay for non-persistent collectibles to become collectible
     [SerializeField] public int extraPointsAdded; // Extra points added to zombie count to finish game
     [SerializeField] public float timeDurationForInvincibility; // Time duration of zombies invincibility
     [SerializeField] private float healthBoostMultiplier; // Multiplier for health boost
@@ -38,6 +38,7 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI boostUsedText; // Reference to the text object to indicate the used Boost
 
     private bool isGamePlayLoaded = false;
+    private AudioManager audioManager;
 
     private void OnEnable()
     {
@@ -68,6 +69,8 @@ public class CollectibleManager : MonoBehaviour
 
     void Start()
     {
+        audioManager = FindObjectOfType<AudioManager>();
+
         // Find UI references initially
         FindUIReferences();
 
@@ -236,6 +239,8 @@ public class CollectibleManager : MonoBehaviour
     // Called on healthBooster clicked
     public void OnHealthBoosterButton()
     {
+        audioManager.Play("PowerUp");
+
         // Apply health boost to all zombies and decrement the health booster count
         BoostHealth[] zombies = FindObjectsOfType<BoostHealth>();
         foreach (BoostHealth zombie in zombies)
@@ -288,6 +293,8 @@ public class CollectibleManager : MonoBehaviour
     // Called on speedbooster button click
     public void OnSpeedBoosterButton()
     {
+        audioManager.Play("PowerUp");
+
         // Apply speed boost to all zombies and decrement the speed booster count
         BoostSpeed(speedBoostMultiplier, speedBoostTimeDuration);
 
@@ -342,6 +349,8 @@ public class CollectibleManager : MonoBehaviour
     // Called on star button clicked
     public void OnStarCollectibleButton()
     {
+        audioManager.Play("PowerUp");
+            
         // Apply invincibility to all zombies and decrement the star collectible count
         MakeZombiesInvincible(timeDurationForInvincibility);
 

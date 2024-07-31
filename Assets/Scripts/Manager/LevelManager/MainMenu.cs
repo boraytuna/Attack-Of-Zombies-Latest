@@ -5,11 +5,13 @@ public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject canvas;
     [SerializeField] private int initialCompletedLevelIndex;
+    private AudioManager audioManager;
 
     private void Start()
     {
         // Uncomment the following line to clear PlayerPrefs for testing purposes
         //PlayerPrefs.DeleteAll();
+        audioManager =  FindObjectOfType<AudioManager>();
 
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
         GameManagerOnGameStateChanged(GameManager.Instance.State); // Check the initial state
@@ -33,11 +35,13 @@ public class MainMenu : MonoBehaviour
     {
         GameManager.Instance.GoToLevelMenu();
         SceneManager.LoadScene(1);
+        audioManager.Play("ButtonClick");
     }
 
     public void OnQuitButton()
     {
         CollectibleManager.Instance.OnApplicationQuit();
+        audioManager.Play("ButtonClick");
         Debug.Log("Closing game");
         Application.Quit();
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7950393156440058194}
   - component: {fileID: 1066709148180870204}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NavMesh Modifier Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,9 +60,9 @@ GameObject:
   - component: {fileID: 8420617241142877511}
   - component: {fileID: 9134042334901204547}
   - component: {fileID: 259632737635773188}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Pizza
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

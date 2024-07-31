@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 3630173869546826122}
   - component: {fileID: 580273000196905944}
   - component: {fileID: 4882053128132235585}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Music Store
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2198225892357208092}
-  m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 24.05326, y: 0, z: -131.94943}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7620141461380646960}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3338965591643472152
 MeshFilter:
@@ -138,7 +138,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7620141461380646960}
   - component: {fileID: 4312979396975042595}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NavMesh Modifier Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,5 +174,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Size: {x: 13, y: 12, z: 10}
   m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 0
+  m_Area: 1
   m_AffectedAgents: ffffffff

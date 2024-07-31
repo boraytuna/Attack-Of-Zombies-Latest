@@ -16,16 +16,10 @@ EditorBuildSettings:
     guid: fae567ef7b5144b388ea82554788b28a
   - enabled: 1
     path: Assets/Scenes/GameScenes/Levels/Level 2.unity
+    guid: 5cca5c68ae69142f597156b86dabb8a6
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Levels/Level 3.unity
     guid: e89cca8c66190417daa21bc604d7a322
-  - enabled: 1
-    path: Assets/Scenes/TestScenes/HumanAttack/Police.unity
-    guid: 9bbc3073a857347f2a3b7d3e2f01266f
-  - enabled: 1
-    path: Assets/Scenes/TestScenes/HumanAttack/PoliceSoldier.unity
-    guid: 5065e06ea3d29434580f55b801e69da1
-  - enabled: 1
-    path: Assets/Scenes/TestScenes/HumanAttack/Soldier.unity
-    guid: 0c587cbf574ad4ffbbba5eb885f1ac43
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 57d55387d824e420a99a18dd8ea74c83,
       type: 2}

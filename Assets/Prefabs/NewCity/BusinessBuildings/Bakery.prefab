@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1384777766120925841}
   - component: {fileID: 5987907741410208041}
   - component: {fileID: 3145561001192817305}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bakery
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7668434103563438480}
   - component: {fileID: 927647447828241655}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: NavMesh Modifier Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
