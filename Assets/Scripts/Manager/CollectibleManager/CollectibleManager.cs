@@ -213,10 +213,10 @@ public class CollectibleManager : MonoBehaviour
 
     // Set the health booster button interactability based on available boosters and game state
     private void UpdateHealthBoosterButtonInteractability()
-    {    
+    {
         if (healthBoosterButton != null)
         {
-            healthBoosterButton.interactable = healthBoosterNo > 0 && GameManager.Instance.State == GameState.ActualGamePlay  || GameManager.Instance.State == GameState.Countdown;
+            healthBoosterButton.interactable = healthBoosterNo > 0 && (GameManager.Instance.State == GameState.ActualGamePlay || GameManager.Instance.State == GameState.Countdown);
         }
     }
 
@@ -255,7 +255,7 @@ public class CollectibleManager : MonoBehaviour
         StartCoroutine(CooldownHealthBoosterButton(healthBoostTimeDuration));
 
         // Display boost used message
-        StartCoroutine(DisplayBoostUsed("Health Booster", 2.0f)); // Display for 2 seconds
+        //StartCoroutine(DisplayBoostUsed("Health Booster", 2.0f)); // Display for 2 seconds
     }
 
     // Wait for the cooldown duration and then re-enable the button
@@ -270,7 +270,7 @@ public class CollectibleManager : MonoBehaviour
     {
         if (speedBoosterButton != null)
         {
-            speedBoosterButton.interactable = speedBoosterNo > 0 && GameManager.Instance.State == GameState.ActualGamePlay || GameManager.Instance.State == GameState.Countdown;
+            speedBoosterButton.interactable = speedBoosterNo > 0 && (GameManager.Instance.State == GameState.ActualGamePlay || GameManager.Instance.State == GameState.Countdown);
         }
     }
 
@@ -305,7 +305,7 @@ public class CollectibleManager : MonoBehaviour
         StartCoroutine(CooldownSpeedBoosterButton(speedBoostTimeDuration));
         
         // Display boost used message
-        StartCoroutine(DisplayBoostUsed("Speed Booster", 2.0f)); // Display for 2 seconds
+        //StartCoroutine(DisplayBoostUsed("Speed Booster", 2.0f)); // Display for 2 seconds
     }
 
     // Apply speed boost to zombies
@@ -326,7 +326,7 @@ public class CollectibleManager : MonoBehaviour
     {
         if (starCollectibleButton != null)
         {
-            starCollectibleButton.interactable = starCollectibleNo > 0 && GameManager.Instance.State == GameState.ActualGamePlay || GameManager.Instance.State == GameState.Countdown;
+            starCollectibleButton.interactable = starCollectibleNo > 0 && (GameManager.Instance.State == GameState.ActualGamePlay || GameManager.Instance.State == GameState.Countdown);
         }
     }
 
@@ -361,7 +361,7 @@ public class CollectibleManager : MonoBehaviour
         StartCoroutine(CooldownStarCollectibleButton(timeDurationForInvincibility));
 
         // Display boost used message
-        StartCoroutine(DisplayBoostUsed("Star Booster", 2.0f)); // Display for 2 seconds
+        //StartCoroutine(DisplayBoostUsed("Star Booster", 2.0f)); // Display for 2 seconds
     }
 
     // Make all zombies invincible for the specified duration
@@ -386,17 +386,17 @@ public class CollectibleManager : MonoBehaviour
     {
         if (healthBoosterText != null)
         {
-            healthBoosterText.text = healthBoosterNo.ToString();
+            healthBoosterText.text = ": " + healthBoosterNo.ToString();
         }
 
         if (speedBoosterText != null)
         {
-            speedBoosterText.text = speedBoosterNo.ToString();
+            speedBoosterText.text = ": " + speedBoosterNo.ToString();
         }
 
         if (starCollectibleText != null)
         {
-            starCollectibleText.text = starCollectibleNo.ToString();
+            starCollectibleText.text = ": " +  starCollectibleNo.ToString();
         }
     }
 
@@ -516,17 +516,17 @@ public class CollectibleManager : MonoBehaviour
     }
 
     // Display the name of boost 
-    private IEnumerator DisplayBoostUsed(string boostName, float displayDuration)
-    {
-        if (boostUsedText != null)
-        {
-            boostUsedText.text = $"{boostName} Used";
-            yield return new WaitForSeconds(displayDuration);
-            boostUsedText.text = "";
-        }
-        else
-        {
-            Debug.LogError("boostUsedText is not assigned.");
-        }
-    }
+    // private IEnumerator DisplayBoostUsed(string boostName, float displayDuration)
+    // {
+    //     if (boostUsedText != null)
+    //     {
+    //         boostUsedText.text = $"{boostName} Used";
+    //         yield return new WaitForSeconds(displayDuration);
+    //         boostUsedText.text = "";
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("boostUsedText is not assigned.");
+    //     }
+    // }
 }

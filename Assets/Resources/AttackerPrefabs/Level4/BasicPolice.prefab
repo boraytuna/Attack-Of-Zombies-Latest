@@ -713,7 +713,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  zombiePrefabPath: ZombiePrefabs/GamePlayZombieResourcesTest
+  zombiePrefabPath: ZombiePrefabs/Level4/GamePlayZombieResourcesTest
   centralAttacker: 0
 --- !u!114 &7989291898384950838
 MonoBehaviour:

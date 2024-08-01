@@ -9,7 +9,7 @@ public class ExtraPointCollectible : Collectible, ICollectible
     private float delayBeforeTrigger;
     private Collider col;
     private AudioManager audioManager;
-    [SerializeField] private ExtraPointsDisplayer extraPointsDisplayer;
+    //[SerializeField] private ExtraPointsDisplayer extraPointsDisplayer;
     
     private void Start()
     {
@@ -17,7 +17,7 @@ public class ExtraPointCollectible : Collectible, ICollectible
         extraPointsAdded = CollectibleManager.Instance.extraPointsAdded;
         col = GetComponent<Collider>();
         audioManager = FindObjectOfType<AudioManager>();
-        extraPointsDisplayer = FindObjectOfType<ExtraPointsDisplayer>();
+        //extraPointsDisplayer = FindObjectOfType<ExtraPointsDisplayer>();
         if (col != null)
         {
             col.isTrigger = false; // Ensure trigger is initially false
@@ -63,13 +63,13 @@ public class ExtraPointCollectible : Collectible, ICollectible
     public override void ApplyEffect(GameObject collector)
     {
         AddExtraPoints();
-        if (extraPointsDisplayer != null)
-        {
-            extraPointsDisplayer.DisplayBoostUsed();
-        }
-        else
-        {
-            Debug.LogError("ExtraPointsDisplayer instance is not assigned.");
-        }
+        // if (extraPointsDisplayer != null)
+        // {
+        //     extraPointsDisplayer.DisplayBoostUsed();
+        // }
+        // else
+        // {
+        //     Debug.LogError("ExtraPointsDisplayer instance is not assigned.");
+        // }
     }
 }

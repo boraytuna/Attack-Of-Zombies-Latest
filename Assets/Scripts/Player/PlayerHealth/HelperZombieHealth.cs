@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class HeklperZombieHealth : Health, IDamagable
+public class HelperZombieHealth : Health, IDamagable
 {
-    [SerializeField] private ZombieAnimatorController zombieAnimatorController;
     private AudioManager audioManager;
 
     private void Awake()
@@ -17,18 +16,7 @@ public class HeklperZombieHealth : Health, IDamagable
 
     protected override void Die()
     {
-        Debug.Log("Zombie died!");
         audioManager.Play("ZombieDeath");
-
-        if (zombieAnimatorController != null)
-        {
-            zombieAnimatorController.PlayDie();
-        }
-        else
-        {
-            Debug.LogError("Animator is null");
-        }
-
         Destroy(gameObject);
     }
 }

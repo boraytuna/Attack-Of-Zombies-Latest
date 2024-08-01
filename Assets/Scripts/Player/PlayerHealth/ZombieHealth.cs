@@ -4,7 +4,7 @@ public class ZombieHealth : Health, IDamagable
 {
     // [SerializeField] private ZombieList zombieList;
     [SerializeField] private ZombieCounter zombieCounter;
-    [SerializeField] private ZombieAnimatorController zombieAnimatorController;
+
     private AudioManager audioManager;
 
     private void Awake()
@@ -29,14 +29,6 @@ public class ZombieHealth : Health, IDamagable
         Debug.Log("Zombie died!");
         audioManager.Play("ZombieDeath");
 
-        if (zombieAnimatorController != null)
-        {
-            zombieAnimatorController.PlayDie();
-        }
-        else
-        {
-            Debug.LogError("Animator is null");
-        }
 
         if (zombieCounter != null)
         {

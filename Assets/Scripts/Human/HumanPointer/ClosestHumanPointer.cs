@@ -83,8 +83,8 @@ public class ClosestHumanPointer : MonoBehaviour
             return;
         }
 
-        Vector3 direction = target.position - playerTransform.position;
-        Vector3 screenPoint = mainCamera.WorldToScreenPoint(playerTransform.position + direction);
+        Vector3 direction = (target.position - playerTransform.position).normalized;
+        Vector3 screenPoint = mainCamera.WorldToScreenPoint(playerTransform.position + direction * 10f);
         Vector2 directionOnScreen = new Vector2(screenPoint.x, screenPoint.y) - new Vector2(Screen.width / 2, Screen.height / 2);
 
         float angle = Mathf.Atan2(directionOnScreen.y, directionOnScreen.x) * Mathf.Rad2Deg;
@@ -96,6 +96,7 @@ public class ClosestHumanPointer : MonoBehaviour
     {
         safePointTransform = safePoint;
         hasSafePoint = true;
+        UpdatePointer(); // Update pointer immediately after setting the safe point
     }
 
     // Call this method if you want to clear the safe point

@@ -765,8 +765,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1672
   shootPoint: {fileID: 4420723632026736023}
-  attackRange: 20
-  shootingInterval: 0.6
+  attackRange: 17.5
+  shootingInterval: 0.7
   policeAnimationController: {fileID: 7989291898384950838}
 --- !u!1 &5130821057732533093
 GameObject:

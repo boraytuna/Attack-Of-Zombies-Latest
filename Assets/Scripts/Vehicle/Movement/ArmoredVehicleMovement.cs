@@ -19,7 +19,7 @@ public class ArmoredVehicleMovement : MonoBehaviour
     private Transform playerTransform; 
     [SerializeField] private float soundTriggerDistance = 15f; 
 
-    private bool isSoundPlaying = false; // Track if the sound is currently playing
+    protected bool isSoundPlaying = false; // Track if the sound is currently playing
 
     void Start()
     {

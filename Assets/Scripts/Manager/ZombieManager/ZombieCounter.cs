@@ -56,7 +56,7 @@ public class ZombieCounter : MonoBehaviour
     {
         if (zombieCountText != null)
         {
-            zombieCountText.text = "Points: " + zombieCount.ToString();
+            zombieCountText.text = ": " + zombieCount.ToString();
         }
         else
         {

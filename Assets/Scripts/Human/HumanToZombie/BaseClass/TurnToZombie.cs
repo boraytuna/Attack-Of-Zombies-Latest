@@ -79,9 +79,19 @@ public class TurnToZombie : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, 20f, groundLayer))
         {
-            return hit.point; // Return the point where the ray hit the ground
+            Vector3 groundPosition = hit.point; // Get the point where the ray hit the ground
+            if (groundPosition.y < 0.12f)
+            {
+                groundPosition.y = 0.12f; // Adjust the y position if it's less than 0.08
+            }
+            return groundPosition; // Return the adjusted ground position
         }
 
-        return originalPosition; // If no ground was found, return the original position
+        // If no ground was found, return the original position adjusted to at least 0.08 on the y-axis
+        if (originalPosition.y < 0.12f)
+        {
+            originalPosition.y = 0.12f;
+        }
+        return originalPosition;
     }
 }

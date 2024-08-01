@@ -6,20 +6,26 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TestScenes/MainMenuTest/MainMenuTest.unity
-    guid: efd4e33243d87401b9f56f15ddb81b9f
+    path: Assets/Scenes/GameScenes/Menus/MainMenu.unity
+    guid: c747db08d10dc404d87cd0f35a673272
   - enabled: 1
-    path: Assets/Scenes/TestScenes/MainMenuTest/LevelMenuTest.unity
-    guid: 363d29ea35b054929bd01d530823e4e8
+    path: Assets/Scenes/GameScenes/Menus/LevelMenu.unity
+    guid: ff151521f6e7b413394c56aa87ccab0b
   - enabled: 1
     path: Assets/Scenes/GameScenes/Levels/Level 1.unity
-    guid: fae567ef7b5144b388ea82554788b28a
+    guid: 780bc6bf7388543219781119942458bd
   - enabled: 1
     path: Assets/Scenes/GameScenes/Levels/Level 2.unity
-    guid: 5cca5c68ae69142f597156b86dabb8a6
+    guid: e0dfe451ca89f407a85fb7de3765d2d1
   - enabled: 1
     path: Assets/Scenes/GameScenes/Levels/Level 3.unity
-    guid: e89cca8c66190417daa21bc604d7a322
+    guid: 77101c46b479f47c1952aa5cc9e8c38f
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Levels/Level 4.unity
+    guid: d0b15b17d4b574ab59b3c9b629b6bbf6
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Levels/Level 5.unity
+    guid: f72421561c9234e13a89e37d06c78098
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 57d55387d824e420a99a18dd8ea74c83,
       type: 2}

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SoldierTankMovement : ArmoredVehicleMovement
 {
-    private bool isSoundPlaying = false;
-
     protected override void PlayMoveSound()
     {
         if (audioManager == null)

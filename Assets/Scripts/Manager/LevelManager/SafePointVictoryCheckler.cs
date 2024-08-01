@@ -13,9 +13,10 @@ public class SafePointVictoryChecker : VictoryChecker
     private Vector3 safePoint;
     private bool safePointSet = false;
     private bool safePointReached = false;
+    private GameObject safePointInstance; // Track the instantiated safe point
 
     [Header("UI")]
-    [SerializeField] private TextMeshProUGUI safePointText;
+    [SerializeField] private GameObject safePointText;
     [SerializeField] private float textDisplayDuration = 4f; // Duration to display the text
 
 
@@ -73,13 +74,20 @@ public class SafePointVictoryChecker : VictoryChecker
 
     private void InstantiateSafePoint()
     {
+        // Check if a safe point is already instantiated
+        if (safePointInstance != null)
+        {
+            Debug.LogWarning("A safe point is already instantiated. Skipping instantiation.");
+            return;
+        }
+
         GameObject safePointPrefab = Resources.Load<GameObject>(safePointPrefabPath);
         if (safePointPrefab != null)
         {
-            GameObject safePointObject = Instantiate(safePointPrefab, safePoint, Quaternion.identity);
+            safePointInstance = Instantiate(safePointPrefab, safePoint, Quaternion.identity);
             if (closestHumanPointer != null)
             {
-                closestHumanPointer.SetSafePoint(safePointObject.transform);
+                closestHumanPointer.SetSafePoint(safePointInstance.transform);
             }
         }
         else
@@ -123,20 +131,20 @@ public class SafePointVictoryChecker : VictoryChecker
 
     private void DisableUI()
     {
-        safePointText.gameObject.SetActive(false);
+        safePointText.SetActive(false);
     }
 
     private void ChangeUI()
     {
         Debug.Log("ChangeUI method called"); // For debugging
 
-        safePointText.gameObject.SetActive(true);
+        safePointText.SetActive(true);
         StartCoroutine(HideTextAfterDelay(textDisplayDuration));
     }
 
     private IEnumerator HideTextAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        safePointText.gameObject.SetActive(false);
+        safePointText.SetActive(false);
     }
 }

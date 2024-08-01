@@ -977,7 +977,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  zombiePrefabPath: ZombiePrefabs/Level6/GamePlayZombieResourcesTest
+  zombiePrefabPath: ZombiePrefabs/Level5/GamePlayZombieResourcesTest
   isCentralHuman: 0
 --- !u!114 &8475689252370513707
 MonoBehaviour:

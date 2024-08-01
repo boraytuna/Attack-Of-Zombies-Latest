@@ -135,6 +135,79 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &940579821
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1443222460656890293, guid: b8de23d2ae5574ad4996254ce132798d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443222460656890293, guid: b8de23d2ae5574ad4996254ce132798d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.898561
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443222460656890293, guid: b8de23d2ae5574ad4996254ce132798d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.4310856
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443222460656890293, guid: b8de23d2ae5574ad4996254ce132798d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.995465
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443222460656890293, guid: b8de23d2ae5574ad4996254ce132798d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443222460656890293, guid: b8de23d2ae5574ad4996254ce132798d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443222460656890293, guid: b8de23d2ae5574ad4996254ce132798d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443222460656890293, guid: b8de23d2ae5574ad4996254ce132798d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443222460656890293, guid: b8de23d2ae5574ad4996254ce132798d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443222460656890293, guid: b8de23d2ae5574ad4996254ce132798d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443222460656890293, guid: b8de23d2ae5574ad4996254ce132798d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908959428588682271, guid: b8de23d2ae5574ad4996254ce132798d,
+        type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b8de23d2ae5574ad4996254ce132798d, type: 3}
 --- !u!1001 &1074447325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -202,6 +275,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586477495586926459, guid: adec59b1a4ecb4ecea3caca70fbe2a05,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -316,6 +394,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b9a0304527f449d0ae25021c1622f71, type: 3}
+--- !u!1001 &2026718622
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8414653149590563762, guid: adec59b1a4ecb4ecea3caca70fbe2a05,
+        type: 3}
+      propertyPath: m_Name
+      value: GameManager (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586477495586926459, guid: adec59b1a4ecb4ecea3caca70fbe2a05,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586477495586926459, guid: adec59b1a4ecb4ecea3caca70fbe2a05,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.898561
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586477495586926459, guid: adec59b1a4ecb4ecea3caca70fbe2a05,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.4310856
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586477495586926459, guid: adec59b1a4ecb4ecea3caca70fbe2a05,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.995465
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586477495586926459, guid: adec59b1a4ecb4ecea3caca70fbe2a05,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586477495586926459, guid: adec59b1a4ecb4ecea3caca70fbe2a05,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586477495586926459, guid: adec59b1a4ecb4ecea3caca70fbe2a05,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586477495586926459, guid: adec59b1a4ecb4ecea3caca70fbe2a05,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586477495586926459, guid: adec59b1a4ecb4ecea3caca70fbe2a05,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586477495586926459, guid: adec59b1a4ecb4ecea3caca70fbe2a05,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8586477495586926459, guid: adec59b1a4ecb4ecea3caca70fbe2a05,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: adec59b1a4ecb4ecea3caca70fbe2a05, type: 3}
 --- !u!1 &2066445323
 GameObject:
   m_ObjectHideFlags: 0
@@ -3215,18 +3366,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6154857107459783545}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2627440867838339790 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7752372580895620106, guid: e889542e5770849ed919f8192729f85d,
-    type: 3}
-  m_PrefabInstance: {fileID: 8378387638588198190}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec443607b7c08457d9f3e846c978de25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2721364021704295538
 Transform:
   m_ObjectHideFlags: 0
@@ -6955,9 +7094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 40
   currentHealth: 0
-  zombieList: {fileID: 2627440867838339790}
   zombieCounter: {fileID: 0}
-  zombieAnimatorController: {fileID: 5499439128673057820}
 --- !u!114 &6502942771973569312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6996,9 +7133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 40
   currentHealth: 0
-  zombieList: {fileID: 2627440867838339790}
   zombieCounter: {fileID: 0}
-  zombieAnimatorController: {fileID: 5499439128698404500}
 --- !u!114 &6502942771998816664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7037,9 +7172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 40
   currentHealth: 0
-  zombieList: {fileID: 2627440867838339790}
   zombieCounter: {fileID: 0}
-  zombieAnimatorController: {fileID: 5499439130127411485}
 --- !u!114 &6502942772163374623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7078,9 +7211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 40
   currentHealth: 0
-  zombieList: {fileID: 2627440867838339790}
   zombieCounter: {fileID: 0}
-  zombieAnimatorController: {fileID: 5499439130033537320}
 --- !u!114 &6502942772269745708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7119,9 +7250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 40
   currentHealth: 0
-  zombieList: {fileID: 2627440867838339790}
   zombieCounter: {fileID: 0}
-  zombieAnimatorController: {fileID: 5499439130359971055}
 --- !u!114 &6502942772450851821
 MonoBehaviour:
   m_ObjectHideFlags: 0

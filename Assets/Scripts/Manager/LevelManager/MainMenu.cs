@@ -1,10 +1,15 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject canvas;
+    [Header("UI Components")]
+    [SerializeField] private GameObject menuPanel;
     [SerializeField] private int initialCompletedLevelIndex;
+    [SerializeField] private TextMeshProUGUI healthBoosterText; // UI Text for health boosters count
+    [SerializeField] private TextMeshProUGUI speedBoosterText; // UI Text for speed boosters count
+    [SerializeField] private TextMeshProUGUI starCollectibleText; // UI Text for star collectibles count
     private AudioManager audioManager;
 
     private void Start()
@@ -13,11 +18,89 @@ public class MainMenu : MonoBehaviour
         //PlayerPrefs.DeleteAll();
         audioManager =  FindObjectOfType<AudioManager>();
 
+        FindUIReferences();
+
+        menuPanel.gameObject.SetActive(true);
+
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
         GameManagerOnGameStateChanged(GameManager.Instance.State); // Check the initial state
 
         // Initialize PlayerPrefs 
         SetPlayerPrefsForLevel();
+
+        ShowButtonTexts(false);
+    }
+
+    private void FindUIReferences()
+    {
+         if (healthBoosterText == null)
+        {
+            GameObject healthBoosterTextObject = GameObject.Find("HealthBoosterText");
+            if (healthBoosterTextObject != null)
+            {
+                healthBoosterText = healthBoosterTextObject.GetComponent<TextMeshProUGUI>();
+            }
+            else
+            {
+                Debug.LogError("HealthBoosterText GameObject not found in the scene.");
+            }
+        }
+
+        if (speedBoosterText == null)
+        {
+            GameObject speedBoosterTextObject = GameObject.Find("SpeedBoosterText");
+            if (speedBoosterTextObject != null)
+            {
+                speedBoosterText = speedBoosterTextObject.GetComponent<TextMeshProUGUI>();
+            }
+            else
+            {
+                Debug.LogError("SpeedBoosterText GameObject not found in the scene.");
+            }
+        }
+
+        if (starCollectibleText == null)
+        {
+            GameObject starCollectibleTextObject = GameObject.Find("StarCollectibleText");
+            if (starCollectibleTextObject != null)
+            {
+                starCollectibleText = starCollectibleTextObject.GetComponent<TextMeshProUGUI>();
+            }
+            else
+            {
+                Debug.LogError("StarCollectibleText GameObject not found in the scene.");
+            }
+        }
+    }
+
+    private void ShowButtonTexts(bool show)
+    {
+        if (healthBoosterText != null)
+        {
+            healthBoosterText.enabled = show;
+        }
+        else
+        {
+            Debug.Log("Text is null");
+        }
+
+        if (starCollectibleText != null)
+        {
+            starCollectibleText.enabled = show;
+        }
+        else
+        {
+            Debug.Log("Text is null");
+        }
+
+        if (speedBoosterText != null)
+        {
+            speedBoosterText.enabled = show;
+        }
+        else
+        {
+            Debug.Log("Text is null");
+        }
     }
 
     private void OnDestroy()
@@ -27,7 +110,7 @@ public class MainMenu : MonoBehaviour
 
     private void GameManagerOnGameStateChanged(GameState state)
     {
-        canvas.SetActive(state == GameState.MainMenu);
+        menuPanel.SetActive(state == GameState.MainMenu);
     }
 
     // Load the level menu on clicking play button
