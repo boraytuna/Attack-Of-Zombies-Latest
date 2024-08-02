@@ -49637,7 +49637,8 @@ MonoBehaviour:
   victoryMessage: {fileID: 1019768378}
   playerTransform: {fileID: 1809377168144721028}
   safePointPrefabPath: SafePoint/SafePoint
-  searchRadius: 150
+  minDistance: 50
+  maxDistance: 150
   closestHumanPointer: {fileID: 3810312007259778142}
   safePointText: {fileID: 1019768379}
   textDisplayDuration: 4
@@ -54763,14 +54764,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1809377168144721028}
   minDistanceFromTarget: 10
-  minNumberOfGroups: 35
-  maxNumberOfGroups: 50
+  minNumberOfGroups: 45
+  maxNumberOfGroups: 80
   minEntitiesPerGroup: 3
   maxEntitiesPerGroup: 7
   minGroupRadius: 3
   maxGroupRadius: 5
   minGroupSeparationDistance: 12.5
-  maxRespawns: 70
+  maxRespawns: 300
   navMeshSurface: {fileID: 433849520}
   centralHumanPrefabPath: HumanPrefabs/Level3/CentralHumanLevel3
   humanPrefabPath: HumanPrefabs/Level3/BasicHumanLevel3

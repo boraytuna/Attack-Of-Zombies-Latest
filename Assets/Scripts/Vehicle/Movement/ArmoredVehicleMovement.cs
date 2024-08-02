@@ -179,6 +179,6 @@ public class ArmoredVehicleMovement : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.OnGameStateChanged -= OnGameStateChanged;
-        StopMoveSound(); // Ensure sound stops when object is destroyed
+        // StopMoveSound(); // Ensure sound stops when object is destroyed
     }
 }

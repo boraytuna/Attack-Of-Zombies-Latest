@@ -8,7 +8,8 @@ public class SafePointVictoryChecker : VictoryChecker
 {   
     [SerializeField] private Transform playerTransform;
     [SerializeField] private string safePointPrefabPath; // Path to the safe point prefab in the Resources folder
-    [SerializeField] private float searchRadius = 100.0f; // Radius within which to find a random point on the NavMesh
+    [SerializeField] private float minDistance = 100.0f; // Radius within which to find a random point on the NavMesh
+    [SerializeField] private float maxDistance = 100.0f; // Radius within which to find a random point on the NavMesh
     [SerializeField] private ClosestHumanPointer closestHumanPointer;
     private Vector3 safePoint;
     private bool safePointSet = false;
@@ -42,35 +43,38 @@ public class SafePointVictoryChecker : VictoryChecker
     }
 
     private void SetSafePoint()
+{
+    bool foundValidPoint = false;
+    int attempts = 0;
+    int maxAttempts = 10; // Maximum number of attempts to find a valid point
+
+    while (!foundValidPoint && attempts < maxAttempts)
     {
-        bool foundValidPoint = false;
-        int attempts = 0;
-        int maxAttempts = 10; // Maximum number of attempts to find a valid point
+        float randomDistance = Random.Range(minDistance, maxDistance);
+        Vector3 randomDirection = Random.insideUnitSphere * randomDistance;
+        randomDirection += playerTransform.position;
 
-        while (!foundValidPoint && attempts < maxAttempts)
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(randomDirection, out hit, randomDistance, NavMesh.AllAreas))
         {
-            Vector3 randomDirection = Random.insideUnitSphere * searchRadius;
-            randomDirection += playerTransform.position;
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomDirection, out hit, searchRadius, NavMesh.AllAreas))
-            {
-                safePoint = hit.position;
-                foundValidPoint = true;
-                InstantiateSafePoint();
-                break;
-            }
-            else
-            {
-                attempts++;
-                Debug.LogWarning($"Attempt {attempts} failed to find a valid NavMesh position. Retrying...");
-            }
+            safePoint = hit.position;
+            foundValidPoint = true;
+            InstantiateSafePoint();
+            break;
         }
-
-        if (!foundValidPoint)
+        else
         {
-            Debug.LogError("Failed to find a valid NavMesh position for the safe point after multiple attempts.");
+            attempts++;
+            Debug.LogWarning($"Attempt {attempts} failed to find a valid NavMesh position. Retrying...");
         }
     }
+
+    if (!foundValidPoint)
+    {
+        Debug.LogError("Failed to find a valid NavMesh position for the safe point after multiple attempts.");
+    }
+}
+
 
     private void InstantiateSafePoint()
     {

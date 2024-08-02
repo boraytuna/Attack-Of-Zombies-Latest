@@ -1044,8 +1044,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.3
-  m_Speed: 21
-  m_Acceleration: 42.5
+  m_Speed: 19
+  m_Acceleration: 37.5
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -1124,7 +1124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a394af239744533a318350ee0b9086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 40
+  detectionRange: 55
   zombieLayer:
     serializedVersion: 2
     m_Bits: 64

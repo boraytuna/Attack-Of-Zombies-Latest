@@ -1124,7 +1124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a394af239744533a318350ee0b9086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 25
+  detectionRange: 35
   zombieLayer:
     serializedVersion: 2
     m_Bits: 64
