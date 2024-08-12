@@ -18,6 +18,7 @@ public abstract class VictoryChecker : MonoBehaviour
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
         zombieCounter = FindObjectOfType<ZombieCounter>();
+        zombieCounter = GameObject.FindWithTag("ZombieManager").GetComponent<ZombieCounter>();
     }
 
     protected virtual void OnDestroy()

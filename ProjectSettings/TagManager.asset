@@ -11,6 +11,10 @@ TagManager:
   - DeathPanel
   - PausePanel
   - PauseButton
+  - HumanManager
+  - AudioManager
+  - ZombieManager
+  - VictoryChecker
   layers:
   - Default
   - TransparentFX

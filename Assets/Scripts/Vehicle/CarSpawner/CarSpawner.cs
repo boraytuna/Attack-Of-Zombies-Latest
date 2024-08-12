@@ -1,118 +1,71 @@
-// using UnityEngine;
-// using System.Collections.Generic;
-
-// public class CarSpawner : MonoBehaviour
-// {
-//     [SerializeField] private string[] prefabNames = { "AttackerPrefabs/Vehicles/PoliceCar", "AttackerPrefabs/Vehicles/SoldierTank" }; // Names of the prefabs in the Resources folder
-//     [SerializeField] private Transform[] spawnPositions; // Array of predefined spawn positions
-//     private List<Transform> occupiedPositions = new List<Transform>(); // List of positions already occupied
-
-//     // This method is called to request a new spawn
-//     public void RequestRespawn()
-//     {
-//         // Check if all positions are occupied
-//         if (occupiedPositions.Count >= spawnPositions.Length)
-//         {
-//             Debug.LogWarning("All spawn positions are currently occupied.");
-//             return;
-//         }
-
-//         // Randomly select a prefab from the array
-//         int prefabIndex = Random.Range(0, prefabNames.Length);
-//         GameObject prefab = Resources.Load<GameObject>(prefabNames[prefabIndex]);
-
-//         if (prefab == null)
-//         {
-//             Debug.LogError($"Prefab with name {prefabNames[prefabIndex]} not found in Resources folder.");
-//             return;
-//         }
-
-//         // Find an unoccupied spawn position
-//         Transform spawnPosition = null;
-//         int attemptCount = 0;
-//         while (spawnPosition == null && attemptCount < spawnPositions.Length)
-//         {
-//             int positionIndex = Random.Range(0, spawnPositions.Length);
-//             if (!occupiedPositions.Contains(spawnPositions[positionIndex]))
-//             {
-//                 spawnPosition = spawnPositions[positionIndex];
-//             }
-//             attemptCount++;
-//         }
-
-//         if (spawnPosition == null)
-//         {
-//             Debug.LogWarning("Failed to find an unoccupied spawn position.");
-//             return;
-//         }
-
-//         // Spawn the selected prefab at the selected position
-//         Instantiate(prefab, spawnPosition.position, spawnPosition.rotation);
-//         occupiedPositions.Add(spawnPosition);
-//     }
-// }
 using UnityEngine;
 using System.Collections.Generic;
 
 public class CarSpawner : MonoBehaviour
 {
-    [SerializeField] private string[] prefabNames = { "AttackerPrefabs/Vehicles/PoliceCar", "AttackerPrefabs/Vehicles/SoldierTank" }; // Names of the prefabs in the Resources folder
+    [SerializeField] private string[] prefabTags = { "PoliceCar", "SoldierTank" }; // Tags for the prefabs in the ObjectPooler
     [SerializeField] private Transform[] spawnPositions; // Array of predefined spawn positions
-    [SerializeField] private int maxRespawns = 10; // Maximum number of respawns allowed
-    private int currentRespawns = 0; // Current number of respawns
+    [SerializeField] private int maxStartVehicles; // Maximum number of vehicles to spawn at the start
+    private int currentStartVehicles = 0; // Counter for vehicles spawned at start
     private List<Transform> occupiedPositions = new List<Transform>(); // List of positions already occupied
 
-    // This method is called to request a new spawn
-    public void RequestRespawn()
+    private ObjectPooler objectPooler;
+
+    private void Start()
     {
-        // Check if the maximum number of respawns has been reached
-        if (currentRespawns >= maxRespawns)
+        // Get the ObjectPooler instance
+        objectPooler = ObjectPooler.Instance;
+
+        if (objectPooler == null)
         {
-            Debug.LogWarning("Maximum number of respawns reached.");
+            Debug.LogError("ObjectPooler instance not found.");
             return;
         }
 
-        // Check if all positions are occupied
-        if (occupiedPositions.Count >= spawnPositions.Length)
-        {
-            Debug.LogWarning("All spawn positions are currently occupied.");
-            return;
-        }
+        // Spawn vehicles at the start of the game with a limit
+        SpawnVehiclesAtStart();
+    }
 
-        // Randomly select a prefab from the array
-        int prefabIndex = Random.Range(0, prefabNames.Length);
-        GameObject prefab = Resources.Load<GameObject>(prefabNames[prefabIndex]);
+    private void SpawnVehiclesAtStart()
+    {
+        // Shuffle the spawn positions array to randomize the starting positions
+        Shuffle(spawnPositions);
 
-        if (prefab == null)
+        foreach (Transform spawnPosition in spawnPositions)
         {
-            Debug.LogError($"Prefab with name {prefabNames[prefabIndex]} not found in Resources folder.");
-            return;
-        }
+            if (currentStartVehicles >= maxStartVehicles)
+                break;
 
-        // Find an unoccupied spawn position
-        Transform spawnPosition = null;
-        int attemptCount = 0;
-        while (spawnPosition == null && attemptCount < spawnPositions.Length)
-        {
-            int positionIndex = Random.Range(0, spawnPositions.Length);
-            if (!occupiedPositions.Contains(spawnPositions[positionIndex]))
+            // Randomly select a prefab tag from the array
+            int prefabIndex = Random.Range(0, prefabTags.Length);
+            string prefabTag = prefabTags[prefabIndex];
+
+            // Spawn the selected prefab from the pool
+            GameObject pooledObject = objectPooler.SpawnFromPool(prefabTag, spawnPosition.position, spawnPosition.rotation);
+
+            if (pooledObject == null)
             {
-                spawnPosition = spawnPositions[positionIndex];
+                Debug.LogWarning($"Failed to spawn object with tag {prefabTag} from pool.");
             }
-            attemptCount++;
+            else
+            {
+                // Keep track of the number of vehicles spawned at start
+                currentStartVehicles++;
+                occupiedPositions.Add(spawnPosition);
+                Debug.Log($"Spawned object with tag {prefabTag} at position {spawnPosition.position}.");
+            }
         }
+    }
 
-        if (spawnPosition == null)
+    // Utility function to shuffle an array
+    private void Shuffle(Transform[] array)
+    {
+        for (int i = array.Length - 1; i > 0; i--)
         {
-            Debug.LogWarning("Failed to find an unoccupied spawn position.");
-            return;
+            int randomIndex = Random.Range(0, i + 1);
+            Transform temp = array[i];
+            array[i] = array[randomIndex];
+            array[randomIndex] = temp;
         }
-
-        // Spawn the selected prefab at the selected position
-        Instantiate(prefab, spawnPosition.position, spawnPosition.rotation);
-        occupiedPositions.Add(spawnPosition);
-        
-        // Increment the respawn count
-        currentRespawns++;
     }
 }

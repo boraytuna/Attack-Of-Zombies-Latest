@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
 
         // Enable pause button and human pointer and joystick
         canvas.gameObject.SetActive(true); 

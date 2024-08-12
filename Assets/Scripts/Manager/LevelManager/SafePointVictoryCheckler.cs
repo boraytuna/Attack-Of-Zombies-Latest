@@ -26,7 +26,8 @@ public class SafePointVictoryChecker : VictoryChecker
         base.Start();
         GamePlayEvents.onPlayerEnterSafePoint += OnPlayerEnterSafePoint;
 
-        closestHumanPointer = FindObjectOfType<ClosestHumanPointer>();
+
+        closestHumanPointer = GameObject.FindWithTag("Player").GetComponent<ClosestHumanPointer>();
         DisableUI();
     }
 

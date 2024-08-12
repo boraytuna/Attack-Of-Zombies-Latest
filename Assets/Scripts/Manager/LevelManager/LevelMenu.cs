@@ -17,7 +17,7 @@ public class LevelMenu : MonoBehaviour
     {
         GameManager.OnGameStateChanged += GameManagerOnGameStateChanged;
         GameManagerOnGameStateChanged(GameManager.Instance.State); // Check the initial state
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
         //FindUIReferences();
 
         // Ensure PlayerPrefs has a default value set for "HighestLevelCompleted"

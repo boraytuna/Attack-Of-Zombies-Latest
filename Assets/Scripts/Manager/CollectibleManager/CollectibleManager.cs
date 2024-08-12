@@ -69,7 +69,7 @@ public class CollectibleManager : MonoBehaviour
 
     void Start()
     {
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
 
         // Find UI references initially
         FindUIReferences();
@@ -107,6 +107,7 @@ public class CollectibleManager : MonoBehaviour
         UpdateStarCollectibleButtonInteractability();
     }
 
+    
     void Update()
     {
         // Continuously update the booster count
@@ -216,7 +217,7 @@ public class CollectibleManager : MonoBehaviour
     {
         if (healthBoosterButton != null)
         {
-            healthBoosterButton.interactable = healthBoosterNo > 0 && (GameManager.Instance.State == GameState.ActualGamePlay || GameManager.Instance.State == GameState.Countdown);
+            healthBoosterButton.interactable = healthBoosterNo > 0 && (GameManager.Instance.State == GameState.ActualGamePlay || GameManager.Instance.State == GameState.Countdown || GameManager.Instance.State == GameState.Victory || GameManager.Instance.State == GameState.Lose);
         }
     }
 
@@ -410,6 +411,7 @@ public class CollectibleManager : MonoBehaviour
                 if (!isGamePlayLoaded)
                 {
                     LoadCollectibleData(); // Load collectible data when gameplay starts
+                    UpdateButtonInteractablity();
                     isGamePlayLoaded = true; // Mark gameplay as loaded
                 }
                 break;
@@ -430,6 +432,13 @@ public class CollectibleManager : MonoBehaviour
                 // No change to collectibles when pausing
                 break;
         }
+    }
+
+    private void UpdateButtonInteractablity()
+    {
+        UpdateHealthBoosterButtonInteractability();
+        UpdateSpeedBoosterButtonInteractability();
+        UpdateStarCollectibleButtonInteractability();
     }
 
     // Handle changes in new scene load

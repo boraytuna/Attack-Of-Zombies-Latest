@@ -9,9 +9,8 @@ public class ZombieHealth : Health, IDamagable
 
     private void Awake()
     {
-        zombieCounter = FindObjectOfType<ZombieCounter>();
-        // zombieList = FindObjectOfType<ZombieList>();
-        audioManager = FindObjectOfType<AudioManager>();
+        zombieCounter = GameObject.FindWithTag("ZombieManager").GetComponent<ZombieCounter>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     void Start()

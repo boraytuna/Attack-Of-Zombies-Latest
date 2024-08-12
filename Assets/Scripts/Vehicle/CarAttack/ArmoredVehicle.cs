@@ -1,53 +1,3 @@
-// using UnityEngine;
-
-// public abstract class ArmoredVehicle : MonoBehaviour, IAttacker
-// {
-//     [SerializeField] protected float baseDamage = 50f;
-//     [SerializeField] protected float pushForce = 5f; // Force to apply to the player
-//     private AudioManager audioManager;
-//     void Start()
-//     {
-//         audioManager = FindObjectOfType<AudioManager>();
-//     }
-
-//     // Implement the Attack method from IAttacker interface
-//     public virtual void Attack(Collider targetCollider)
-//     {
-//         // Deal damage to the target if it has an IDamagable component
-//         IDamagable damagable = targetCollider.GetComponent<IDamagable>();
-//         if (damagable != null)
-//         {
-//             damagable.TakeDamage(baseDamage);
-//             Debug.Log("ArmoredVehicle dealt " + baseDamage + " damage to " + targetCollider.name);
-//         }
-//         else
-//         {
-//             Debug.LogWarning("No IDamagable component found on " + targetCollider.name);
-//         }
-//     }
-
-//     // Method to apply push force to the player
-//     protected void ApplyPushForce(Collider other)
-//     {
-//         if (other.CompareTag("Player"))
-//         {
-//             audioManager.Play("ZombieDeath");
-//             Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
-//             if (playerRigidbody != null)
-//             {
-//                 Vector3 pushDirection = other.transform.position - transform.position;
-//                 pushDirection.y = 0; // Keep the push force horizontal for more natural behavior
-
-//                 // Apply a more subtle force
-//                 float forceMagnitude = Mathf.Clamp(pushForce * (1f - (pushDirection.magnitude / 10f)), 0f, pushForce);
-//                 playerRigidbody.AddForce(pushDirection.normalized * forceMagnitude, ForceMode.Impulse);
-
-//                 // Optionally, you could add some damping here
-//             }
-//         }
-//     }
-
-// }
 using System.Collections;
 using UnityEngine;
 
@@ -57,15 +7,27 @@ public abstract class ArmoredVehicle : MonoBehaviour, IAttacker
     [SerializeField] protected float pushForce = 5f; // Initial force applied to the player
     [SerializeField] protected float dampingDuration = 0.5f; // Time over which to damp the force
     private AudioManager audioManager;
+    private bool playerIsAlive = true;
 
     void Start()
     {
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
+
+        // Subscribe to the OnPlayerDeath event
+        PlayerHealth.OnPlayerDeath += HandlePlayerDeath;
+    }
+
+    void OnDestroy()
+    {
+        // Unsubscribe from the OnPlayerDeath event when this object is destroyed
+        PlayerHealth.OnPlayerDeath -= HandlePlayerDeath;
     }
 
     // Implement the Attack method from IAttacker interface
     public virtual void Attack(Collider targetCollider)
     {
+        if (!playerIsAlive) return;
+
         // Deal damage to the target if it has an IDamagable component
         IDamagable damagable = targetCollider.GetComponent<IDamagable>();
         if (damagable != null)
@@ -82,7 +44,10 @@ public abstract class ArmoredVehicle : MonoBehaviour, IAttacker
     // Method to apply push force to the player
     protected void ApplyPushForce(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (!playerIsAlive) return;
+
+        PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
+        if (playerHealth != null && playerHealth.isAlive)
         {
             audioManager.Play("ZombieDeath");
             Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
@@ -90,10 +55,10 @@ public abstract class ArmoredVehicle : MonoBehaviour, IAttacker
             {
                 Vector3 pushDirection = other.transform.position - transform.position;
                 pushDirection.y = 0; // Keep the push force horizontal for more natural behavior
-                
+
                 // Apply an initial impulse force
                 playerRigidbody.AddForce(pushDirection.normalized * pushForce, ForceMode.Impulse);
-                
+
                 // Start damping the force over time
                 StartCoroutine(DampVelocity(playerRigidbody));
             }
@@ -108,6 +73,8 @@ public abstract class ArmoredVehicle : MonoBehaviour, IAttacker
 
         while (Time.time < startTime + dampingDuration)
         {
+            if (!playerIsAlive) yield break;
+
             // Linearly interpolate the velocity to zero
             float t = (Time.time - startTime) / dampingDuration;
             playerRigidbody.velocity = Vector3.Lerp(initialVelocity, Vector3.zero, t);
@@ -116,5 +83,14 @@ public abstract class ArmoredVehicle : MonoBehaviour, IAttacker
 
         // Ensure the velocity is fully zeroed out
         playerRigidbody.velocity = Vector3.zero;
+    }
+
+    // Handle the player death event
+    private void HandlePlayerDeath()
+    {
+        playerIsAlive = false;
+
+        // Stop all ongoing actions (if necessary, you can add more logic here)
+        this.enabled = false;
     }
 }

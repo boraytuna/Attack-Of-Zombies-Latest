@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7239522955122857359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4178576437575807752}
+  - component: {fileID: 6008452915691961156}
+  m_Layer: 0
+  m_Name: PoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4178576437575807752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239522955122857359}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6008452915691961156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7239522955122857359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f5a6e10c966544f3ac3eff7982f3d32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: ExtraPoints
+    prefab: {fileID: 5459632986166215570, guid: 670f49b935b1a4b8dae35db7fce0997e,
+      type: 3}
+    size: 5
+    parent: {fileID: 0}
+  - tag: ExtraHealth
+    prefab: {fileID: 1577518649140342724, guid: b591437be7c5243bab350a28f50ba52b,
+      type: 3}
+    size: 5
+    parent: {fileID: 0}
+  - tag: ExtraSpeed
+    prefab: {fileID: 4091820837344248845, guid: 6faaec455497c42b58483909f0ef9aa8,
+      type: 3}
+    size: 5
+    parent: {fileID: 0}
+  - tag: StarCollectible
+    prefab: {fileID: 5695988990454811224, guid: 29338464552874f059672e18503af4f0,
+      type: 3}
+    size: 5
+    parent: {fileID: 0}
+  - tag: SoldierTank
+    prefab: {fileID: 6775227291992391831, guid: 79400202348334fe1b2c5001547094d0,
+      type: 3}
+    size: 15
+    parent: {fileID: 0}
+  - tag: PoliceCar
+    prefab: {fileID: 6775227291992391831, guid: 2f049b0c717f245b2b0dfa0341dc7e7e,
+      type: 3}
+    size: 15
+    parent: {fileID: 0}

@@ -9,7 +9,7 @@ public class AttackerToZombieMixed : TurnToZombie, ITurnable
     {
         base.Start();
 
-        mixedAttackerSpawner = FindObjectOfType<MixedAttackerSpawner>();
+        mixedAttackerSpawner = GameObject.FindWithTag("HumanManager")?.GetComponent<MixedAttackerSpawner>();
         if (mixedAttackerSpawner == null)
         {
             Debug.LogError("AttackerSpawner not found in the scene.");

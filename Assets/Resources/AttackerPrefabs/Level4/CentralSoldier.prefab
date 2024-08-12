@@ -345,7 +345,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2477000436875030075}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a2dfed27a53d45a3b782861e9fb5d7a, type: 3}
   m_Name: 
@@ -355,6 +355,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerZombieTag: Player
+  maxDetectedZombies: 400
 --- !u!114 &3878265105041095339
 MonoBehaviour:
   m_ObjectHideFlags: 0

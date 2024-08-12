@@ -6,7 +6,7 @@ public class HelperZombieHealth : Health, IDamagable
 
     private void Awake()
     {
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     void Start()

@@ -108,13 +108,6 @@ MonoBehaviour:
     loop: 0
     playOnAwake: 0
     source: {fileID: 0}
-  - name: Countdown
-    clip: {fileID: 8300000, guid: a78d0443c37ba4c4ba3860ee026e4bf1, type: 3}
-    volume: 0.14
-    pitch: 1
-    loop: 0
-    playOnAwake: 0
-    source: {fileID: 0}
   - name: PoliceCar
     clip: {fileID: 8300000, guid: c2522c9b4ab914c06ae6a72e0b0668a0, type: 3}
     volume: 0.14
@@ -127,5 +120,19 @@ MonoBehaviour:
     volume: 0.1
     pitch: 1
     loop: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Countdown1
+    clip: {fileID: 8300000, guid: 73990d43b521a4412b96dc0b6bf56d27, type: 3}
+    volume: 0.14
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    source: {fileID: 0}
+  - name: Countdown2
+    clip: {fileID: 8300000, guid: 0b1fdfe5462d84ebd860d6586b7803be, type: 3}
+    volume: 0.14
+    pitch: 1
+    loop: 0
     playOnAwake: 0
     source: {fileID: 0}

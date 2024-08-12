@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     {
         // Uncomment the following line to clear PlayerPrefs for testing purposes
         //PlayerPrefs.DeleteAll();
-        audioManager =  FindObjectOfType<AudioManager>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
 
         FindUIReferences();
 

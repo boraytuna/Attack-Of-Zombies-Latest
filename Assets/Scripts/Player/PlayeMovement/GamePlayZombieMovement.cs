@@ -21,7 +21,7 @@ public class GamePlayZombieMovement : MonoBehaviour, IMoveable
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         // Find the zombie counter script
-        zombieCounter = FindObjectOfType<ZombieCounter>();
+        zombieCounter = GameObject.FindWithTag("ZombieManager").GetComponent<ZombieCounter>();
     }
 
     private void OnEnable()

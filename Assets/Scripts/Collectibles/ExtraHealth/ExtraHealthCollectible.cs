@@ -13,7 +13,7 @@ public class ExtraHealthCollectible : Collectible
         delayBeforeTrigger = CollectibleManager.Instance.delayBeforeTrigger;
         extraPointsAdded = CollectibleManager.Instance.extraPointsAdded;
         col = GetComponent<Collider>();
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
         if (col != null)
         {
             col.isTrigger = false; // Ensure trigger is initially false
@@ -40,8 +40,8 @@ public class ExtraHealthCollectible : Collectible
             // Apply the effect when collected by player or zombie
             ApplyEffect(other.gameObject);
 
-            // Destroy the collectible after it's collected
-            Destroy(gameObject);
+            // Deactivate the collectible instead of destroying it
+            gameObject.SetActive(false);
         }
     }
 

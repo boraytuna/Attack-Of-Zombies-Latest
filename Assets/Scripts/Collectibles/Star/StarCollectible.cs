@@ -1,3 +1,57 @@
+// using System.Collections;
+// using UnityEngine;
+
+// public class StarCollectible : Collectible, ICollectible
+// {
+//     private int extraPointsAdded;
+//     private float delayBeforeTrigger;
+//     private Collider col;
+//     private AudioManager audioManager;
+
+//     private void Start()
+//     {
+//         delayBeforeTrigger = CollectibleManager.Instance.delayBeforeTrigger;
+//         extraPointsAdded = CollectibleManager.Instance.extraPointsAdded;
+//         col = GetComponent<Collider>();
+//         audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
+//         if (col != null)
+//         {
+//             col.isTrigger = false; // Ensure trigger is initially false
+//             StartCoroutine(EnableTriggerAfterDelay(delayBeforeTrigger)); // Start coroutine to set trigger after delay
+//         }
+//     }
+
+//     private IEnumerator EnableTriggerAfterDelay(float delay)
+//     {
+//         yield return new WaitForSeconds(delay);
+//         if (col != null)
+//         {
+//             col.isTrigger = true;
+//         }
+//     }
+
+//     private void OnTriggerEnter(Collider other)
+//     {
+//         if (other.CompareTag("Player") || other.CompareTag("Zombie"))
+//         {
+//             // Play sound
+//             audioManager.Play("CollectiblePickUp");
+
+//             // Apply the effect when collected by player or zombie
+//             ApplyEffect(other.gameObject);
+
+//             // Destroy the collectible after it's collected
+//             Destroy(gameObject);
+//         }
+//     }
+
+//     public override void ApplyEffect(GameObject collector)
+//     {
+//         // Increment health booster count in CollectibleManager
+//         CollectibleManager.Instance.IncrementStarCollectibleCount();
+//     }
+
+// }
 using System.Collections;
 using UnityEngine;
 
@@ -13,11 +67,12 @@ public class StarCollectible : Collectible, ICollectible
         delayBeforeTrigger = CollectibleManager.Instance.delayBeforeTrigger;
         extraPointsAdded = CollectibleManager.Instance.extraPointsAdded;
         col = GetComponent<Collider>();
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
+
         if (col != null)
         {
-            col.isTrigger = false; // Ensure trigger is initially false
-            StartCoroutine(EnableTriggerAfterDelay(delayBeforeTrigger)); // Start coroutine to set trigger after delay
+            col.isTrigger = false;
+            StartCoroutine(EnableTriggerAfterDelay(delayBeforeTrigger));
         }
     }
 
@@ -34,21 +89,16 @@ public class StarCollectible : Collectible, ICollectible
     {
         if (other.CompareTag("Player") || other.CompareTag("Zombie"))
         {
-            // Play sound
             audioManager.Play("CollectiblePickUp");
-
-            // Apply the effect when collected by player or zombie
             ApplyEffect(other.gameObject);
 
-            // Destroy the collectible after it's collected
-            Destroy(gameObject);
+            // Deactivate the collectible instead of destroying it
+            gameObject.SetActive(false);
         }
     }
 
     public override void ApplyEffect(GameObject collector)
     {
-        // Increment health booster count in CollectibleManager
         CollectibleManager.Instance.IncrementStarCollectibleCount();
     }
-
 }

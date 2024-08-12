@@ -16,8 +16,7 @@ public class ExtraPointCollectible : Collectible, ICollectible
         delayBeforeTrigger = CollectibleManager.Instance.delayBeforeTrigger;
         extraPointsAdded = CollectibleManager.Instance.extraPointsAdded;
         col = GetComponent<Collider>();
-        audioManager = FindObjectOfType<AudioManager>();
-        //extraPointsDisplayer = FindObjectOfType<ExtraPointsDisplayer>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
         if (col != null)
         {
             col.isTrigger = false; // Ensure trigger is initially false
@@ -42,7 +41,9 @@ public class ExtraPointCollectible : Collectible, ICollectible
             audioManager.Play("CollectiblePickUp");
             
             ApplyEffect(other.gameObject);
-            Destroy(gameObject); // Optionally destroy the collectible after it's collected
+            
+            // Deactivate the collectible instead of destroying it
+            gameObject.SetActive(false);
         }
     }    
 

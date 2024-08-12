@@ -22,7 +22,7 @@ public class AttackerDamageManager : MonoBehaviour
     
     void Start()
     {
-        zombieCounter = FindObjectOfType<ZombieCounter>();
+        zombieCounter = GameObject.FindWithTag("ZombieManager").GetComponent<ZombieCounter>();
     }
 
     void Update()

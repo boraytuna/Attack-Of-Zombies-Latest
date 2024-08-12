@@ -693,7 +693,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717216233137192772}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a2dfed27a53d45a3b782861e9fb5d7a, type: 3}
   m_Name: 
@@ -703,6 +703,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerZombieTag: Player
+  maxDetectedZombies: 400
 --- !u!114 &304474055933489990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -958,7 +959,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 893027501520659315}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a2dfed27a53d45a3b782861e9fb5d7a, type: 3}
   m_Name: 
@@ -968,6 +969,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerZombieTag: Player
+  maxDetectedZombies: 400
 --- !u!114 &119642329714716529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1963,7 +1965,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2210370357587169548}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a2dfed27a53d45a3b782861e9fb5d7a, type: 3}
   m_Name: 
@@ -1973,6 +1975,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerZombieTag: Player
+  maxDetectedZombies: 400
 --- !u!114 &2793284695246265119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2244,7 +2247,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2422870708338965673}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a2dfed27a53d45a3b782861e9fb5d7a, type: 3}
   m_Name: 
@@ -2254,6 +2257,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerZombieTag: Player
+  maxDetectedZombies: 400
 --- !u!114 &3193722588174741675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3376,7 +3380,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3799854660400758493}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a2dfed27a53d45a3b782861e9fb5d7a, type: 3}
   m_Name: 
@@ -3386,6 +3390,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerZombieTag: Player
+  maxDetectedZombies: 400
 --- !u!114 &4140618373505053407
 MonoBehaviour:
   m_ObjectHideFlags: 0

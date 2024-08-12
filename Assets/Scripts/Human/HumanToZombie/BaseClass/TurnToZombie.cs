@@ -9,9 +9,10 @@ public class TurnToZombie : MonoBehaviour
     private GameObject zombiePrefab; // Reference to the loaded zombie prefab
     protected ZombieCounter zombieCounter; // Reference to the Zombie Counter script
     protected CollectibleDropper collectibleDropper;
+    private RaycastHit[] raycastHits = new RaycastHit[1];  // Buffer for RaycastHit to use with non-allocating raycasting
 
     protected virtual void Start()
-    {
+    {   
         zombiePrefab = Resources.Load<GameObject>(zombiePrefabPath);
         if (zombiePrefab == null)
         {
@@ -19,13 +20,13 @@ public class TurnToZombie : MonoBehaviour
             return;
         }
 
-        zombieCounter = FindObjectOfType<ZombieCounter>();
+        zombieCounter = GameObject.FindWithTag("ZombieManager")?.GetComponent<ZombieCounter>();
         if (zombieCounter == null)
         {
             Debug.LogError("ZombieCounter not found in the scene.");
         }
 
-        collectibleDropper = FindObjectOfType<CollectibleDropper>();
+        collectibleDropper = GameObject.FindWithTag("HumanManager")?.GetComponent<CollectibleDropper>();
         if (collectibleDropper == null)
         {
             Debug.LogError("CollectibleDropper is null");
@@ -34,7 +35,8 @@ public class TurnToZombie : MonoBehaviour
 
     protected void HandleOnTriggerEnter(Collider other, bool isCentralEntity, System.Action onCentralEntityKilled)
     {
-        if (other.gameObject.CompareTag("Zombie") || other.gameObject.CompareTag("Player"))
+        IMoveable moveable = other.gameObject.GetComponent<IMoveable>();
+        if (moveable != null)
         {
             if (zombiePrefab != null)
             {
@@ -77,17 +79,20 @@ public class TurnToZombie : MonoBehaviour
         Vector3 rayStart = originalPosition + Vector3.up * 10f; // Start the raycast from above the object
         Ray ray = new Ray(rayStart, Vector3.down); // Cast the ray downwards
 
-        if (Physics.Raycast(ray, out RaycastHit hit, 20f, groundLayer))
+        // Perform a non-allocating raycast
+        int hitCount = Physics.RaycastNonAlloc(ray, raycastHits, 20f, groundLayer);
+
+        if (hitCount > 0)
         {
-            Vector3 groundPosition = hit.point; // Get the point where the ray hit the ground
+            Vector3 groundPosition = raycastHits[0].point; // Get the point where the ray hit the ground
             if (groundPosition.y < 0.12f)
             {
-                groundPosition.y = 0.12f; // Adjust the y position if it's less than 0.08
+                groundPosition.y = 0.12f; // Adjust the y position if it's less than 0.12
             }
             return groundPosition; // Return the adjusted ground position
         }
 
-        // If no ground was found, return the original position adjusted to at least 0.08 on the y-axis
+        // If no ground was found, return the original position adjusted to at least 0.12 on the y-axis
         if (originalPosition.y < 0.12f)
         {
             originalPosition.y = 0.12f;

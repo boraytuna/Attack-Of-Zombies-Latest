@@ -9,19 +9,21 @@ public class HumanToZombie : TurnToZombie, ITurnable
     {
         base.Start();
 
-        humanSpawner = FindObjectOfType<HumanSpawner>();
-        if (humanSpawner == null)
-        {
-            Debug.LogError("HumanSpawner not found in the scene.");
-        }
+        // Find the HumanSpawner by tag
+        humanSpawner = GameObject.FindWithTag("HumanManager")?.GetComponent<HumanSpawner>();
 
         // Determine if this is a central human by checking its layer
         isCentralHuman = IsCentral();
+
+        if (humanSpawner == null)
+        {
+            Debug.LogError("HumanSpawner not found. Please ensure there is an object with the 'HumanSpawner' tag and the HumanSpawner component attached.");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        HandleOnTriggerEnter(other, isCentralHuman, () => humanSpawner.OnCentralHumanKilled(this.gameObject));
+        HandleOnTriggerEnter(other, isCentralHuman, () => humanSpawner?.OnCentralHumanKilled(this.gameObject));
     }
 
     public bool IsCentral()

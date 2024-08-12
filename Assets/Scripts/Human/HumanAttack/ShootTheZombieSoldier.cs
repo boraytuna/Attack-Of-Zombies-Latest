@@ -7,7 +7,7 @@ public class ShootTheZombieSoldier : Shoot, IAttacker
     protected override void Start()
     {
         base.Start();
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
     }
 
     protected override void PlayAttackAnimation()

@@ -53,7 +53,8 @@ public class AudioManager : MonoBehaviour
             Debug.LogError($"AudioSource for sound {name} is not set.");
             return;
         }
-        s.source.Play();
+        //s.source.Play();
+        s.source.PlayOneShot(s.clip);
     }
 
     public void Stop(String name)
