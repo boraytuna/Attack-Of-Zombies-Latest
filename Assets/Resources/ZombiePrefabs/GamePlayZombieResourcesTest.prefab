@@ -366,6 +366,7 @@ GameObject:
   - component: {fileID: 8195256953179999588}
   - component: {fileID: -4208575631848964325}
   - component: {fileID: -4977115582856548685}
+  - component: {fileID: -9111986511607004516}
   m_Layer: 6
   m_Name: GamePlayZombieResourcesTest
   m_TagString: Zombie
@@ -381,7 +382,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4245139500938073654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -535,6 +536,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d205f16bfb93428795516d513f9512f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-9111986511607004516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4245139500938073654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65fbe640800444c6ab7b8e6dc30183d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4416208517746027337

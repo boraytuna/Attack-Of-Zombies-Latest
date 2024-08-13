@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6008452915691961156}
   m_Layer: 0
   m_Name: PoolManager
-  m_TagString: Untagged
+  m_TagString: PoolManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,10 +68,45 @@ MonoBehaviour:
   - tag: SoldierTank
     prefab: {fileID: 6775227291992391831, guid: 79400202348334fe1b2c5001547094d0,
       type: 3}
-    size: 15
+    size: 16
     parent: {fileID: 0}
   - tag: PoliceCar
     prefab: {fileID: 6775227291992391831, guid: 2f049b0c717f245b2b0dfa0341dc7e7e,
       type: 3}
     size: 15
+    parent: {fileID: 0}
+  - tag: Zombie
+    prefab: {fileID: 4245139500938073654, guid: 6d389fae8d90d4ff0b06a73ef1520eef,
+      type: 3}
+    size: 400
+    parent: {fileID: 0}
+  - tag: CentralPolice
+    prefab: {fileID: 2496486582045581625, guid: 4e60a10bd4ea046399f890ae425dd21c,
+      type: 3}
+    size: 50
+    parent: {fileID: 0}
+  - tag: Police
+    prefab: {fileID: 4598251690354690805, guid: 29fe228d7bcfe451a92e55a0918f9128,
+      type: 3}
+    size: 150
+    parent: {fileID: 0}
+  - tag: CentralHuman
+    prefab: {fileID: 7823827973598661939, guid: 39057adfebefa487ba03b1b86ceee81e,
+      type: 3}
+    size: 100
+    parent: {fileID: 0}
+  - tag: Human
+    prefab: {fileID: 6879920544499097484, guid: b98e6b91b1e7d4c9f8fa73a23e18f30c,
+      type: 3}
+    size: 400
+    parent: {fileID: 0}
+  - tag: CentralSoldier
+    prefab: {fileID: 2477000436875030075, guid: 2b26ca2e06507430d8f4ad90fa19cb19,
+      type: 3}
+    size: 50
+    parent: {fileID: 0}
+  - tag: Soldier
+    prefab: {fileID: 2477000436875030075, guid: 1fc3a2f5564564551aa418df8b77af50,
+      type: 3}
+    size: 150
     parent: {fileID: 0}

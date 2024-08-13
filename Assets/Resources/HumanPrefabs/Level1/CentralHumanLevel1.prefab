@@ -981,7 +981,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7823827973598661939}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.538, y: 0, z: 8.73}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  zombiePrefabPath: ZombiePrefabs/GamePlayZombieResourcesTest
+  zombieTag: Zombie
   isCentralHuman: 0
 --- !u!114 &6144962887470224117
 MonoBehaviour:
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc43056397bcf4b688c089851cf04811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 10
+  detectionRange: 6
   detectedHumans: []
 --- !u!114 &7837152610509854940
 MonoBehaviour:
@@ -1119,7 +1119,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7823827973598661939}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6a394af239744533a318350ee0b9086, type: 3}
   m_Name: 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.23488697, g: 0.3513488, b: 0.43962356, a: 1}
+  m_IndirectSpecularColor: {r: 0.23324591, g: 0.3499096, b: 0.43893707, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -21603,13 +21603,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1733070519}
   - {fileID: 9057389061499614033}
   - {fileID: 3164272448154658536}
   - {fileID: 3851046590927835221}
   - {fileID: 1430833704467596896}
   - {fileID: 5262470275525322799}
   - {fileID: 3906112581412752071}
-  - {fileID: 1733070519}
   - {fileID: 1099562622}
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -83061,14 +83061,65 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6008452915691961156, guid: bd2848ddaadac480db6dd9466d74ad52,
         type: 3}
+      propertyPath: pools.Array.data[5].tag
+      value: PoliceCar
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008452915691961156, guid: bd2848ddaadac480db6dd9466d74ad52,
+        type: 3}
+      propertyPath: pools.Array.data[6].tag
+      value: Zombie
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008452915691961156, guid: bd2848ddaadac480db6dd9466d74ad52,
+        type: 3}
       propertyPath: pools.Array.data[4].size
-      value: 9
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6008452915691961156, guid: bd2848ddaadac480db6dd9466d74ad52,
         type: 3}
       propertyPath: pools.Array.data[5].size
-      value: 9
+      value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 6008452915691961156, guid: bd2848ddaadac480db6dd9466d74ad52,
+        type: 3}
+      propertyPath: pools.Array.data[6].size
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008452915691961156, guid: bd2848ddaadac480db6dd9466d74ad52,
+        type: 3}
+      propertyPath: pools.Array.data[5].prefab
+      value: 
+      objectReference: {fileID: 6775227291992391831, guid: 2f049b0c717f245b2b0dfa0341dc7e7e,
+        type: 3}
+    - target: {fileID: 6008452915691961156, guid: bd2848ddaadac480db6dd9466d74ad52,
+        type: 3}
+      propertyPath: pools.Array.data[6].prefab
+      value: 
+      objectReference: {fileID: 4245139500938073654, guid: 4927719a8fe1a40b1aa2ed4ab8121cdd,
+        type: 3}
+    - target: {fileID: 6008452915691961156, guid: bd2848ddaadac480db6dd9466d74ad52,
+        type: 3}
+      propertyPath: pools.Array.data[7].prefab
+      value: 
+      objectReference: {fileID: 2496486582045581625, guid: d876abdd47bf54c898a140f6ebd9ce73,
+        type: 3}
+    - target: {fileID: 6008452915691961156, guid: bd2848ddaadac480db6dd9466d74ad52,
+        type: 3}
+      propertyPath: pools.Array.data[8].prefab
+      value: 
+      objectReference: {fileID: 4598251690354690805, guid: 2929c91adea254ed4993ab8601cbda41,
+        type: 3}
+    - target: {fileID: 6008452915691961156, guid: bd2848ddaadac480db6dd9466d74ad52,
+        type: 3}
+      propertyPath: pools.Array.data[9].prefab
+      value: 
+      objectReference: {fileID: 7823827973598661939, guid: dcbc12e21df69457ba2b1dbe621a9ef0,
+        type: 3}
+    - target: {fileID: 6008452915691961156, guid: bd2848ddaadac480db6dd9466d74ad52,
+        type: 3}
+      propertyPath: pools.Array.data[10].prefab
+      value: 
+      objectReference: {fileID: 6879920544499097484, guid: f65f76af697dd4788b1c6075ec1d7a18,
+        type: 3}
     - target: {fileID: 7239522955122857359, guid: bd2848ddaadac480db6dd9466d74ad52,
         type: 3}
       propertyPath: m_Name
@@ -83085,6 +83136,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1733070518}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1733070520 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6008452915691961156, guid: bd2848ddaadac480db6dd9466d74ad52,
+    type: 3}
+  m_PrefabInstance: {fileID: 1733070518}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f5a6e10c966544f3ac3eff7982f3d32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1734452669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -108263,10 +108326,11 @@ MonoBehaviour:
   minGroupSeparationDistance: 15
   maxRespawns: 60
   navMeshSurface: {fileID: 433849520}
-  centralPolicePrefabPath: AttackerPrefabs/Level6/CentralPolice
-  policePrefabPath: AttackerPrefabs/Level6/BasicPolice
-  centralSoldierPrefabPath: AttackerPrefabs/Level6/CentralSoldier
-  soldierPrefabPath: AttackerPrefabs/Level6/BasicSoldier
+  centralPoliceTag: CentralPolice
+  policeTag: Police
+  centralSoldierTag: CentralSoldier
+  soldierTag: Soldier
+  objectPooler: {fileID: 1733070520}
 --- !u!4 &3293205364535412254
 Transform:
   m_ObjectHideFlags: 0
@@ -110130,7 +110194,7 @@ MonoBehaviour:
   objectiveText: {fileID: 453918343}
   countdownText: {fileID: 453918342}
   levelNumberText: {fileID: 453918344}
-  victoryChecker: {fileID: 0}
+  victoryChecker: {fileID: 3164272448154658537}
   countdownTime: 3
 --- !u!4 &4762098067725732862
 Transform:
@@ -113732,8 +113796,9 @@ MonoBehaviour:
   minGroupSeparationDistance: 12.5
   maxRespawns: 300
   navMeshSurface: {fileID: 433849520}
-  centralHumanPrefabPath: HumanPrefabs/Level6/CentralHumanLevel6
-  humanPrefabPath: HumanPrefabs/Level6/BasicHumanLevel6
+  centralHumanTag: CentralHuman
+  HumanTag: Human
+  objectPooler: {fileID: 1733070520}
 --- !u!4 &7899547003870618725
 Transform:
   m_ObjectHideFlags: 0

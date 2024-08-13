@@ -15,6 +15,7 @@ TagManager:
   - AudioManager
   - ZombieManager
   - VictoryChecker
+  - PoolManager
   layers:
   - Default
   - TransparentFX

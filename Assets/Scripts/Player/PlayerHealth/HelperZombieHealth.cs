@@ -17,6 +17,6 @@ public class HelperZombieHealth : Health, IDamagable
     protected override void Die()
     {
         audioManager.Play("ZombieDeath");
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
