@@ -305,7 +305,6 @@ GameObject:
   - component: {fileID: 302923772075163404}
   - component: {fileID: -6087561926604081804}
   - component: {fileID: -1924195569751512819}
-  - component: {fileID: 710821662088957930}
   - component: {fileID: -7292980563078403286}
   m_Layer: 12
   m_Name: CentralPolice
@@ -391,7 +390,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  zombiePrefabPath: ZombiePrefabs/Level8/GamePlayZombieResourcesTest
+  zombieTag: Zombie
   centralAttacker: 0
 --- !u!114 &-1924195569751512819
 MonoBehaviour:
@@ -405,24 +404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be037f8308ab440a93832bbc3bb9e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &710821662088957930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2496486582045581625}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a2dfed27a53d45a3b782861e9fb5d7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 15
-  zombieLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  playerZombieTag: Player
-  maxDetectedZombies: 400
 --- !u!114 &-7292980563078403286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,7 +425,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1672
   shootPoint: {fileID: 1006459895608926451}
-  attackRange: 19
+  attackRange: 18
   shootingInterval: 0.65
   policeAnimationController: {fileID: -1924195569751512819}
 --- !u!1 &2858159465019476372

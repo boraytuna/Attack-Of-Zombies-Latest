@@ -4,16 +4,25 @@ public class PoliceAnimationController : AnimatorControllerBase
 {
     public override void PlayIdle()
     {
-        _animator.Play("m_pistol_idle_A");
+        if (gameObject.activeInHierarchy) // Check if the game object is active
+        {
+            _animator.Play("m_pistol_idle_A");
+        }
     }
 
     public override void PlayRun()
     {
-        _animator.Play("m_pistol_run");
+        if (gameObject.activeInHierarchy) // Check if the game object is active
+        {
+            _animator.Play("m_pistol_run");
+        }   
     }
 
     public override void PlayAttack()
-    {
-        _animator.Play("m_pistol_shoot");
+    {       
+        if (gameObject.activeInHierarchy) // Check if the game object is active
+        {
+            _animator.Play("m_pistol_shoot");
+        } 
     }
 }

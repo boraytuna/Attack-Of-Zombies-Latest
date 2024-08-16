@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI; // Ensure this namespace is included
 
-public class HumanMovement : MonoBehaviour, IMoveToEscapePoint
+public class HumanMovement : MonoBehaviour
 {
     private static Vector3 escapePoint; // Static escape point shared by all humans
     private NavMeshAgent agent; // Reference to NavMeshAgent component
@@ -48,9 +48,9 @@ public class HumanMovement : MonoBehaviour, IMoveToEscapePoint
 
     public void MoveToEscapePoint()
     {
-        if (agent != null)
+        if (agent != null && agent.isActiveAndEnabled)
         {
-            agent.SetDestination(escapePoint); // Move towards the shared escape point
+            agent.SetDestination(escapePoint);
         }
     }
 }

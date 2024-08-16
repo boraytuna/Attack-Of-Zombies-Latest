@@ -52,7 +52,7 @@ public class CarSpawner : MonoBehaviour
                 // Keep track of the number of vehicles spawned at start
                 currentStartVehicles++;
                 occupiedPositions.Add(spawnPosition);
-                Debug.Log($"Spawned object with tag {prefabTag} at position {spawnPosition.position}.");
+                //Debug.Log($"Spawned object with tag {prefabTag} at position {spawnPosition.position}.");
             }
         }
     }

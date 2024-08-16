@@ -586,7 +586,6 @@ GameObject:
   - component: {fileID: 2512871470923102431}
   - component: {fileID: 1574002724891190918}
   - component: {fileID: 6411999379011621767}
-  - component: {fileID: 954338299025729870}
   - component: {fileID: 304474055933489990}
   m_Layer: 13
   m_Name: BasicPolice (1)
@@ -672,7 +671,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  zombiePrefabPath: ZombiePrefabs/GamePlayZombieResourcesTest
+  zombieTag: Zombie
   centralAttacker: 0
 --- !u!114 &6411999379011621767
 MonoBehaviour:
@@ -686,24 +685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be037f8308ab440a93832bbc3bb9e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &954338299025729870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 717216233137192772}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a2dfed27a53d45a3b782861e9fb5d7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 15
-  zombieLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  playerZombieTag: Player
-  maxDetectedZombies: 400
 --- !u!114 &304474055933489990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -727,6 +708,7 @@ MonoBehaviour:
   shootPoint: {fileID: 828034961889533990}
   attackRange: 10
   shootingInterval: 1
+  rotationSpeed: 5
   policeAnimationController: {fileID: 6411999379011621767}
 --- !u!1 &730255899799573609
 GameObject:
@@ -852,7 +834,6 @@ GameObject:
   - component: {fileID: 2832545170452882664}
   - component: {fileID: 1172977392426220209}
   - component: {fileID: 6731549849772183472}
-  - component: {fileID: 625655353437631865}
   - component: {fileID: 119642329714716529}
   m_Layer: 13
   m_Name: BasicPolice (3)
@@ -938,7 +919,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  zombiePrefabPath: ZombiePrefabs/GamePlayZombieResourcesTest
+  zombieTag: Zombie
   centralAttacker: 0
 --- !u!114 &6731549849772183472
 MonoBehaviour:
@@ -952,24 +933,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be037f8308ab440a93832bbc3bb9e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &625655353437631865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 893027501520659315}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a2dfed27a53d45a3b782861e9fb5d7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 15
-  zombieLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  playerZombieTag: Player
-  maxDetectedZombies: 400
 --- !u!114 &119642329714716529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -993,6 +956,7 @@ MonoBehaviour:
   shootPoint: {fileID: 1075655472121756689}
   attackRange: 10
   shootingInterval: 1
+  rotationSpeed: 5
   policeAnimationController: {fileID: 6731549849772183472}
 --- !u!1 &901005401845886279
 GameObject:
@@ -1858,7 +1822,6 @@ GameObject:
   - component: {fileID: 4052587516864089913}
   - component: {fileID: 1697082859715577153}
   - component: {fileID: 6431843002612111672}
-  - component: {fileID: 3878942855735377887}
   - component: {fileID: 2793284695246265119}
   m_Layer: 12
   m_Name: CentralPolice
@@ -1944,7 +1907,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  zombiePrefabPath: ZombiePrefabs/GamePlayZombieResourcesTest
+  zombieTag: Zombie
   centralAttacker: 0
 --- !u!114 &6431843002612111672
 MonoBehaviour:
@@ -1958,24 +1921,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be037f8308ab440a93832bbc3bb9e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3878942855735377887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2210370357587169548}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a2dfed27a53d45a3b782861e9fb5d7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 15
-  zombieLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  playerZombieTag: Player
-  maxDetectedZombies: 400
 --- !u!114 &2793284695246265119
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1999,6 +1944,7 @@ MonoBehaviour:
   shootPoint: {fileID: 3602374483167416518}
   attackRange: 10
   shootingInterval: 1
+  rotationSpeed: 5
   policeAnimationController: {fileID: 6431843002612111672}
 --- !u!1 &2317023051771426376
 GameObject:
@@ -2140,7 +2086,6 @@ GameObject:
   - component: {fileID: 771337120792099634}
   - component: {fileID: 4448482673858831723}
   - component: {fileID: 8111030453620985962}
-  - component: {fileID: 2690243200086289059}
   - component: {fileID: 3193722588174741675}
   m_Layer: 13
   m_Name: BasicPolice
@@ -2226,7 +2171,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  zombiePrefabPath: ZombiePrefabs/GamePlayZombieResourcesTest
+  zombieTag: Zombie
   centralAttacker: 0
 --- !u!114 &8111030453620985962
 MonoBehaviour:
@@ -2240,24 +2185,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be037f8308ab440a93832bbc3bb9e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2690243200086289059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2422870708338965673}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a2dfed27a53d45a3b782861e9fb5d7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 15
-  zombieLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  playerZombieTag: Player
-  maxDetectedZombies: 400
 --- !u!114 &3193722588174741675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2281,6 +2208,7 @@ MonoBehaviour:
   shootPoint: {fileID: 2528227098228728779}
   attackRange: 10
   shootingInterval: 1
+  rotationSpeed: 5
   policeAnimationController: {fileID: 8111030453620985962}
 --- !u!1 &2451930900793150188
 GameObject:
@@ -2439,10 +2367,12 @@ MonoBehaviour:
   - {fileID: 2284877242477140160}
   - {fileID: 2520424026606459225}
   - {fileID: 1883973753922864375}
-  speed: 2
+  speed: 1.6
   radius: 10
+  allObjectsDestroyed: 0
   startPosition: {fileID: 8031983623071974850}
   soundTriggerDistance: 30
+  isSoundPlaying: 0
 --- !u!54 &578678383582149161
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3273,7 +3203,6 @@ GameObject:
   - component: {fileID: 2274415370168187206}
   - component: {fileID: 2925124039471490847}
   - component: {fileID: 7328522651214205470}
-  - component: {fileID: 3490754061618063575}
   - component: {fileID: 4140618373505053407}
   m_Layer: 13
   m_Name: BasicPolice (2)
@@ -3359,7 +3288,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  zombiePrefabPath: ZombiePrefabs/GamePlayZombieResourcesTest
+  zombieTag: Zombie
   centralAttacker: 0
 --- !u!114 &7328522651214205470
 MonoBehaviour:
@@ -3373,24 +3302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5be037f8308ab440a93832bbc3bb9e46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3490754061618063575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3799854660400758493}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a2dfed27a53d45a3b782861e9fb5d7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 15
-  zombieLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  playerZombieTag: Player
-  maxDetectedZombies: 400
 --- !u!114 &4140618373505053407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3414,6 +3325,7 @@ MonoBehaviour:
   shootPoint: {fileID: 3905217474882314687}
   attackRange: 10
   shootingInterval: 1
+  rotationSpeed: 5
   policeAnimationController: {fileID: 7328522651214205470}
 --- !u!1 &3800523504497426228
 GameObject:

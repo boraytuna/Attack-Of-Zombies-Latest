@@ -189,7 +189,7 @@ PrefabInstance:
     - target: {fileID: 4748088253632974671, guid: b8de23d2ae5574ad4996254ce132798d,
         type: 3}
       propertyPath: maxSimultaneousPlays
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5908959428588682271, guid: b8de23d2ae5574ad4996254ce132798d,
         type: 3}

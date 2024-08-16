@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShootTheZombieSoldier : Shoot, IAttacker
+public class ShootTheZombieSoldier : Shoot
 {
     [SerializeField] private SoldierAnimationController soldierAnimationController; // Reference to the animator controller 
 
@@ -13,7 +13,6 @@ public class ShootTheZombieSoldier : Shoot, IAttacker
     protected override void PlayAttackAnimation()
     {
         soldierAnimationController.PlayAttack();
-        PlayShootingSound();
     }
 
     protected override void PlayIdleAnimation()

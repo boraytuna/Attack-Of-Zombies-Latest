@@ -16,6 +16,7 @@ TagManager:
   - ZombieManager
   - VictoryChecker
   - PoolManager
+  - OuterWalls
   layers:
   - Default
   - TransparentFX

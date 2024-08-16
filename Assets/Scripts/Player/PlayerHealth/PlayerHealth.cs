@@ -54,6 +54,5 @@ public class PlayerHealth : Health, IDamagable
         GamePlayEvents.TriggerPlayerDeath();
 
         isAlive = false; // Set the flag to false when the player dies
-        Destroy(gameObject);
     }
 }

@@ -111,9 +111,11 @@ public class TurnToZombie : MonoBehaviour
     protected ZombieCounter zombieCounter; 
     protected CollectibleDropper collectibleDropper;
     private RaycastHit[] raycastHits = new RaycastHit[1];  
+    private AudioManager audioManager;
 
     protected virtual void Start()
     {   
+        audioManager = GameObject.FindWithTag("AudioManager")?.GetComponent<AudioManager>();
         zombieCounter = GameObject.FindWithTag("ZombieManager")?.GetComponent<ZombieCounter>();
         if (zombieCounter == null)
         {
@@ -133,7 +135,7 @@ public class TurnToZombie : MonoBehaviour
         if (moveable != null)
         {
             // Play the human death sound
-            FindObjectOfType<AudioManager>().Play("HumanDeath");
+            audioManager.Play("HumanDeath");
 
             // Find the ground position
             Vector3 spawnPosition = FindGroundPosition(transform.position);

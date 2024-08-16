@@ -5,21 +5,33 @@ public class ZombieAnimatorController : AnimatorControllerBase
 {
     public override void PlayIdle()
     {
-        _animator.Play("zombie_idle");
+        if (gameObject.activeInHierarchy) // Check if the game object is active
+        {
+            _animator.Play("zombie_idle");
+        }
     }
 
     public override void PlayRun()
     {
-        _animator.Play("zombie_walk_forward");
+        if (gameObject.activeInHierarchy) // Check if the game object is active
+        {
+            _animator.Play("zombie_walk_forward");
+        }
     }
 
     public override void PlayAttack()
     {
-        _animator.Play("zombie_attack");
+        if (gameObject.activeInHierarchy) // Check if the game object is active
+        {
+            _animator.Play("zombie_attack");
+        } 
     }
 
     public void PlayDie()
     {
-        _animator.Play("zombie_death_standing");
+        if (gameObject.activeInHierarchy) // Check if the game object is active
+        {
+            _animator.Play("zombie_death_standing");
+        }
     }
 }

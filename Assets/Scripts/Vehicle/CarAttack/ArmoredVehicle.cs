@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public abstract class ArmoredVehicle : MonoBehaviour, IAttacker
+public abstract class ArmoredVehicle : MonoBehaviour, IVehicleAttacker
 {
     [SerializeField] protected float baseDamage = 50f;
     [SerializeField] protected float pushForce = 5f; // Initial force applied to the player

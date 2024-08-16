@@ -4,16 +4,26 @@ public class SoldierAnimationController : AnimatorControllerBase
 {
     public override void PlayIdle()
     {
-        _animator.Play("m_weapon_idle_A");
+        if (gameObject.activeInHierarchy) // Check if the game object is active
+        {
+            _animator.Play("m_weapon_idle_A");
+        }
+        
     }
 
     public override void PlayRun()
     {
-        _animator.Play("m_weapon_run_rm");
+        if (gameObject.activeInHierarchy) // Check if the game object is active
+        {
+            _animator.Play("m_weapon_run_rm");
+        }
     }
 
     public override void PlayAttack()
     {
-        _animator.Play("m_weapon_shoot");
+        if (gameObject.activeInHierarchy) // Check if the game object is active
+        {
+            _animator.Play("m_weapon_shoot");
+        }
     }
 }

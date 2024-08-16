@@ -964,7 +964,6 @@ GameObject:
   - component: {fileID: 8994734802087038929}
   - component: {fileID: 6144962887470224117}
   - component: {fileID: 6352416816088733750}
-  - component: {fileID: 7837152610509854940}
   - component: {fileID: 8127451377143032325}
   m_Layer: 11
   m_Name: CentralHumanLevel6
@@ -1083,7 +1082,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  zombiePrefabPath: ZombiePrefabs/Level6/GamePlayZombieResourcesTest
+  zombieTag: Zombie
   isCentralHuman: 0
 --- !u!114 &6144962887470224117
 MonoBehaviour:
@@ -1110,24 +1109,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc43056397bcf4b688c089851cf04811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 10
+  detectionRange: 7
   detectedHumans: []
---- !u!114 &7837152610509854940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7823827973598661939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6a394af239744533a318350ee0b9086, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  detectionRange: 55
-  zombieLayer:
+  humanLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 256
+  hitColliders:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  zombieTransform: {fileID: 0}
 --- !u!114 &8127451377143032325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,12 +1138,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329414dbf810e45b6acf11ee851c626c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  escapeDistanceMultiplier: 15
-  maxSampleDistance: 10
+  escapeDistanceMultiplier: 30
+  maxSampleDistance: 15
   boundaryCheckDistance: 10
   boundaryLayerMask:
     serializedVersion: 2
     m_Bits: 1544
+  zombieTransform: {fileID: 0}
 --- !u!1 &8205780901821807306
 GameObject:
   m_ObjectHideFlags: 0

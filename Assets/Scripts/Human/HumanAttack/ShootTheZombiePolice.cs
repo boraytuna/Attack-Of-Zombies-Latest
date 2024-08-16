@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShootTheZombiePolice : Shoot, IAttacker
+public class ShootTheZombiePolice : Shoot
 {
     [SerializeField] private PoliceAnimationController policeAnimationController; // Reference to the animator controller
 
@@ -9,11 +9,9 @@ public class ShootTheZombiePolice : Shoot, IAttacker
         base.Start();
         audioManager = GameObject.FindWithTag("AudioManager").GetComponent<AudioManager>();
     }
-
     protected override void PlayAttackAnimation()
     {
         policeAnimationController.PlayAttack();
-        PlayShootingSound();
     }
 
     protected override void PlayIdleAnimation()

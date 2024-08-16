@@ -12,11 +12,10 @@ public class PoliceCarMovement : ArmoredVehicleMovement
             return;
         }
 
-        if (!isSoundPlaying)
+        if (isSoundPlaying)
         {
             audioManager.Play("PoliceCar");
             Debug.Log("Playing PoliceCar move sound");
-            isSoundPlaying = true;
         }
     }
 
@@ -28,11 +27,10 @@ public class PoliceCarMovement : ArmoredVehicleMovement
             return;
         }
 
-        if (isSoundPlaying)
+        if (!isSoundPlaying)
         {
             audioManager.Stop("PoliceCar");
             Debug.Log("Stopping PoliceCar move sound");
-            isSoundPlaying = false;
         }
     }
 }

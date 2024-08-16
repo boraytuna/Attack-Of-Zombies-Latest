@@ -16,7 +16,7 @@ public abstract class Spawner : MonoBehaviour, ISpawner
     [SerializeField] protected int maxEntitiesPerGroup;
     [SerializeField] protected float minGroupRadius;
     [SerializeField] protected float maxGroupRadius;
-    [SerializeField] protected float minGroupSeparationDistance; // Minimum distance between groups
+    [SerializeField] public float minGroupSeparationDistance = 17.5f; // Minimum distance between groups
     [SerializeField] protected int maxRespawns; // Maximum number of times a new group can be spawned
 
     [Header("Navmesh")]
@@ -30,18 +30,20 @@ public abstract class Spawner : MonoBehaviour, ISpawner
     protected Vector3 GetValidSpawnPosition(Vector3 center, float groupRadius)
     {
         Vector3 spawnPosition = center;
-        NavMeshHit hit = new NavMeshHit(); // Initialize hit to avoid the unassigned variable error
+        NavMeshHit hit = new NavMeshHit();
         int attempts = 0;
         const int maxAttempts = 100;
 
         while (attempts < maxAttempts)
         {
-            Vector3 randomOffset = Random.insideUnitSphere * groupRadius;
-            randomOffset.y = 0; // Ensure entities spawn on the NavMesh surface
+            float angle = Random.Range(0f, Mathf.PI * 2f);
+            float distance = Random.Range(0f, groupRadius);
+            Vector3 randomOffset = new Vector3(Mathf.Cos(angle), 0, Mathf.Sin(angle)) * distance;
             spawnPosition = center + randomOffset;
 
             if (Vector3.Distance(spawnPosition, target.position) >= minDistanceFromTarget && NavMesh.SamplePosition(spawnPosition, out hit, 1.0f, NavMesh.AllAreas))
             {
+                //Debug.Log($"Spawn Position Found: {hit.position}, Distance from Target: {Vector3.Distance(hit.position, target.position)}");
                 return hit.position;
             }
 
@@ -49,7 +51,7 @@ public abstract class Spawner : MonoBehaviour, ISpawner
         }
 
         Debug.LogWarning("Max attempts reached while trying to find a valid spawn position. Using the last tried position.");
-        return hit.position; // Return the last position checked
+        return hit.position;
     }
 
     protected Vector3 GetRandomSpawnPositionOnNavMesh()
@@ -80,4 +82,5 @@ public abstract class Spawner : MonoBehaviour, ISpawner
         Debug.LogWarning("Max attempts reached while trying to find a valid random spawn position. Using the last tried position.");
         return randomPoint; // Return the last position checked
     }
+
 }

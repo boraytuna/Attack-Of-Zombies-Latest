@@ -4,16 +4,25 @@ public class HumanAnimatorController : AnimatorControllerBase
 {
     public override void PlayIdle()
     {
-        _animator.Play("idle");
+        if (gameObject.activeInHierarchy) // Check if the game object is active
+        {
+            _animator.Play("idle");
+        }
     }
 
     public override void PlayRun()
     {
-        _animator.Play("run");
+        if (gameObject.activeInHierarchy) // Check if the game object is active
+        {
+            _animator.Play("run");
+        }
     }
 
     public override void PlayAttack()
     {
-        _animator.Play("wave"); // Just an example; adjust as needed
+        if (gameObject.activeInHierarchy) // Check if the game object is active
+        {
+            _animator.Play("wave"); // Just an example
+        }
     }
 }

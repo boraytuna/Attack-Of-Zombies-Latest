@@ -12,11 +12,10 @@ public class SoldierTankMovement : ArmoredVehicleMovement
             return;
         }
 
-        if (!isSoundPlaying)
+        if (isSoundPlaying)
         {
             audioManager.Play("SoldierTank");
             Debug.Log("Playing SoldierTank move sound");
-            isSoundPlaying = true;
         }
     }
 
@@ -28,11 +27,10 @@ public class SoldierTankMovement : ArmoredVehicleMovement
             return;
         }
 
-        if (isSoundPlaying)
+        if (!isSoundPlaying)
         {
             audioManager.Stop("SoldierTank");
             Debug.Log("Stopping SoldierTank move sound");
-            isSoundPlaying = false;
         }
     }
 }

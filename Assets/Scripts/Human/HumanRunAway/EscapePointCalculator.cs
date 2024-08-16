@@ -1,46 +1,56 @@
 // using UnityEngine;
 // using UnityEngine.AI;
 
-// public class EscapePointCalculator : MonoBehaviour
+// public class EscapePointCalculator : MonoBehaviour, IHuman
 // {
-//     public float escapeDistanceMultiplier = 10f; // Multiplier for calculating escape point distance from zombie
-//     public float maxSampleDistance = 10f; // Maximum distance to sample for NavMesh
-//     public float boundaryCheckDistance = 10f; // Distance for boundary checking with raycast
-//     public LayerMask boundaryLayerMask; // Layer mask for detecting boundaries
+//     [SerializeField] private float escapeDistanceMultiplier = 10f; // Multiplier for calculating escape point distance from zombie
+//     [SerializeField] private float maxSampleDistance = 10f; // Maximum distance to sample for NavMesh
+//     [SerializeField] private float boundaryCheckDistance = 10f; // Distance for boundary checking with raycast
+//     [SerializeField] private LayerMask boundaryLayerMask; // Layer mask for detecting boundaries
 
-//     private GameObject centralHuman; // Reference to the central game object
+//     public Vector3 zombiePosition;
+//     private HumanDetector humanDetector;
 
-//     public void SetCentralHuman(GameObject human)
+//     private void Start()
 //     {
-//         this.centralHuman = human;
+//         humanDetector = GetComponent<HumanDetector>();
 //     }
 
-//     private void OnEnable()
+//     // Public method to set the zombie position
+//     public void SetZombiePosition(Vector3 position)
 //     {
-//         ZombieDetection.OnZombieDetected += CalculateEscapePoint; // Subscribe to zombie detection event
+//         zombiePosition = position;
 //     }
 
-//     private void OnDisable()
+//     public void HandleDetection()
 //     {
-//         ZombieDetection.OnZombieDetected -= CalculateEscapePoint; // Unsubscribe from zombie detection event
+//         CalculateEscapePoint(zombiePosition);
+//         humanDetector.MoveHumans();
 //     }
 
 //     private void CalculateEscapePoint(Vector3 zombiePosition)
 //     {
-//         Vector3 directionToZombie = transform.position - zombiePosition; // Calculate direction from escape point to zombie
-//         Vector3 rawEscapePoint = transform.position + directionToZombie.normalized * escapeDistanceMultiplier; // Calculate raw escape point
+//         if(zombiePosition != null)
+//         {
+//             Vector3 directionToZombie = transform.position - zombiePosition; // Calculate direction from escape point to zombie
+//             Vector3 rawEscapePoint = transform.position + directionToZombie.normalized * escapeDistanceMultiplier; // Calculate raw escape point
 
-//         // Check if the escape point is on the NavMesh
-//         if (NavMesh.SamplePosition(rawEscapePoint, out NavMeshHit hit, maxSampleDistance, NavMesh.AllAreas) && !IsOutsideBoundary(hit.position))
+//             // Check if the escape point is on the NavMesh
+//             if (NavMesh.SamplePosition(rawEscapePoint, out NavMeshHit hit, maxSampleDistance, NavMesh.AllAreas) && !IsOutsideBoundary(hit.position))
+//             {
+//                 HumanMovement.SetEscapePoint(hit.position); // Set escape point for humans
+//             }
+//             else
+//             {
+//                 // If the initial point is not valid, adjust it
+//                 Vector3 validEscapePoint = FindValidEscapePoint(directionToZombie);
+//                 HumanMovement.SetEscapePoint(validEscapePoint); // Set adjusted escape point for humans
+//             }
+//         }else
 //         {
-//             HumanMovement.SetEscapePoint(hit.position); // Set escape point for humans
+//             Debug.LogError("Zombie Position is null");
 //         }
-//         else
-//         {
-//             // If the initial point is not valid, adjust it
-//             Vector3 validEscapePoint = FindValidEscapePoint(directionToZombie);
-//             HumanMovement.SetEscapePoint(validEscapePoint); // Set adjusted escape point for humans
-//         }
+
 //     }
 
 //     private Vector3 FindValidEscapePoint(Vector3 directionToZombie)
@@ -69,36 +79,39 @@
 //         return false;
 //     }
 // }
-
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EscapePointCalculator : MonoBehaviour
+public class EscapePointCalculator : MonoBehaviour, IHuman
 {
-    public float escapeDistanceMultiplier = 10f; // Multiplier for calculating escape point distance from zombie
-    public float maxSampleDistance = 10f; // Maximum distance to sample for NavMesh
-    public float boundaryCheckDistance = 10f; // Distance for boundary checking with raycast
-    public LayerMask boundaryLayerMask; // Layer mask for detecting boundaries
+    [SerializeField] private float escapeDistanceMultiplier = 10f; // Multiplier for calculating escape point distance from zombie
+    [SerializeField] private float maxSampleDistance = 10f; // Maximum distance to sample for NavMesh
+    [SerializeField] private float boundaryCheckDistance = 10f; // Distance for boundary checking with raycast
+    [SerializeField] private LayerMask boundaryLayerMask; // Layer mask for detecting boundaries
+    [SerializeField] private Transform zombieTransform;
 
-    private GameObject centralHuman; // Reference to the central game object
-    private RaycastHit[] raycastHitsBuffer = new RaycastHit[1]; // Buffer for storing raycast hits
+    private HumanDetector humanDetector;
 
-    public void SetCentralHuman(GameObject human)
+    private void Start()
     {
-        this.centralHuman = human;
+        humanDetector = GetComponent<HumanDetector>();
+        zombieTransform = GameObject.FindWithTag("Player").transform;
     }
 
-    private void OnEnable()
+    public void HandleDetection()
     {
-        ZombieDetection.OnZombieDetected += CalculateEscapePoint; // Subscribe to zombie detection event
+        if (zombieTransform != null)
+        {
+            CalculateEscapePoint(zombieTransform.position);  
+            humanDetector.MoveHumans(); 
+        }
+        else
+        {
+            Debug.LogError("Zombie Transform is not set.");
+        }
     }
 
-    private void OnDisable()
-    {
-        ZombieDetection.OnZombieDetected -= CalculateEscapePoint; // Unsubscribe from zombie detection event
-    }
-
-    private void CalculateEscapePoint(Vector3 zombiePosition)
+    public void CalculateEscapePoint(Vector3 zombiePosition)
     {
         Vector3 directionToZombie = transform.position - zombiePosition; // Calculate direction from escape point to zombie
         Vector3 rawEscapePoint = transform.position + directionToZombie.normalized * escapeDistanceMultiplier; // Calculate raw escape point
@@ -114,6 +127,8 @@ public class EscapePointCalculator : MonoBehaviour
             Vector3 validEscapePoint = FindValidEscapePoint(directionToZombie);
             HumanMovement.SetEscapePoint(validEscapePoint); // Set adjusted escape point for humans
         }
+
+  
     }
 
     private Vector3 FindValidEscapePoint(Vector3 directionToZombie)
@@ -133,10 +148,12 @@ public class EscapePointCalculator : MonoBehaviour
 
     private bool IsOutsideBoundary(Vector3 position)
     {
-        // Cast a ray in the direction of the calculated escape point using RaycastNonAlloc
-        int hitCount = Physics.RaycastNonAlloc(transform.position, position - transform.position, raycastHitsBuffer, boundaryCheckDistance, boundaryLayerMask);
-
-        // If the ray hits something within the boundary layer, it means the point is outside the boundary
-        return hitCount > 0;
+        // Cast a ray in the direction of the calculated escape point
+        if (Physics.Raycast(transform.position, position - transform.position, out RaycastHit hit, boundaryCheckDistance, boundaryLayerMask))
+        {
+            // If the ray hits something within the boundary layer, it means the point is outside the boundary
+            return true;
+        }
+        return false;
     }
 }
